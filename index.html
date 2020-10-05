@@ -19,19 +19,21 @@
 <body>
 	<div class="header">
 		<div class="header-left">
-			<h1>Политика <span style="color: #E85A4F">News</span></h1>
+			<a class="aNotChanged" href="index.html">
+				<h1>Политика <span style="color: #E85A4F">News</span></h1>
+			</a>
 		</div>
 
 		<div class="header-center">
 			<div class="header-menu">
-				<div class="header-menu-box">Новости</div>
-				<div class="header-menu-box">Форум</div>
-				<div class="header-menu-box">Дебаты</div>
+				<a class="header-menu-box" href="#">Новости</a>
+				<a class="header-menu-box" href="#">Форум</a>
+				<a class="header-menu-box" href="#">Дебаты</a>
 			</div>
 			<div class="header-menu-hiden">
 				<div class="dropdown">
 					<button class="dropdown-toggle search-filter" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						Меню
+						<span class="fontColor">Меню</span>
 				  	</button>
 				  	<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 					    <a class="dropdown-item" href="#">Новости</a>
@@ -45,7 +47,7 @@
 				<img class="svg" src="icons/magnifying-glass.svg">
 				<input type="search" name="" placeholder="Поиск">
 				<div class="dropdown">
-					<button class="dropdown-toggle search-filter" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					<button class="dropdown-toggle search-filter fontColor" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 				    	Фильтры
 				  	</button>
 				  	<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -65,9 +67,39 @@
 			<div class="reg-offline">Регистрация | Вход</div>
 		</div>
 	</div>
-	<div class="aaa">
-		
-	</div>
 
+	<div class="container">
+
+		<div class="row container-box">
+
+			<div class="col-md-3 news-left" style="background-color: red;">
+				<div class="row news-img">
+					<img class="img" src="imgs/dog.png" alt="">
+				</div>
+				<div class="row news-date" style="background-color: blue;">
+					Дата: 2020.10.03
+				</div>
+			</div>
+
+			<div class="col-md-9 news-right" style="background-color: pink;">
+				<div class="row news-right-top" style="background-color: lime;">
+					<h5 class="col-md-4 news-header">
+						Заголовок
+					</h5>
+					<div class="col-md-8 news-keyword">
+						#сша #америка
+					</div>
+				</div>
+
+				<div class="row news-describe" style="background-color: purple;">
+					<div class="col-md-12">
+						Текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст 
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+	</div>
 </body>
 </html>

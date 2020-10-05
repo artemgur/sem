@@ -1,13 +1,14 @@
 *{
 	margin: 0;
-	color: #F7F9FB;
+	/*color: #F7F9FB;*/
 }
 
 body{
-	background-color: #F7F9FB;
+	background-color: #E2E4E6;
 	min-width: 750px;
 }
 
+/*Навигационный блок*/
 .header{
 	width: 100%;
 	height: 60px;
@@ -64,9 +65,17 @@ body{
 }
 .header-menu-box{
 	font-size: 20px;
+	color: #F7F9FB;
+}
+.header-menu-box:hover{
+	color: #F7F9FB;
+	text-decoration: none;
+
+	transform: scale(1.1);
 }
 .header-menu-hiden{
 	display: none;
+	color: #F7F9FB;
 }
 
 .search-box{
@@ -80,7 +89,7 @@ body{
 	align-items: center;
 
 	background-color: #5085A5 ;
-	border-radius: 20px;	
+	border-radius: 20px;
 }
 .header-center input{
 	width: 65%;
@@ -106,6 +115,61 @@ body{
 	color: #F7F9FB;
 }
 
+/*Тело сайта*/
+.container{
+	margin-top: 20px;
+}
+
+.container-box{
+	max-height: 185px;
+	margin-top: 10px;
+	background-color: #FFFFFF;
+
+	border: solid 1px rgba(0, 0, 0, 0.3);
+	border-radius: 10px;
+}
+
+
+.news-left{
+}
+.news-right{
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+}
+.news-right-top{
+	justify-content: 
+}
+.news-describe{
+
+}
+
+
+.news-header{
+	display: flex;
+
+}
+.news-keyword{
+	font-family: "Century Gothic";
+}
+
+
+.news-img{
+	margin: 10px;
+}
+.news-date{
+	margin: 10px;
+}
+
+
+
+
+
+
+
+
+
+
 @media screen and (max-width: 956px) {
 	.header-center{
 		width: 40%
@@ -118,6 +182,16 @@ body{
 	}
 }
 
-.aaa{
-	background-color: red;
+.fontColor{
+	color: #F7F9FB;
+}
+.aNotChanged{
+	color: #F7F9FB;
+}
+.aNotChanged:hover{
+	color: #F7F9FB;
+	text-decoration: none;
+}
+.img{
+	width: 100%;
 }
