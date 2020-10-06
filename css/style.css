@@ -117,6 +117,7 @@ body{
 
 /*Тело сайта*/
 .container-fluid{
+	margin-top: 10px;
 	min-width: 924px;
 	max-width: 1224px;
 }
@@ -124,14 +125,14 @@ body{
 .news{
 	margin: 0;
 	padding: 0;
+
+	box-sizing: border-box;
 }
 .news-card{
 	position: relative;
-	margin: 10px;
+	margin: 5px;
 	box-sizing: border-box;
 	padding: 16px 16px 12px;
-
-	/*height: 312px;*/
 
 	display: flex;
 	flex-direction: row;
@@ -147,10 +148,13 @@ body{
 }
 .news-card-inner{
 	width: 100%;
+
+	display: flex;
+	flex-direction: column;
 }
 
 .media-block{
-	margin-top: 20px;
+	margin-top: auto;
 	position: relative;
 	overflow: hidden;
 	border-radius: 8px;
@@ -169,6 +173,12 @@ body{
 }
 
 .news-card-title{
+	z-index: 1;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+
 	-webkit-line-clamp: 3;
     max-height: 3.66667em;
     font-size: 24px;
@@ -189,6 +199,8 @@ body{
     line-height: 1.25em;
 
 	margin-bottom: 10px;
+
+	z-index: 1;
 }
 .news-card-footer{
 	position: relative;
@@ -215,6 +227,215 @@ body{
 
 }
 
+
+
+
+
+
+/*Блок статьи*/
+.article-box{
+	border-radius: 8px;
+
+	padding: 10px;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	background-color: #fff;
+}
+
+.article-top{
+	width: 100%;
+	/*background-color: red;*/
+
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+.article-bottom{
+	width: 100%;
+}
+
+.article-top-left{
+	width: 30%;
+}
+hr{
+	width: calc(100% - 20px);
+}
+.article-top-right{
+	width: 70%;
+	padding: 10px;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+
+	box-sizing: content-box;
+}
+
+.article-img-box{
+	padding: 10px;
+
+	border-radius: 75px;
+	border: solid 1px rgba(0, 0, 0, 0.5);
+	box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.3);
+
+	background-color: transparent;
+}
+.article-img{
+	width: 100%;
+	border-radius: 75px;
+
+	box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+}
+
+.article-functions{
+	padding: 10px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
+}
+.article-function{
+	margin: 10px;
+	padding: 5px 15px;
+
+	letter-spacing: .1em;
+	font-size: 18px;
+
+	border-bottom: solid 1px  transparent;
+}
+.article-function:hover{
+	border-bottom: solid 1px;
+	cursor: pointer;
+}
+
+.article-functions-svg{
+	width: 30px;
+	height: 30px;
+	margin-right: 10px;
+}
+
+
+
+.article-footer{
+	padding: 10px;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+
+	color: #939cb0;
+}
+.article-footer-left{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+.article-footer-right{
+
+}
+.article-keyword:before{
+	content: "#";
+}
+.article-keyword{
+	margin-right: 50px;
+	color: #31708F;
+}
+.article-time{
+
+}
+
+
+.article-title{
+	text-align: center;
+}
+.article-describe{
+	padding: 10px;
+}
+
+
+
+/*Блок дебвтов*/
+.debate-top{
+	display: flex;;
+	justify-content: center;
+}
+.debate-top button{
+	width: 20%;
+	padding: 10px;
+
+	background-color: #31708E;
+	border: 0;
+	border-radius: 50px;
+	color: white;
+
+	outline: none;
+
+	box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+.debate-top button:focus{
+	box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.debate-box{
+	margin-top: 10px;
+}
+.debate{
+	background-color: #fff;
+	border-radius: 8px;
+	padding: 10px;
+}
+
+.debate-title{
+	text-align: center;
+}
+.debate-describe{
+	z-index: 1;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 5;
+
+
+	margin-bottom: 10px;
+}
+.debate-footer{
+	display: flex;
+	flex-direction: column;
+
+	text-align: center;
+}
+
+.debate-footer button{
+	padding: 10px;
+
+	background-color: #31708E;
+	border: 0;
+	border-radius: 50px;
+	color: white;
+
+	outline: none;
+}
+
+.debate-peoples{
+	margin-top: 10px;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+}
+.debate-peoples-svg{
+	width: 40px;
+	height: 40px;
+	margin-right: 10px;
+	fill: red;
+}
+.debate-poeple-count{
+	font-size: 20px;
+}
 
 
 /* Дополнительно */
