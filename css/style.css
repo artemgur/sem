@@ -149,6 +149,12 @@ body{
 
 	border-radius: 8px;
 	background-color: #fff;
+
+	transition: .2s;
+}
+.news-card:hover{
+	background-color: #5085A5;
+	color: #F7F9FB;
 }
 
 .news-card-media{
@@ -172,7 +178,6 @@ body{
 }
 .media-block-img{
 	padding-bottom: 50%;
-	position: 50%;
 }
 .news-card-img{
 	position: absolute;
@@ -564,8 +569,8 @@ hr{
 	padding: 30px;
 }
 .account-svg{
-	width: 50px;
-	height: 50px;
+	width: 45px;
+	height: 45px;
 	margin-bottom: 10px;
 }
 .account-main-title{
@@ -702,27 +707,198 @@ hr{
 .account-news-box{
 	margin-bottom: 30px;
 }
-.account-news-square{
+.account-news{
 	border-radius: 8px;
 	background-color: #E2E4E6;
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	padding: 15px;
 
-	width: 100%;
-	height: 0;
-	padding-bottom: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+
+	transition: .5s;
 }
-.account-news{
-	padding: 10px;
+.account-news:hover{
+	background-color: #5085A5;
+	color: #F7F9FB;
 }
 
 .account-news-title{
 	font-size: 14px;
 	font-weight: 600;
+
+	margin-bottom: 10px;
+
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 3;
+	-webkit-box-orient: vertical;
 }
 .account-news-describe{
 	font-size: 12px;
+
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 5;
+	-webkit-box-orient: vertical;
+}
+.account-news-footer{
+	position: relative;
+
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+
+	margin-top: 20px;
+
+	font-size: 13px;
+	color: #939cb0;
+}
+.account-news-footer-left{
+	display: flex;
+	flex-direction: row;
+}
+.account-news-footer-right{
+
+}
+.account-news-keyword{
+	margin-right: 10px;
+}
+.account-news-time{
+
 }
 
+
+/* Удаление из избранных */
+.account-news-delete{
+	position: absolute;
+	top: 5px;
+	right: 20px;
+	width: 15px;
+	height: 15px;
+	padding: 0;
+	margin: 0;
+
+
+	opacity: 0;
+	transition: .3s;
+
+	display: flex;
+}
+.account-news:hover ~ .account-news-delete{
+	opacity: 0.5;
+}
+.account-news-delete:hover{
+	opacity: 1;
+}
+.account-news-delete-img{
+	width: 100%;
+	height: 100%;
+}
+
+
+
+
+/*Мои дебаты*/
+.account-debate-box{
+	margin-bottom: 30px;
+}
+.account-debate{
+	border-radius: 8px;
+	background-color: #E2E4E6;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	padding: 15px;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+
+	transition: .5s;
+}
+.account-debate:hover{
+	background-color: #5085A5;
+	color: #F7F9FB;
+}
+
+
+.account-debate-title{
+	font-size: 14px;
+	font-weight: 600;
+
+	margin-bottom: 10px;
+
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 3;
+	-webkit-box-orient: vertical;
+}
+.account-debate-describe{
+	font-size: 12px;
+
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 5;
+	-webkit-box-orient: vertical;
+}
+.account-debate-footer{
+	position: relative;
+
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+
+	margin-top: 20px;
+
+	font-size: 13px;
+	color: #939cb0;
+}
+
+.account-debate-footer-left{
+	display: flex;
+	flex-direction: row;
+}
+.account-debate-footer-right{
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+
+.account-debate-peoples-svg{
+	width: 30px;
+	height: 30px;
+	margin-right: 10px;
+}
+.account-debate-poeple-count{
+	font-size: 20px;
+}
+
+.account-debate-btn{
+	padding: 10px;
+	background-color: #31708E;
+	border-radius: 50px;
+	color: white;
+
+	transition: .5s;
+}
+
+.account-debate-btn:hover{
+	box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+	background-color: #fff;
+	color: #000;
+	text-decoration: none;
+
+	cursor: pointer;
+}
+
+.account-debate:hover .account-debate-btn{
+	background-color: #fff;
+	color: #000;
+}
 
 
 
