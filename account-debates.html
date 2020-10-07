@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Вход</title>
+	<title>Личный кабинет</title>
 	
 	<!-- CSS only -->
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
@@ -61,62 +61,65 @@
 		</div>
 
 		<div class="header-right">
-			<!-- <div class="reg-online">Личный кабинет</div> -->
-			<div class="reg-offline"><a href="login.html">Вход</a> | <a href="register.html">Регистрация</a></div>
+			<div class="reg-online">Личный кабинет</div>
+			<!-- <div class="reg-offline"><a href="login.html">Вход</a> | <a href="register.html">Регистрация</a></div> -->
 		</div>
 	</div>
 
 	<div class="container-fluid">
+
 		<div class="row">
-
-			<div class="col-md-6 offset-md-3 log-box">
-				<h2 class="log-title">Вход</h2>
-				<div class="outstanding"></div>
-
-				<form class="form-horizontal" method="POST" action="login">
-					<div class="form-group">
-						<label for="email" class="col-md-4 control-label">E-Mail</label>
-						<div class="col-md-6">						
-							<input id="email" type="email" class="form-control" name="email" value="" required="" autofocus="">
-
+			<div class="col-md-4 account-box">
+				<div class="account">
+					<div class="account-face">
+						<div class="account-face-img">
+							<img class="account-img" src="imgs/dog.png" alt="">
+							<div class="account-face-img-hiden">Изменить фото</div>
+						</div>
+						<div class="account-face-name">
+							Здравствуйте,
+							<div class="account-name">Shacall</div>
 						</div>
 					</div>
-					<div class="form-group">
-						<label for="password" class="col-md-4 control-label">Пароль</label>
-						<div class="col-md-6">					
-							<input id="password" type="password" class="form-control" name="password" required="">
-						</div>
-					</div>
-
-					<div class="form-group">
-						<div class="col-md-6  ">
-							<div class="checkbox">
-								<label>
-									<input type="checkbox" name="remember"> Запомнить меня							</label>
-							</div>
-						</div>
-					</div>
-
-					<div class="form-group">
-						<div class="col-md-7 offset-md-5">
-							<button type="submit" class="form-btn">
-								Войти						</button>
-
-							<a class="btn secondary inline" href="#">
-								Забыли пароль?						</a>
-						</div>
-					</div>
-				</form>
-			</div>
-
-			<div class="col-md-3">
-				<div class="log-menu">
-					<a href="login.html" class="log-menu-active" rel="noindex, nofollow">Войти</a>
-					<a href="register.html" rel="noindex, nofollow">Регистрация</a>
+					<a class="account-function" href="account-main.html">
+						<img class="account-function-svg" src="icons/avatar.svg" alt="">
+						<div class="account-function-name">Просмотр учетной записи</div>
+					</a>
+					<a class="account-function" href="account-news.html">
+						<img class="account-function-svg" src="icons/news.svg" alt="">
+						<div class="account-function-name">Избранные новости</div>
+					</a>
+					<a class="account-function" href="account-debates.html">
+						<img class="account-function-svg" src="icons/debate.svg" alt="">
+						<div class="account-function-name">Мои дебаты</div>
+					</a>
 				</div>
 			</div>
+			<div class="col-md-8 account-box">
+				<div class="account">
+					<div class="account-main">
+						<img class="account-svg" src="icons/card.svg" alt="">
+						<h2 class="account-main-title">МОЯ ИНФОРМАЦИЯ</h2>
+						<div class="account-main-describe">Вы в любой момент можете обновить вашу учетную запись и внести любые изменения в приведеннфе ниже данные.</div>
 
+						<div class="account-info">
+							<div class="account-info-title">Имя:</div>
+							<div class="account-info-value">Shacall</div>
+						</div>
+						<div class="account-info">
+							<div class="account-info-title">E-mail:</div>
+							<div class="account-info-value">davleev_zinnur@mail.ru</div>
+						</div>
+						<div class="account-info">
+							<div class="account-info-title">Пароль:</div>
+							<div class="account-info-value">***********</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
 		</div>
+
 	</div>
 </body>
 </html>
