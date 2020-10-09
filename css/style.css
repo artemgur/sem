@@ -393,7 +393,8 @@ hr{
 	box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 }
 
-.debate-box{
+.debate-box
+{
 	margin-top: 10px;
 }
 .debate{
@@ -903,6 +904,15 @@ hr{
 
 
 
+
+/*Одна дебата*/
+.one-debate-box{
+
+}
+
+
+
+
 /* Дополнительно */
 @media screen and (max-width: 956px) {
 	.header-center{
@@ -915,6 +925,9 @@ hr{
 		display: flex;
 	}
 }
+
+
+
 
 .fontColor{
 	color: #F7F9FB;
