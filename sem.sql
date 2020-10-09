@@ -1,4 +1,3 @@
---plans: add indexes
 CREATE TYPE TAG AS ENUM ('США', 'Китай', 'Россия', 'Украина', 'Северная Корея');--TODO add more
 
 CREATE TABLE users(
@@ -20,6 +19,9 @@ CREATE TABLE tags(
     tag TAG NOT NULL,
     FOREIGN KEY (article_id) REFERENCES article(id) ON DELETE CASCADE
 );
+--We will search in both directions
+CREATE INDEX tags_article_index ON tags(article_id);
+CREATE INDEX tags_tag_index ON tags(tag);
 
 CREATE TABLE debates( --debates header can be treated as a comment
     id SERIAL PRIMARY KEY,
@@ -33,6 +35,7 @@ CREATE TABLE debates_users(
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
     FOREIGN KEY (debate_id) REFERENCES debates(id) ON DELETE CASCADE
 );
+CREATE INDEX debates_users_user_index ON debates_users(debate_id);
 
 CREATE TABLE comments(
     user_id INTEGER,
@@ -41,4 +44,5 @@ CREATE TABLE comments(
     opinion BOOLEAN,--comment for or against
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
     FOREIGN KEY (debate_id) REFERENCES debates(id) ON DELETE CASCADE
-)
+);
+CREATE INDEX comments_debate_id_index ON comments(debate_id);
