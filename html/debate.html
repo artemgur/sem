@@ -68,43 +68,57 @@
 
 	<div class="container-fluid">
 
-		<div class="one-debate-box"></div>
+		<div class="one-debate-box">
+			<div class="one-debate">
+				<h2 class="one-debate-title">Заголовок</h2>
+				<div class="one-debate-describe">Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero perferendis reprehenderit dolor libero quo itaque repellendus. Voluptas, facere in id tenetur, amet cupiditate voluptates tempora inventore sunt nesciunt consectetur beatae.</div>
+				<div class="col-md-1 offset-md-11 one-debate-peoples">
+					<img class="one-debate-peoples-svg" src="../icons/people.svg" alt="">
+					<div class="one-debate-peoples-count">0</div>
+				</div>
+				<hr>
+				<div class="chat-box">
+					<div class="chat">
 
-		<div class="col-md-12 article-box">
-			<div class="article-top">
-				<div class="article-top-left">
-					<div class="article-img-box">
-						<img src="../imgs/dog.png" alt="" class="article-img">
-					</div>
-				</div>
-				<div class="article-top-right">
-					<h2 class="article-title">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Expedita, harum!</h2>
-					<div class="article-functions">
-						<div class="article-function">
-							<img class="article-functions-svg" src="../icons/chat.svg" alt="">
-							Создать дискуссию
+						<div class="chat-body">
+							<div class="message-red">
+								<img class="messege-img" src="https://img.icons8.com/color/36/000000/administrator-male.png" alt="">
+								<div class="message-box">
+									<div class="message">Hi</div>
+									<div class="message">How are you ...???</div>
+									<div class="message">How are you<br> Hello</div>
+								</div>
+							</div>
+							<div class="message-green">
+								<img class="messege-img" src="https://img.icons8.com/color/36/000000/administrator-male.png" alt="">
+								<div class="message-box">
+									<div class="message">Hi</div>
+									<div class="message">How are you ...???</div>
+								</div>
+							</div>
 						</div>
-						<div class="article-function">
-							<img class="article-functions-svg" src="../icons/heart.svg" alt="">
-							Добавить в избранные
+
+						<div class="chat-publisher">
+							<form class="chat-form" action="" onsubmit="return false;">
+								<div class="dropup">
+									<button id="against-btn" class="btn btn-secondary" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								    	Выберите строну
+								  	</button>
+								  	<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+									    <a class="dropdown-item against-g" onclick="chatChangeAgainst(1)" href="#">ЗА</a>
+									    <a class="dropdown-item against-r" onclick="chatChangeAgainst(0)" href="#">ПРОТИВ</a>
+								  	</div>
+								</div>
+								<input id="chatInput" type="text" placeholder="Type a meaage..." autocomplete="off">
+								<button onclick="chatSendMessage()" id="send-btn" class="btn btn-secondary" type="submit">Отправить</button>
+							</form>
 						</div>
+
 					</div>
-					<div class="article-footer">
-						<div class="article-footer-left">
-							<div class="article-keyword">Сша</div>
-							<div class="article-time">18:00</div>
-						</div>
-						<div class="article-footer-right">Комментарий</div>
-					</div>
-				</div>
-			</div>
-			<hr>
-			<div class="article-bottom">
-				<div class="article-describe">
-					Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis earum et, sit repellendus, corporis rem eius ut, aliquid esse maiores necessitatibus deserunt molestiae ipsum enim facere eligendi quisquam nemo. Sapiente placeat quisquam tempore corrupti magni? Labore est beatae numquam sed blanditiis laborum voluptatem ducimus suscipit necessitatibus quibusdam, et molestias, cupiditate quae quia fugit hic mollitia nostrum optio dolore neque? Sunt adipisci nulla facilis atque mollitia quis quo recusandae eveniet amet repellendus nam cumque, quas perspiciatis ad repellat vitae ullam, veritatis quia voluptatem odit. Natus molestias quia, molestiae quas at facilis repellat ut ea odio est laboriosam quidem obcaecati, incidunt, nihil. Impedit unde odio similique numquam nostrum quisquam iusto. Quas ducimus reiciendis consectetur eum laboriosam alias, id pariatur nisi sequi! Itaque quidem amet deleniti aliquid laudantium nulla veritatis tenetur, vero soluta, dolore! Voluptatem alias nihil, consequuntur accusamus minima, maiores provident doloremque, inventore exercitationem vel quia quae? Optio fugit eos maxime delectus magni illum in. Iure cum atque sed, suscipit asperiores consectetur, sunt praesentium ab, qui voluptas sapiente eligendi accusantium reiciendis, omnis dolores? Numquam alias omnis sapiente amet soluta doloribus, vel fugit? Atque provident eos ab asperiores, saepe deserunt adipisci assumenda ad, expedita, natus corporis earum labore qui laborum soluta, amet laudantium.
 				</div>
 			</div>
 		</div>
+
 	</div>
 </body>
 </html>
