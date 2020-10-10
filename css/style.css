@@ -945,30 +945,39 @@ hr{
 
 /*Чат*/
 .chat-box{
+	height: 600px;
+	display: flex;
+	flex-direction: column;
+}
+
+.chat{
+	height: 100%;
+	max-height: calc(100%-50px);
+	display: flex;
+	flex-direction: row;
+}
+.chat-container-box{
+	width: 50%;
+	height: 100%;
+	padding: 5px;
+}
+.chat-container{
+	height: 100%;
+	max-height: 540px;
 	background-color: #E2E4E6;
 	border-radius: 8px;
 	padding: 10px;
-	height: 600px;
-}
-.chat{
-	display: flex;
-	flex-direction: column;
-	height: 100%;
+
+	overflow-y: auto;
+
 }
 
-.chat-body{
-	overflow-y: auto;
-	height: 100%;
-	background-color: transparent;
-	border-radius: 8px;
-}
-.chat-publisher{
-	height: 50px;
-	width: 100%;
-	margin-top: 10px;
-	background-color: white;
-	border-radius: 8px;
-}
+
+
+
+
+
+
 
 .message-red{
 	display: flex;
@@ -983,14 +992,26 @@ hr{
 	width: 36px;
 	height: 36px;
 }
-.message-box{
+.message-place{
 	display: flex;
 	flex-direction: column;
+	max-width: 50%;
+}
+.message-box{
+	display: flex;
 }
 .message{
 	padding: 5px 10px;
 	margin-bottom: 10px;
 }
+
+.message-red .message-box{
+	flex-direction: row;
+}
+.message-green .message-box{
+	flex-direction: row-reverse;
+}
+
 
 .message-red .message{
 	background-color: #E85A4F;
@@ -999,6 +1020,16 @@ hr{
 .message-green .message{
 	background-color: #4FE84F;
 	border-radius: 18px;
+}
+
+
+
+
+.publisher{
+	height: 50px;
+	background-color: white;
+	/*margin: 5px;*/
+	padding: 10px;
 }
 
 .chat-form{
@@ -1014,14 +1045,16 @@ hr{
 }
 .chat-form input{
 	width: 100%;
-	height: 40px;
+	height: 38px;
 
 	margin: 0 10px;
 	padding: 0 10px;
-	border-radius: 20px;
+	/*border-radius: 20px;*/
 
 	outline: none;
-	border: solid 1px gray;
+	border: 0;
+	/*border: solid 1px gray;*/
+	border-bottom: solid 1px gray;
 
 	background-color: #fff;
 }
@@ -1029,6 +1062,7 @@ hr{
 
 #against-btn{
 	width: 160px;
+	border-radius: 20px 0 0 20px;
 }
 .against-g{
 	background-color: #4FE84F;
@@ -1037,12 +1071,10 @@ hr{
 	background-color: #E85A4F;
 }
 
+#send-btn{
+	border-radius: 0 20px 20px 0;
 
-
-
-
-
-
+}
 
 
 

@@ -80,40 +80,49 @@
 				<div class="chat-box">
 					<div class="chat">
 
-						<div class="chat-body">
-							<div class="message-red">
-								<img class="messege-img" src="https://img.icons8.com/color/36/000000/administrator-male.png" alt="">
-								<div class="message-box">
-									<div class="message">Hi</div>
-									<div class="message">How are you ...???</div>
-									<div class="message">How are you<br> Hello</div>
+						<div class="chat-container-box">
+							<div id="chat-red" class="chat-container">
+
+								<div class="message-red">
+									<img class="messege-img" src="https://img.icons8.com/color/36/000000/administrator-male.png" alt="">
+									<div class="message-place">
+										<div class="message-box"><div class="message">Hi</div></div>
+										<div class="message-box"><div class="message">How are you ...???</div></div>
+									</div>
 								</div>
-							</div>
-							<div class="message-green">
-								<img class="messege-img" src="https://img.icons8.com/color/36/000000/administrator-male.png" alt="">
-								<div class="message-box">
-									<div class="message">Hi</div>
-									<div class="message">How are you ...???</div>
-								</div>
+
 							</div>
 						</div>
 
-						<div class="chat-publisher">
-							<form class="chat-form" action="" onsubmit="return false;">
-								<div class="dropup">
-									<button id="against-btn" class="btn btn-secondary" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-								    	Выберите строну
-								  	</button>
-								  	<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-									    <a class="dropdown-item against-g" onclick="chatChangeAgainst(1)" href="#">ЗА</a>
-									    <a class="dropdown-item against-r" onclick="chatChangeAgainst(0)" href="#">ПРОТИВ</a>
-								  	</div>
+						<div class="chat-container-box">
+							<div id="chat-green" class="chat-container">
+
+								<div class="message-green">
+									<img class="messege-img" src="https://img.icons8.com/color/36/000000/administrator-male.png" alt="">
+									<div class="message-place">
+										<div class="message-box"><div class="message">Hi</div></div>
+										<div class="message-box"><div class="message">How are you ...???</div></div>
+									</div>
 								</div>
-								<input id="chatInput" type="text" placeholder="Type a meaage..." autocomplete="off">
-								<button onclick="chatSendMessage()" id="send-btn" class="btn btn-secondary" type="submit">Отправить</button>
-							</form>
+
+							</div>
 						</div>
 
+					</div>
+					<div class="publisher">
+						<form class="chat-form" action="" onsubmit="return false;">
+							<div class="dropup">
+								<button id="against-btn" class="btn btn-secondary" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							    	Выберите строну
+							  	</button>
+							  	<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+								    <a class="dropdown-item against-g" onclick="chatChangeAgainst(1)" href="#">ЗА</a>
+								    <a class="dropdown-item against-r" onclick="chatChangeAgainst(0)" href="#">ПРОТИВ</a>
+							  	</div>
+							</div>
+							<input id="chatInput" type="text" placeholder="Type a message..." autocomplete="off">
+							<button onclick="chatSendMessage()" id="send-btn" class="btn btn-secondary" type="submit">Отправить</button>
+						</form>
 					</div>
 				</div>
 			</div>
@@ -122,3 +131,38 @@
 	</div>
 </body>
 </html>
+<!-- <div class="chat-body">
+
+	<div class="message-red">
+		<img class="messege-img" src="https://img.icons8.com/color/36/000000/administrator-male.png" alt="">
+		<div class="message-place">
+			<div class="message-box"><div class="message">Hi</div></div>
+			<div class="message-box"><div class="message">How are you ...???</div></div>
+		</div>
+	</div>
+
+	<div class="message-green">
+		<img class="messege-img" src="https://img.icons8.com/color/36/000000/administrator-male.png" alt="">
+		<div class="message-place">
+			<div class="message-box"><div class="message">Hi</div></div>
+			<div class="message-box"><div class="message">How are you ...???</div></div>
+		</div>
+	</div>
+
+</div>
+
+<div class="chat-publisher">
+	<form class="chat-form" action="" onsubmit="return false;">
+		<div class="dropup">
+			<button id="against-btn" class="btn btn-secondary" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		    	Выберите строну
+		  	</button>
+		  	<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+			    <a class="dropdown-item against-g" onclick="chatChangeAgainst(1)" href="#">ЗА</a>
+			    <a class="dropdown-item against-r" onclick="chatChangeAgainst(0)" href="#">ПРОТИВ</a>
+		  	</div>
+		</div>
+		<input id="chatInput" type="text" placeholder="Type a meaage..." autocomplete="off">
+		<button onclick="chatSendMessage()" id="send-btn" class="btn btn-secondary" type="submit">Отправить</button>
+	</form>
+</div> -->

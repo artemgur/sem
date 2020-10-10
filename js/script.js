@@ -28,7 +28,7 @@ function chatSendMessage(){
 		return;
 	}
 
-	var messege = $("#chatInput").val();
+	var messege = messageFilter($("#chatInput").val());
 	if (messege == "") return;
 	$("#chatInput").val("");
 
@@ -40,42 +40,38 @@ function chatSendMessage(){
 
 
 	var lastMessage = $(".chat-body").children().last().children(".message-box");
-	console.log(lastMessage);
+	// console.log(lastMessage);
 
-	// $(".chat-body").
 
 
 
 	if (against == "btn-success"){
 		var model = "<div class=\"message-green\">" +
 						"<img class=\"messege-img\" src=\"https://img.icons8.com/color/36/000000/administrator-male.png\" alt=\"\">"+
-						"<div class=\"message-box\">" +
-							"<div class=\"message\">" + messege + "</div>" +
+						"<div class=\"message-place\">" +
+							"<div class=\"message-box\">" +
+								"<div class=\"message\">" + messege + "</div>" +
+							"</div>" +
 						"</div>" +
-					"</div>"
+					"</div>";
+		$("#chat-green").append(model);
+		$("#chat-green").scrollTop($("#chat-green").prop('scrollHeight'));
 	}
 	else if (against == "btn-danger"){
 		var model = "<div class=\"message-red\">" +
 						"<img class=\"messege-img\" src=\"https://img.icons8.com/color/36/000000/administrator-male.png\" alt=\"\">"+
-						"<div class=\"message-box\">" +
-							"<div class=\"message\">" + messege + "</div>" +
+						"<div class=\"message-place\">" +
+							"<div class=\"message-box\">" +
+								"<div class=\"message\">" + messege + "</div>" +
+							"</div>" +
 						"</div>" +
-					"</div>"
+					"</div>";
+		$("#chat-red").append(model);
+		$("#chat-red").scrollTop($("#chat-red").prop('scrollHeight'));
 	}
 
-	$(".chat-body").append(model);
 }
 
-function addMessege()
-{
-
-	// var b = "<div class=\"media media-chat media-chat-reverse\"> <div class=\"media-body\"> <p>" + a + "</p> <p class=\"meta\"><time datetime=\"2018\">00:06</time></p> </div> </div>"
-	// $("#messege").prepend(b);
-	// document.getElementById("inputmessege").value = "";
+function messageFilter(str) {
+	return str;
 }
-
-
-$(".chat-form").on("submit", function(){
-	console.log("123");
-	chatSendMessage();
-})
