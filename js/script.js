@@ -22,13 +22,13 @@ function chatChangeAgainst(index) {
 }
 
 function chatSendMessage(){
-	var against = $("#against-btn").attr("class").split(" ")[1];
+	let against = $("#against-btn").attr("class").split(" ")[1];
 	if (against == "btn-secondary"){
 		alert("Выберите сторону");
 		return;
 	}
 
-	var messege = messageFilter($("#chatInput").val());
+	let messege = messageFilter($("#chatInput").val());
 	if (messege == "") return;
 	$("#chatInput").val("");
 
@@ -39,14 +39,14 @@ function chatSendMessage(){
 	// Суть в том что нужно последующее сообщение сунуть в "message-box" последнего сообщения если это твоё сообщение
 
 
-	var lastMessage = $(".chat-body").children().last().children(".message-box");
+	let lastMessage = $(".chat-body").children().last().children(".message-box");
 	// console.log(lastMessage);
 
 
 
 
 	if (against == "btn-success"){
-		var model = "<div class=\"message-green\">" +
+		let model = "<div class=\"message-green\">" +
 						"<img class=\"messege-img\" src=\"https://img.icons8.com/color/36/000000/administrator-male.png\" alt=\"\">"+
 						"<div class=\"message-place\">" +
 							"<div class=\"message-box\">" +
@@ -58,7 +58,7 @@ function chatSendMessage(){
 		$("#chat-green").scrollTop($("#chat-green").prop('scrollHeight'));
 	}
 	else if (against == "btn-danger"){
-		var model = "<div class=\"message-red\">" +
+		let model = "<div class=\"message-red\">" +
 						"<img class=\"messege-img\" src=\"https://img.icons8.com/color/36/000000/administrator-male.png\" alt=\"\">"+
 						"<div class=\"message-place\">" +
 							"<div class=\"message-box\">" +
@@ -86,6 +86,23 @@ function createDebate() {
 	log(title);
 	log(describe);
 	log(key_words);
+}
+function selectKeyWord(key) {
+	let word = key.innerHTML;
+
+	let model = "<div onclick=\"deleteKeyWord(this)\" class=\"key-word-box\">" +
+									"<div class=\"key-word-text\">" +
+										word +
+									"</div>" +
+									"<div class=\"key-word-delete-box\">" +
+										"<img class=\"key-word-delete\" src=\"../icons/delete.svg\" alt=\"\">" +
+									"</div>" +
+								"</div>";
+
+	$(".con-keywords-input").append(model);
+}
+function deleteKeyWord(key) {
+	key.remove();
 }
 
 
