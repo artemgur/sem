@@ -75,3 +75,25 @@ function chatSendMessage(){
 function messageFilter(str) {
 	return str;
 }
+
+function createDebate() {
+	let form = document.Construntor;
+
+	let title = form.con_title.value;
+	let describe = form.con_describe.value;
+	let img = form.con_img.value;
+	let key_words = form.con_keywords.value;
+
+	log(title);
+	log(describe);
+	log(img);
+	log(key_words);
+	console.log();
+
+
+}
+
+
+function log(srt) {
+	console.log(srt);
+}
