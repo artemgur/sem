@@ -26,6 +26,7 @@ CREATE INDEX tags_tag_index ON tags(tag);
 CREATE TABLE debates( --debates header can be treated as a comment
     id SERIAL PRIMARY KEY,
     name VARCHAR(30) NOT NULL,
+    text TEXT,
     date TIMESTAMP
 );
 
@@ -42,7 +43,16 @@ CREATE TABLE comments(
     debate_id INTEGER,
     date TIMESTAMP,
     opinion BOOLEAN,--comment for or against
+    text TEXT,
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
     FOREIGN KEY (debate_id) REFERENCES debates(id) ON DELETE CASCADE
 );
 CREATE INDEX comments_debate_id_index ON comments(debate_id);
+
+CREATE TABLE favourite_articles(
+    user_id INTEGER,
+    article_id INTEGER,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+    FOREIGN KEY (article_id) REFERENCES article(id) ON DELETE CASCADE
+);
+CREATE INDEX favourite_articles_user_index ON favourite_articles(user_id);
