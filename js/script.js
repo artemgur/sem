@@ -1,7 +1,15 @@
-function openNews() {
+// Открытие страницы (статья)
+function openArticle() {
 	document.location.href = "news.html";
 }
 
+// Открытие страницы (дискуссия)
+function openDebate() {
+	document.location.href = "debate.html";
+}
+
+
+// Изменение сторон дебатов
 function chatChangeAgainst(index) {
 	if (index == 1){
 		$("#against-btn").removeClass("btn-secondary btn-danger");
@@ -21,6 +29,8 @@ function chatChangeAgainst(index) {
 	}
 }
 
+
+// Отправка сообщений
 function chatSendMessage(){
 	let against = $("#against-btn").attr("class").split(" ")[1];
 	if (against == "btn-secondary"){
@@ -76,6 +86,8 @@ function messageFilter(str) {
 	return str;
 }
 
+
+// Создание дискуссии
 function createDebate() {
 	let form = document.Construntor;
 
@@ -87,25 +99,45 @@ function createDebate() {
 	log(describe);
 	log(key_words);
 }
-function selectKeyWord(key) {
-	let word = key.innerHTML;
 
+
+
+// Выбор ключевых слов
+function selectKeyWord(key) {
+	if ($(".con-keywords-input").children().length >= 3){
+		
+		alert("Максимальное количество ключевых слов равно 3");
+
+		return;
+	}
+
+	let word = key.innerHTML;
 	let model = "<div onclick=\"deleteKeyWord(this)\" class=\"key-word-box\">" +
-									"<div class=\"key-word-text\">" +
-										word +
-									"</div>" +
-									"<div class=\"key-word-delete-box\">" +
-										"<img class=\"key-word-delete\" src=\"../icons/delete.svg\" alt=\"\">" +
-									"</div>" +
-								"</div>";
+					"<div class=\"key-word-text\">" +
+						word +
+					"</div>" +
+					"<div class=\"key-word-delete-box\">" +
+						"<img class=\"key-word-delete\" src=\"../icons/delete.svg\" alt=\"\">" +
+					"</div>" +
+				"</div>";
 
 	$(".con-keywords-input").append(model);
 }
+
 function deleteKeyWord(key) {
 	key.remove();
 }
 
 
+
+function loadImgForm() {
+	$('#exampleModal').on('shown.bs.modal', function () {
+		$('#exampleModal').trigger('focus')
+	})
+}
+
+
+// Custom methods
 function log(srt) {
 	console.log(srt);
 }
