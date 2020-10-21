@@ -73,7 +73,7 @@
 				<h2 class="log-title">Вход</h2>
 				<div class="outstanding"></div>
 
-				<form class="form-horizontal" method="POST" action="login">
+				<form class="form-horizontal" name="loginForm" onsubmit="return false;">
 					<div class="form-group">
 						<label for="email" class="col-md-4 control-label">E-Mail</label>
 						<div class="col-md-6">						
@@ -99,7 +99,7 @@
 
 					<div class="form-group">
 						<div class="col-md-7 offset-md-5">
-							<button type="submit" class="form-btn">
+							<button type="submit" onclick="login()" class="form-btn">
 								Войти						</button>
 
 							<a class="btn secondary inline" href="#">

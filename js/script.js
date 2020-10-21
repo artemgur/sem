@@ -9,6 +9,48 @@ function openDebate() {
 }
 
 
+
+
+
+// Вход / Регистрация
+function login() {
+	var form = document.loginForm;
+
+	var mail = form.email.value;
+	var password = form.password.value;
+
+	if (!passwordValidate(password)){
+		alert("Пороль не соответствует требованиям");
+		return;
+	}
+	else{
+		alert("Все ок")
+	}
+
+	//TODO: LogIn
+}
+
+function register() {
+	var form = document.registerForm;
+
+	var mail = form.email.value;
+	var nickname = form.nickname;
+	var password = form.password.value;
+	var password = form.password.value;
+	var secondPassword = form.password_confirmation;
+
+	if (!passwordValidate(password) || password != secondPassword){
+		alert("Пороль не соответствует требованиям");
+		return;
+	}
+	else{
+		alert("Все ок")
+	}
+
+	//TODO: Register
+}
+
+
 // Изменение сторон дебатов
 function chatChangeAgainst(index) {
 	if (index == 1){
@@ -82,9 +124,6 @@ function chatSendMessage(){
 
 }
 
-function messageFilter(str) {
-	return str;
-}
 
 
 // Создание дискуссии
@@ -124,6 +163,7 @@ function selectKeyWord(key) {
 	$(".con-keywords-input").append(model);
 }
 
+//Удаление ключевого клова
 function deleteKeyWord(key) {
 	key.remove();
 }
@@ -140,4 +180,43 @@ function loadImgForm() {
 // Custom methods
 function log(srt) {
 	console.log(srt);
+}
+
+//Тут можно написать фильтрацию сообщений
+function messageFilter(str) {
+	return str;
+}
+
+// Валидация пароля
+function passwordValidate(str) {
+	const beginWithoutDigit = /^\D/; // Начинается не с цифры
+	const withoutSpecialChars = /^[^-() /]*$/; // Не собержит специальные символы
+	const containsLetters = /^.*[a-zA-Z]+.*$/; // Содержит буквы
+	const minimum8Chars = /.{8,}/; // Минимум 8 символов
+	const withoutSpaces = /\S/; // Не содержит пробелы
+
+	var a = beginWithoutDigit.test(str);
+	var b = withoutSpecialChars.test(str);
+	var c = containsLetters.test(str);
+	var d = minimum8Chars.test(str);
+	var e = withoutSpaces.test(str);
+
+
+	log(a + " " + b + " " + c + " " + d + " " + e);
+
+	if(a && b && c && d && e){
+		return true;
+	} else {
+		return false;
+	}
+}
+
+function changeAccountImage() {
+	var form = document.accountChangeImg;
+
+	var img = form.accountLoadImg.value;
+
+	// Тут по идеи нужно скачивать выбранное фото и после устанавливать
+
+	$(".account-img").attr("src", img);
 }
