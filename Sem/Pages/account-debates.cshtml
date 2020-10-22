@@ -24,147 +24,176 @@
 	<script type="text/javascript" src="js/script.js"></script>
 </head>
 <body>
-	<div class="header">
-		<div class="header-left">
-			<a class="aNotChanged" href="@Url.Page("./index")">
-				<h1>Политика <span style="color: #E85A4F">News</span></h1>
-			</a>
-		</div>
+    <div class="header">
+        <div class="header-left">
+            <a class="aNotChanged" href="@Url.Page("./index")">
+                <h1>Политика <span style="color: #E85A4F">News</span></h1>
+            </a>
+        </div>
 
-		<div class="header-center">
-			<div class="header-menu">
-				<a class="header-menu-box" href="@Url.Page("./index")">Новости</a>
-				<a class="header-menu-box" href="#">Форум</a>
-				<a class="header-menu-box" href="@Url.Page("./debates")">Дебаты</a>
-			</div>
-			<div class="header-menu-hiden">
-				<div class="dropdown">
-					<button class="dropdown-toggle search-filter" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						<span class="fontColor">Меню</span>
-				  	</button>
-				  	<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-					    <a class="dropdown-item" href="@Url.Page("./index")">Новости</a>
-					    <a class="dropdown-item" href="#">Форум</a>
-					    <a class="dropdown-item" href="@Url.Page("./debates")">Дебаты</a>
-				  	</div>
-				</div>
-			</div>
+        <div class="header-center">
+            <div class="header-menu">
+                <a class="header-menu-box" href="@Url.Page("./index")">Новости</a>
+                <a class="header-menu-box" href="#">Форум</a>
+                <a class="header-menu-box" href="@Url.Page("./debates")">Дебаты</a>
+            </div>
+            <div class="header-menu-hiden">
+                <div class="dropdown">
+                    <button class="dropdown-toggle search-filter" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="fontColor">Меню</span>
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="@Url.Page("./index")">Новости</a>
+                        <a class="dropdown-item" href="#">Форум</a>
+                        <a class="dropdown-item" href="@Url.Page("./debates")">Дебаты</a>
+                    </div>
+                </div>
+            </div>
 
-			<form class="search-box" action="">
-				<img class="svg" src="icons/magnifying-glass.svg">
-				<input type="search" name="" placeholder="Поиск">
-				<div class="dropdown">
-					<button class="dropdown-toggle search-filter fontColor" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-				    	Фильтры
-				  	</button>
-				  	<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-				  		<h6 class="dropdown-header">Популярные</h6>
-					    <a class="dropdown-item" href="#">США</a>
-					    <a class="dropdown-item" href="#">Путин</a>
-					    <a class="dropdown-item" href="#">Армения</a>
-				  	</div>
-				</div>
-			</form>
-		</div>
+            <form class="search-box" action="">
+                <img class="svg" src="icons/magnifying-glass.svg">
+                <input type="search" name="" placeholder="Поиск">
+                <div class="dropdown">
+                    <button class="dropdown-toggle search-filter fontColor" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Фильтры
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <h6 class="dropdown-header">Популярные</h6>
+                        <a class="dropdown-item" href="#">США</a>
+                        <a class="dropdown-item" href="#">Путин</a>
+                        <a class="dropdown-item" href="#">Армения</a>
+                    </div>
+                </div>
+            </form>
+        </div>
 
-		<div class="header-right">
-			<div class="reg-online">Личный кабинет</div>
-			<!-- <div class="reg-offline"><a href="@Url.Page("./login")">Вход</a> | <a href="@Url.Page("./register")">Регистрация</a></div> -->
-		</div>
-	</div>
+        <div class="header-right">
+            <div class="reg-online">Личный кабинет</div>
+            <!-- <div class="reg-offline"><a href="@Url.Page("./login")">Вход</a> | <a href="@Url.Page("./register")">Регистрация</a></div> -->
+        </div>
+    </div>
 
-	<div class="container-fluid">
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form name="accountChangeImg">
+                        <input type="file" name="accountLoadImg" accept=".png, .jpg, .jpeg">
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" onclick="changeAccountImage()" class="btn btn-primary" data-dismiss="modal">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
-		<div class="row">
-			<div class="col-md-4 account-box">
-				<div class="account">
-					<div class="account-face">
-						<div class="account-face-img">
-							<img class="account-img" src="imgs/dog.png" alt="">
-							<div class="account-face-img-hiden">Изменить фото</div>
-						</div>
-						<div class="account-face-name">
-							Здравствуйте,
-							<div class="account-name">Shacall</div>
-						</div>
-					</div>
-					<a class="account-function" href="@Url.Page("./account-main")">
-						<img class="account-function-svg" src="icons/avatar.svg" alt="">
-						<div class="account-function-name">Просмотр учетной записи</div>
-					</a>
-					<a class="account-function" href="@Url.Page("./account-news")">
-						<img class="account-function-svg" src="icons/news.svg" alt="">
-						<div class="account-function-name">Избранные новости</div>
-					</a>
-					<a class="account-function" href="account-@Url.Page("./debates")">
-						<img class="account-function-svg" src="icons/debate.svg" alt="">
-						<div class="account-function-name">Мои дебаты</div>
-					</a>
-				</div>
-			</div>
-			<div class="col-md-8 account-box">
-				<div class="account">
-					<div class="account-main">
-						<img class="account-svg" src="icons/debate.svg" alt="">
-						<h2 class="account-main-title">МОИ ДЕБАТЫ</h2>
-						<div class="account-main-describe">Вы в любой момент можете обновить вашу учетную запись и внести любые изменения в приведеннфе ниже данные.</div>
+    <div class="container-fluid">
 
-						<div class="row">
+        <div class="row">
+            <div class="col-md-4 account-box">
+                <div class="account">
+                    <div class="account-face">
+                        <div class="account-face-img">
+                            <img class="account-img" src="../imgs/dog.png" alt="">
 
-							<div class="col-md-6 account-debate-box">
-								<div class="account-debate">
-									<div class="account-debate-title">Заголовок</div>
-									<div class="account-debate-describe">Lorem ipsum, dolor sit amet, consectetur adipisicing elit. Sed, voluptates. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Accusantium, maiores?</div>
-									<div class="account-debate-footer">
-										<div class="account-debate-footer-left">
-											<a class="account-debate-btn">Посмотреть</a>
-										</div>
-										<div class="account-debate-footer-right">
-											<img class="account-debate-peoples-svg" src="icons/people.svg" alt="">
-											<div class="account-debate-poeple-count">0</div>
-										</div>
-									</div>
-								</div>
-							</div>
+                            <div class="account-face-img-hiden">
+                                <button type="button" class="account-face-img-change" data-toggle="modal" data-target="#exampleModal">
+                                    Изменить фото
+                                </button>
+                            </div>
+                        </div>
+                        <div class="account-face-name">
+                            Здравствуйте,
+                            <div class="account-name">Shacall</div>
+                        </div>
+                    </div>
 
-							<div class="col-md-6 account-debate-box">
-								<div class="account-debate">
-									<div class="account-debate-title">Заголовок</div>
-									<div class="account-debate-describe">Lorem ipsum, dolor sit amet, consectetur adipisicing elit. Sed, voluptates. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Accusantium, maiores?</div>
-									<div class="account-debate-footer">
-										<div class="account-debate-footer-left">
-											<a class="account-debate-btn">Посмотреть</a>
-										</div>
-										<div class="account-debate-footer-right">
-											<img class="account-debate-peoples-svg" src="icons/people.svg" alt="">
-											<div class="account-debate-poeple-count">0</div>
-										</div>
-									</div>
-								</div>
-							</div>
+                    <a class="account-function" href="@Url.Page("./account-main")">
+                        <img class="account-function-svg" src="icons/avatar.svg" alt="">
+                        <div class="account-function-name">Просмотр учетной записи</div>
+                    </a>
+                    <a class="account-function" href="@Url.Page("./account-news")">
+                        <img class="account-function-svg" src="icons/news.svg" alt="">
+                        <div class="account-function-name">Избранные новости</div>
+                    </a>
+                    <a class="account-function" href="account-@Url.Page("./debates")">
+                        <img class="account-function-svg" src="icons/debate.svg" alt="">
+                        <div class="account-function-name">Мои дебаты</div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-8 account-box">
+                <div class="account">
+                    <div class="account-main">
+                        <img class="account-svg" src="icons/debate.svg" alt="">
+                        <h2 class="account-main-title">МОИ ДЕБАТЫ</h2>
+                        <div class="account-main-describe">Вы в любой момент можете обновить вашу учетную запись и внести любые изменения в приведеннфе ниже данные.</div>
 
-							<div class="col-md-6 account-debate-box">
-								<div class="account-debate">
-									<div class="account-debate-title">Заголовок</div>
-									<div class="account-debate-describe">Lorem ipsum, dolor sit amet, consectetur adipisicing elit. Sed, voluptates. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Accusantium, maiores?</div>
-									<div class="account-debate-footer">
-										<div class="account-debate-footer-left">
-											<a class="account-debate-btn">Посмотреть</a>
-										</div>
-										<div class="account-debate-footer-right">
-											<img class="account-debate-peoples-svg" src="icons/people.svg" alt="">
-											<div class="account-debate-poeple-count">0</div>
-										</div>
-									</div>
-								</div>
-							</div>
+                        <div class="row">
 
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+                            <div class="col-md-6 account-debate-box">
+                                <div class="account-debate">
+                                    <div class="account-debate-title">Заголовок</div>
+                                    <div class="account-debate-describe">Lorem ipsum, dolor sit amet, consectetur adipisicing elit. Sed, voluptates. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Accusantium, maiores?</div>
+                                    <div class="account-debate-footer">
+                                        <div class="account-debate-footer-left">
+                                            <a class="account-debate-btn">Посмотреть</a>
+                                        </div>
+                                        <div class="account-debate-footer-right">
+                                            <img class="account-debate-peoples-svg" src="icons/people.svg" alt="">
+                                            <div class="account-debate-poeple-count">0</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
-	</div>
+                            <div class="col-md-6 account-debate-box">
+                                <div class="account-debate">
+                                    <div class="account-debate-title">Заголовок</div>
+                                    <div class="account-debate-describe">Lorem ipsum, dolor sit amet, consectetur adipisicing elit. Sed, voluptates. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Accusantium, maiores?</div>
+                                    <div class="account-debate-footer">
+                                        <div class="account-debate-footer-left">
+                                            <a class="account-debate-btn">Посмотреть</a>
+                                        </div>
+                                        <div class="account-debate-footer-right">
+                                            <img class="account-debate-peoples-svg" src="icons/people.svg" alt="">
+                                            <div class="account-debate-poeple-count">0</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 account-debate-box">
+                                <div class="account-debate">
+                                    <div class="account-debate-title">Заголовок</div>
+                                    <div class="account-debate-describe">Lorem ipsum, dolor sit amet, consectetur adipisicing elit. Sed, voluptates. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Accusantium, maiores?</div>
+                                    <div class="account-debate-footer">
+                                        <div class="account-debate-footer-left">
+                                            <a class="account-debate-btn">Посмотреть</a>
+                                        </div>
+                                        <div class="account-debate-footer-right">
+                                            <img class="account-debate-peoples-svg" src="icons/people.svg" alt="">
+                                            <div class="account-debate-poeple-count">0</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
 </body>
 </html>
