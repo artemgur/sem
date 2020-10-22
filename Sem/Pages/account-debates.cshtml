@@ -2,169 +2,99 @@
 @model Sem.Pages.account_debates
 
 @{
-    Layout = null;
+    Layout = "Shared/_Layout";
 }
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Личный кабинет</title>
-	
-	<!-- CSS only -->
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+<div class="container-fluid">
 
-	<!-- JS, Popper.js, and jQuery -->
-	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <div class="row">
+        <div class="col-md-4 account-box">
+            <div class="account">
+                <div class="account-face">
+                    <div class="account-face-img">
+                        <img class="account-img" src="imgs/dog.png" alt="">
+                        <div class="account-face-img-hiden">Изменить фото</div>
+                    </div>
+                    <div class="account-face-name">
+                        Здравствуйте,
+                        <div class="account-name">Shacall</div>
+                    </div>
+                </div>
+                <a class="account-function" href="@Url.Page("./account-main")">
+                    <img class="account-function-svg" src="icons/avatar.svg" alt="">
+                    <div class="account-function-name">Просмотр учетной записи</div>
+                </a>
+                <a class="account-function" href="@Url.Page("./account-news")">
+                    <img class="account-function-svg" src="icons/news.svg" alt="">
+                    <div class="account-function-name">Избранные новости</div>
+                </a>
+                <a class="account-function" href="account-@Url.Page("./debates")">
+                    <img class="account-function-svg" src="icons/debate.svg" alt="">
+                    <div class="account-function-name">Мои дебаты</div>
+                </a>
+            </div>
+        </div>
+        <div class="col-md-8 account-box">
+            <div class="account">
+                <div class="account-main">
+                    <img class="account-svg" src="icons/debate.svg" alt="">
+                    <h2 class="account-main-title">МОИ ДЕБАТЫ</h2>
+                    <div class="account-main-describe">Вы в любой момент можете обновить вашу учетную запись и внести любые изменения в приведеннфе ниже данные.</div>
 
-	<link rel="stylesheet" type="text/css" href="css/style.css">
-	<script type="text/javascript" src="js/script.js"></script>
-</head>
-<body>
-	<div class="header">
-		<div class="header-left">
-			<a class="aNotChanged" href="@Url.Page("./index")">
-				<h1>Политика <span style="color: #E85A4F">News</span></h1>
-			</a>
-		</div>
+                    <div class="row">
 
-		<div class="header-center">
-			<div class="header-menu">
-				<a class="header-menu-box" href="@Url.Page("./index")">Новости</a>
-				<a class="header-menu-box" href="#">Форум</a>
-				<a class="header-menu-box" href="@Url.Page("./debates")">Дебаты</a>
-			</div>
-			<div class="header-menu-hiden">
-				<div class="dropdown">
-					<button class="dropdown-toggle search-filter" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						<span class="fontColor">Меню</span>
-				  	</button>
-				  	<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-					    <a class="dropdown-item" href="@Url.Page("./index")">Новости</a>
-					    <a class="dropdown-item" href="#">Форум</a>
-					    <a class="dropdown-item" href="@Url.Page("./debates")">Дебаты</a>
-				  	</div>
-				</div>
-			</div>
+                        <div class="col-md-6 account-debate-box">
+                            <div class="account-debate">
+                                <div class="account-debate-title">Заголовок</div>
+                                <div class="account-debate-describe">Lorem ipsum, dolor sit amet, consectetur adipisicing elit. Sed, voluptates. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Accusantium, maiores?</div>
+                                <div class="account-debate-footer">
+                                    <div class="account-debate-footer-left">
+                                        <a class="account-debate-btn">Посмотреть</a>
+                                    </div>
+                                    <div class="account-debate-footer-right">
+                                        <img class="account-debate-peoples-svg" src="icons/people.svg" alt="">
+                                        <div class="account-debate-poeple-count">0</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-			<form class="search-box" action="">
-				<img class="svg" src="icons/magnifying-glass.svg">
-				<input type="search" name="" placeholder="Поиск">
-				<div class="dropdown">
-					<button class="dropdown-toggle search-filter fontColor" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-				    	Фильтры
-				  	</button>
-				  	<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-				  		<h6 class="dropdown-header">Популярные</h6>
-					    <a class="dropdown-item" href="#">США</a>
-					    <a class="dropdown-item" href="#">Путин</a>
-					    <a class="dropdown-item" href="#">Армения</a>
-				  	</div>
-				</div>
-			</form>
-		</div>
+                        <div class="col-md-6 account-debate-box">
+                            <div class="account-debate">
+                                <div class="account-debate-title">Заголовок</div>
+                                <div class="account-debate-describe">Lorem ipsum, dolor sit amet, consectetur adipisicing elit. Sed, voluptates. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Accusantium, maiores?</div>
+                                <div class="account-debate-footer">
+                                    <div class="account-debate-footer-left">
+                                        <a class="account-debate-btn">Посмотреть</a>
+                                    </div>
+                                    <div class="account-debate-footer-right">
+                                        <img class="account-debate-peoples-svg" src="icons/people.svg" alt="">
+                                        <div class="account-debate-poeple-count">0</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-		<div class="header-right">
-			<div class="reg-online">Личный кабинет</div>
-			<!-- <div class="reg-offline"><a href="@Url.Page("./login")">Вход</a> | <a href="@Url.Page("./register")">Регистрация</a></div> -->
-		</div>
-	</div>
+                        <div class="col-md-6 account-debate-box">
+                            <div class="account-debate">
+                                <div class="account-debate-title">Заголовок</div>
+                                <div class="account-debate-describe">Lorem ipsum, dolor sit amet, consectetur adipisicing elit. Sed, voluptates. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Accusantium, maiores?</div>
+                                <div class="account-debate-footer">
+                                    <div class="account-debate-footer-left">
+                                        <a class="account-debate-btn">Посмотреть</a>
+                                    </div>
+                                    <div class="account-debate-footer-right">
+                                        <img class="account-debate-peoples-svg" src="icons/people.svg" alt="">
+                                        <div class="account-debate-poeple-count">0</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-	<div class="container-fluid">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-		<div class="row">
-			<div class="col-md-4 account-box">
-				<div class="account">
-					<div class="account-face">
-						<div class="account-face-img">
-							<img class="account-img" src="imgs/dog.png" alt="">
-							<div class="account-face-img-hiden">Изменить фото</div>
-						</div>
-						<div class="account-face-name">
-							Здравствуйте,
-							<div class="account-name">Shacall</div>
-						</div>
-					</div>
-					<a class="account-function" href="@Url.Page("./account-main")">
-						<img class="account-function-svg" src="icons/avatar.svg" alt="">
-						<div class="account-function-name">Просмотр учетной записи</div>
-					</a>
-					<a class="account-function" href="@Url.Page("./account-news")">
-						<img class="account-function-svg" src="icons/news.svg" alt="">
-						<div class="account-function-name">Избранные новости</div>
-					</a>
-					<a class="account-function" href="account-@Url.Page("./debates")">
-						<img class="account-function-svg" src="icons/debate.svg" alt="">
-						<div class="account-function-name">Мои дебаты</div>
-					</a>
-				</div>
-			</div>
-			<div class="col-md-8 account-box">
-				<div class="account">
-					<div class="account-main">
-						<img class="account-svg" src="icons/debate.svg" alt="">
-						<h2 class="account-main-title">МОИ ДЕБАТЫ</h2>
-						<div class="account-main-describe">Вы в любой момент можете обновить вашу учетную запись и внести любые изменения в приведеннфе ниже данные.</div>
-
-						<div class="row">
-
-							<div class="col-md-6 account-debate-box">
-								<div class="account-debate">
-									<div class="account-debate-title">Заголовок</div>
-									<div class="account-debate-describe">Lorem ipsum, dolor sit amet, consectetur adipisicing elit. Sed, voluptates. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Accusantium, maiores?</div>
-									<div class="account-debate-footer">
-										<div class="account-debate-footer-left">
-											<a class="account-debate-btn">Посмотреть</a>
-										</div>
-										<div class="account-debate-footer-right">
-											<img class="account-debate-peoples-svg" src="icons/people.svg" alt="">
-											<div class="account-debate-poeple-count">0</div>
-										</div>
-									</div>
-								</div>
-							</div>
-
-							<div class="col-md-6 account-debate-box">
-								<div class="account-debate">
-									<div class="account-debate-title">Заголовок</div>
-									<div class="account-debate-describe">Lorem ipsum, dolor sit amet, consectetur adipisicing elit. Sed, voluptates. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Accusantium, maiores?</div>
-									<div class="account-debate-footer">
-										<div class="account-debate-footer-left">
-											<a class="account-debate-btn">Посмотреть</a>
-										</div>
-										<div class="account-debate-footer-right">
-											<img class="account-debate-peoples-svg" src="icons/people.svg" alt="">
-											<div class="account-debate-poeple-count">0</div>
-										</div>
-									</div>
-								</div>
-							</div>
-
-							<div class="col-md-6 account-debate-box">
-								<div class="account-debate">
-									<div class="account-debate-title">Заголовок</div>
-									<div class="account-debate-describe">Lorem ipsum, dolor sit amet, consectetur adipisicing elit. Sed, voluptates. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Accusantium, maiores?</div>
-									<div class="account-debate-footer">
-										<div class="account-debate-footer-left">
-											<a class="account-debate-btn">Посмотреть</a>
-										</div>
-										<div class="account-debate-footer-right">
-											<img class="account-debate-peoples-svg" src="icons/people.svg" alt="">
-											<div class="account-debate-poeple-count">0</div>
-										</div>
-									</div>
-								</div>
-							</div>
-
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-
-	</div>
-</body>
-</html>
+</div>
