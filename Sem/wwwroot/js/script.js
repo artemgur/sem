@@ -11,21 +11,23 @@ function openDebate() {
 
 // Изменение сторон дебатов
 function chatChangeAgainst(index) {
-	if (index == 1){
-		$("#against-btn").removeClass("btn-secondary btn-danger");
-		$("#against-btn").addClass("btn-success");
-		$("#against-btn").html("За");
+	let against_btn = $("#against-btn")
+	let send_btn = $("#send-btn")
+	if (index === 1){
+		against_btn.removeClass("btn-secondary btn-danger");
+		against_btn.addClass("btn-success");
+		against_btn.html("За");
 
-		$("#send-btn").removeClass("btn-secondary btn-danger");
-		$("#send-btn").addClass("btn-success");
+		send_btn.removeClass("btn-secondary btn-danger");
+		send_btn.addClass("btn-success");
 	}
-	else if (index == 0){
-		$("#against-btn").removeClass("btn-secondary btn-success");
-		$("#against-btn").addClass("btn-danger");
-		$("#against-btn").html("Против");
+	else if (index === 0){
+		against_btn.removeClass("btn-secondary btn-success");
+		against_btn.addClass("btn-danger");
+		against_btn.html("Против");
 
-		$("#send-btn").removeClass("btn-secondary btn-success");
-		$("#send-btn").addClass("btn-danger");
+		send_btn.removeClass("btn-secondary btn-success");
+		send_btn.addClass("btn-danger");
 	}
 }
 
@@ -33,14 +35,14 @@ function chatChangeAgainst(index) {
 // Отправка сообщений
 function chatSendMessage(){
 	let against = $("#against-btn").attr("class").split(" ")[1];
-	if (against == "btn-secondary"){
+	if (against === "btn-secondary"){
 		alert("Выберите сторону");
 		return;
 	}
-
-	let messege = messageFilter($("#chatInput").val());
-	if (messege == "") return;
-	$("#chatInput").val("");
+	let chatInput = $("#chatInput")
+	let messege = messageFilter(chatInput.val());
+	if (messege === "") return;
+	chatInput.val("");
 
 
 	// Тут нужно узнать последнее сообщение было отправлено нами или нет ?!?!
@@ -49,13 +51,13 @@ function chatSendMessage(){
 	// Суть в том что нужно последующее сообщение сунуть в "message-box" последнего сообщения если это твоё сообщение
 
 
-	let lastMessage = $(".chat-body").children().last().children(".message-box");
+	//let lastMessage = $(".chat-body").children().last().children(".message-box");
 	// console.log(lastMessage);
 
 
 
 
-	if (against == "btn-success"){
+	if (against === "btn-success"){
 		let model = "<div class=\"message-green\">" +
 						"<img class=\"messege-img\" src=\"https://img.icons8.com/color/36/000000/administrator-male.png\" alt=\"\">"+
 						"<div class=\"message-place\">" +
@@ -64,10 +66,11 @@ function chatSendMessage(){
 							"</div>" +
 						"</div>" +
 					"</div>";
-		$("#chat-green").append(model);
-		$("#chat-green").scrollTop($("#chat-green").prop('scrollHeight'));
+		let chat_green = $("#chat-green")
+		chat_green.append(model);
+		chat_green.scrollTop(chat_green.prop('scrollHeight'));
 	}
-	else if (against == "btn-danger"){
+	else if (against === "btn-danger"){
 		let model = "<div class=\"message-red\">" +
 						"<img class=\"messege-img\" src=\"https://img.icons8.com/color/36/000000/administrator-male.png\" alt=\"\">"+
 						"<div class=\"message-place\">" +
@@ -76,8 +79,9 @@ function chatSendMessage(){
 							"</div>" +
 						"</div>" +
 					"</div>";
-		$("#chat-red").append(model);
-		$("#chat-red").scrollTop($("#chat-red").prop('scrollHeight'));
+		let chat_red = $("#chat-red")
+		chat_red.append(model);
+		chat_red.scrollTop(chat_red.prop('scrollHeight'));
 	}
 
 }
@@ -104,7 +108,8 @@ function createDebate() {
 
 // Выбор ключевых слов
 function selectKeyWord(key) {
-	if ($(".con-keywords-input").children().length >= 3){
+	let con_keywords_input = $(".con-keywords-input")
+	if (con_keywords_input.children().length >= 3){
 		
 		alert("Максимальное количество ключевых слов равно 3");
 
@@ -121,7 +126,7 @@ function selectKeyWord(key) {
 					"</div>" +
 				"</div>";
 
-	$(".con-keywords-input").append(model);
+	con_keywords_input.append(model);
 }
 
 function deleteKeyWord(key) {
