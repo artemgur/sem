@@ -12,7 +12,7 @@
             <h2 class="log-title">Регистрация</h2>
             <div class="outstanding"></div>
 
-            <form class="form-horizontal" method="GET" action="qwerty">
+            <form class="form-horizontal" name="registerForm" onsubmit="return false;">
                 <div class="form-group">
                     <label for="email" class="col-md-4 control-label">E-Mail</label>
                     <div class="col-md-6">
@@ -43,7 +43,9 @@
                 </div>
 
                 <div class="col-md-6 offset-md-5">
-                    <button type="submit" class="form-btn">Далее</button>
+                    <button type="submit" onclick="register()" class="form-btn">
+                        Далее
+                    </button>
                 </div>
             </form>
         </div>
