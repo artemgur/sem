@@ -1,11 +1,11 @@
 // Открытие страницы (статья)
 function openArticle() {
-	document.location.href = "@Url.Page(\"./news\")";//TODO fix
+	document.location.href = "news"
 }
 
 // Открытие страницы (дискуссия)
 function openDebate() {
-	document.location.href = "@Url.Page(\"./debate\")";//TODO fix
+	document.location.href = "debate";
 }
 
 
