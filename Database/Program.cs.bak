@@ -1,0 +1,14 @@
+﻿using System.Linq;
+using static Database.General;
+
+namespace Database
+{
+	public class Program
+	{
+		public static void Main()
+		{
+			// var a = Select("actors").ToArray();
+			// var b = Select("actors", "name='Jean'").ToArray();
+		}
+	}
+}

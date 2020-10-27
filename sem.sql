@@ -3,7 +3,7 @@ CREATE TYPE TAG AS ENUM ('США', 'Китай', 'Россия', 'Украина
 CREATE TABLE users(
     id SERIAL PRIMARY KEY,
     login VARCHAR(20) NOT NULL UNIQUE,--store hash instead of actual value?
-    password VARCHAR(40) NOT NULL, --store hash instead of actual value?
+    password VARCHAR(32) NOT NULL, --32 is MD5 length
     email TEXT NOT NULL UNIQUE,
     photo TEXT --path to photo
 );

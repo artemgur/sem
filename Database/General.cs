@@ -1,18 +1,19 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using Npgsql;
 
 namespace Database
 {
-	public static class DatabaseStatic
+	public static class General
 	{
-		private static string connectionString;//TODO set value
+		private static string connectionString;// = @"Server=127.0.0.1;Port=5432;Database=filmography;User Id=postgres;Password=postgres;";//Filmography for test
 
 		//Select with optional condition, offset and rows number
 		public static IEnumerable<Entity> Select(string tableName, string condition = null, int offset = 0, int number = -1)
 		{
 			//TODO check if condition valid
-			var info = EntityInfo.EntityProperties[tableName];
+			var info = EntityInfo.EntityKeys[tableName];
 			//var query =  + tableName;
 			var builder = new StringBuilder("SELECT * FROM ");
 			builder.Append(tableName);
@@ -41,7 +42,7 @@ namespace Database
 				while (reader.Read())
 				{
 					var instance = new Entity(tableName);
-					foreach (var key in info.Keys)
+					foreach (var key in info)
 						instance.Values[key] = reader[key];
 					yield return instance;
 				}
@@ -64,7 +65,7 @@ namespace Database
 			{
 				builder.Append(pair.Key);
 				builder.Append(", ");
-				valuesBuilder.Append(pair.Value);
+				valuesBuilder.Append(pair.Value.ToStringPg());
 				valuesBuilder.Append(", ");
 			}
 			builder.Remove(builder.Length - 2, 2);
@@ -76,6 +77,18 @@ namespace Database
 			using var connection = new NpgsqlConnection(connectionString);
 			using var command = new NpgsqlCommand(query);
 			command.ExecuteNonQuery();
+		}
+
+		public static Entity GetForeignEntity(Entity entity, string foreignKey, string foreignTable) =>
+			Select(foreignTable, "id=" + entity.Values[foreignKey].ToStringPg()).Single();
+
+		public static IEnumerable<Entity> GetManyToManyEntities(Entity entity, string manyToManyTable)
+		{
+			var relationship = ManyToManyRelationship.Relationships[manyToManyTable];
+			var otherTable = relationship.ForeignKeys.Keys.Single(x => x != entity.TableName);
+			var otherIds = Select(manyToManyTable,
+				relationship.ForeignKeys[entity.TableName] + "=" + entity.Values["id"]).Select(x => x.Values[relationship.ForeignKeys[otherTable]]);
+			return Select(otherTable, "id IN " + otherIds.ToStringListPg());
 		}
 	}
 }

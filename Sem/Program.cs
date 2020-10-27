@@ -1,11 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Database;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 
 namespace Sem
 {
@@ -13,6 +8,7 @@ namespace Sem
 	{
 		public static void Main(string[] args)
 		{
+			Initializer.Init();//Necessary to init ORM
 			CreateHostBuilder(args).Build().Run();
 		}
 
