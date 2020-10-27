@@ -5,6 +5,8 @@ using Npgsql;
 
 namespace Database
 {
+	//IMPORTANT! Primary key should be called "id" (without quotes). That probably could be changed, but it'd make code more complex
+	
 	public static class General
 	{
 		private static string connectionString;// = @"Server=127.0.0.1;Port=5432;Database=filmography;User Id=postgres;Password=postgres;";//Filmography for test
@@ -19,6 +21,7 @@ namespace Database
 			builder.Append(tableName);
 			if (condition != null)
 			{
+				Utilities.CheckIfQueryValid(condition);
 				builder.Append(" WHERE ");
 				builder.Append(condition);
 				//query += "WHERE " + condition;
@@ -55,7 +58,7 @@ namespace Database
 		}
 
 		//Inserts entity to table
-		public static void Insert(Entity entity)
+		public static void Insert(this Entity entity)
 		{
 			var builder = new StringBuilder("INSERT INTO ");
 			builder.Append(entity.TableName);
@@ -79,10 +82,13 @@ namespace Database
 			command.ExecuteNonQuery();
 		}
 
-		public static Entity GetForeignEntity(Entity entity, string foreignKey, string foreignTable) =>
+		public static Entity GetOneToManyParent(this Entity entity, string foreignKey, string foreignTable) =>
 			Select(foreignTable, "id=" + entity.Values[foreignKey].ToStringPg()).Single();
 
-		public static IEnumerable<Entity> GetManyToManyEntities(Entity entity, string manyToManyTable)
+		public static IEnumerable<Entity> GetOneToManyChildren(this Entity entity, string foreignKey, string foreignTable) =>
+			Select(foreignTable, foreignKey + "=" + entity.Values["id"].ToStringPg());
+
+		public static IEnumerable<Entity> GetManyToManyEntities(this Entity entity, string manyToManyTable)
 		{
 			var relationship = ManyToManyRelationship.Relationships[manyToManyTable];
 			var otherTable = relationship.ForeignKeys.Keys.Single(x => x != entity.TableName);
@@ -90,5 +96,13 @@ namespace Database
 				relationship.ForeignKeys[entity.TableName] + "=" + entity.Values["id"]).Select(x => x.Values[relationship.ForeignKeys[otherTable]]);
 			return Select(otherTable, "id IN " + otherIds.ToStringListPg());
 		}
+
+		public static IEnumerable<Entity> SelectByValue(string tableName, string columnName, object obj, int offset = 0, int number = -1) =>
+			Select(tableName, columnName + "=" + obj.ToStringPg(), offset, number);
+		
+		public static IEnumerable<Entity> SelectByValues(string tableName, string columnName, IEnumerable<object> obj, int offset = 0, int number = -1) =>
+			Select(tableName, columnName + "=" + obj.ToStringListPg(), offset, number);
+		
+		public static IEnumerable<Entity> SelectById(string tableName, int pkey) => Select(tableName, "id=" + pkey);
 	}
 }
