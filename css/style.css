@@ -1162,6 +1162,53 @@ hr{
 }
 
 
+
+.person-box{
+	width: 100%;
+	padding: 10px;
+	display: flex;
+	flex-direction: column;
+}
+
+.person{
+	padding: 10px;
+	border-radius: 8px;
+	background-color: #fff;
+}
+
+.person-left{
+	display: flex;
+	flex-direction: column;
+}
+
+.person-img-box{
+	width: 100%;
+	padding: 10px;
+}
+.person-img{
+	width: 100%;
+
+	object-fit: cover;
+
+	border-radius: 8px;
+}
+.person-menu{
+	padding: 0 15px;}
+
+.person-hr{
+	padding: 0;
+	margin: 5px;
+	width: 90%;
+	margin-left: 5%;
+	margin-bottom: 15px;
+}
+
+.person-right{
+	padding: 10px;
+}
+
+
+
 /* Дополнительно */
 @media screen and (max-width: 956px) {
 	.header-center{
