@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
+using System.Dynamic;
 
 namespace Database
 {
-	public class Entity
+	public class Entity : DynamicObject
 	{
 		public readonly string TableName;
 		public readonly Dictionary<string, object> Values = new Dictionary<string, object>();
@@ -13,7 +14,24 @@ namespace Database
 			TableName = tableName;
 		}
 
-		public string[] GetInfo() => EntityInfo.EntityKeys[TableName];
+		// public Entity(Entity entity)
+		// {
+		// 	TableName = entity.TableName;
+		// }
+
+		//Not sure if we need dynamic
+		public override bool TryGetMember(GetMemberBinder binder, out object result)
+		{
+			return Values.TryGetValue(binder.Name.ToLower(), out result);
+		}
+
+		public override bool TrySetMember(SetMemberBinder binder, object value)
+		{
+			Values[binder.Name.ToLower()] = value;
+			return true;
+		}
+
+		//public string[] GetInfo() => EntityInfo.EntityKeys[TableName];
 
 		// static Entity()
 		// {

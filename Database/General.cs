@@ -15,7 +15,7 @@ namespace Database
 		public static IEnumerable<Entity> Select(string tableName, string condition = null, int offset = 0, int number = -1)
 		{
 			//TODO check if condition valid
-			var info = EntityInfo.EntityKeys[tableName];
+			//var info = EntityInfo.EntityKeys[tableName];
 			//var query =  + tableName;
 			var builder = new StringBuilder("SELECT * FROM ");
 			builder.Append(tableName);
@@ -39,16 +39,20 @@ namespace Database
 				builder.Append(" ROWS ONLY");
 			}
 			using var connection = new NpgsqlConnection(connectionString);
+			connection.Open();
 			using var command = new NpgsqlCommand(builder.ToString());
 			using var reader = command.ExecuteReader();
 			if (reader.HasRows)
+			{
+				var columns = GetColumnNames(reader);
 				while (reader.Read())
 				{
 					var instance = new Entity(tableName);
-					foreach (var key in info)
+					foreach (var key in columns)
 						instance.Values[key] = reader[key];
 					yield return instance;
 				}
+			}		
 		}
 
 		//Select without condition, but with offset and rows number
@@ -60,6 +64,8 @@ namespace Database
 		//Inserts entity to table
 		public static void Insert(this Entity entity)
 		{
+			//dynamic entity1 = entity;
+			//entity1.Abc = 8;
 			var builder = new StringBuilder("INSERT INTO ");
 			builder.Append(entity.TableName);
 			builder.Append(" (");
@@ -78,6 +84,7 @@ namespace Database
 			builder.Append(valuesBuilder);
 			var query = builder.ToString();
 			using var connection = new NpgsqlConnection(connectionString);
+			connection.Open();
 			using var command = new NpgsqlCommand(query);
 			command.ExecuteNonQuery();
 		}
@@ -104,5 +111,14 @@ namespace Database
 			Select(tableName, columnName + "=" + obj.ToStringListPg(), offset, number);
 		
 		public static IEnumerable<Entity> SelectById(string tableName, int pkey) => Select(tableName, "id=" + pkey);
+
+		private static string[] GetColumnNames(NpgsqlDataReader reader)
+		{
+			var fieldCount = reader.FieldCount;
+			var result = new string[fieldCount];
+			for (var i = 0; i < fieldCount; i++)
+				result[i] = reader.GetName(i);
+			return result;
+		}
 	}
 }

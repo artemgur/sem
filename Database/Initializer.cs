@@ -1,6 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
-using static Database.EntityInfo;
 using static Database.ManyToManyRelationship;
 
 namespace Database
@@ -10,29 +8,29 @@ namespace Database
 		public static void Init()
 		{
 			InitManyToMany();
-			InitEntityInfo();
+			//InitEntityInfo();
 		}
 		
-		private static void InitEntityInfo()
-		{
-			EntityKeys = new Dictionary<string, string[]>
-			{
-				["articles"] = /*new EntityInfo(*/new[] {"id", "name", "date", "text", "photo"},
-					//new[] {typeof(int), typeof(string), typeof(DateTime), typeof(string), typeof(string)}),
-				["users"] = /*new EntityInfo(*/new []{"id", "login", "password", "email", "photo"},
-					//new []{typeof(int), typeof(string), typeof(string), typeof(string), typeof(string)}),
-				["debates"] = /*new EntityInfo(*/new []{"id", "name", "text", "date"}
-					//new []{typeof(int), typeof(string), typeof(string), typeof(string), typeof(DateTime)})
-			};
-			foreach (var manyToMany in Relationships)
-				EntityKeys[manyToMany.Key] = manyToMany.Value.ForeignKeys.Values.ToArray();
-		}
+		// private static void InitEntityInfo()
+		// {
+		// 	EntityKeys = new Dictionary<string, string[]>
+		// 	{
+		// 		["articles"] = /*new EntityInfo(*/new[] {"id", "name", "date", "text", "photo"},
+		// 			//new[] {typeof(int), typeof(string), typeof(DateTime), typeof(string), typeof(string)}),
+		// 		["users"] = /*new EntityInfo(*/new []{"id", "login", "password", "email", "photo"},
+		// 			//new []{typeof(int), typeof(string), typeof(string), typeof(string), typeof(string)}),
+		// 		["debates"] = /*new EntityInfo(*/new []{"id", "name", "text", "date"}
+		// 			//new []{typeof(int), typeof(string), typeof(string), typeof(string), typeof(DateTime)})
+		// 	};
+		// 	foreach (var manyToMany in Relationships)
+		// 		EntityKeys[manyToMany.Key] = manyToMany.Value.ForeignKeys.Values.ToArray();
+		// }
 
 		private static void InitManyToMany()
 		{
 			Relationships = new Dictionary<string, ManyToManyRelationship>
 			{
-				//TODO
+				
 			};
 		}
 	}
