@@ -71,3 +71,5 @@ CREATE TABLE tags_people(
     tag TAG NOT NULL,
     FOREIGN KEY (people_id) REFERENCES people(id) ON DELETE CASCADE
 );
+CREATE INDEX tags_people_index ON tags_people(people_id);
+CREATE INDEX tags_people_tag_index ON tags_people(tag);
