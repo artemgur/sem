@@ -64,7 +64,8 @@ CREATE TABLE people(
     name VARCHAR(50),
     position VARCHAR(30),
     age SMALLINT,
-    country VARCHAR(30)
+    country VARCHAR(30),
+    photo TEXT --path to photo
 );
 CREATE TABLE tags_people(
     people_id INTEGER NOT NULL,
