@@ -1152,7 +1152,7 @@ hr{
 
 	display: flex;
 	flex-direction: row-reverse;
-	align-items: right;
+	/*align-items: right;*/
 
 	transition: .2s;
 	opacity: 0;
