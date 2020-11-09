@@ -16,14 +16,14 @@ CREATE TABLE articles(
     photo TEXT --path to photo
 );
 
-CREATE TABLE tags(
+CREATE TABLE tags_article(
     article_id INTEGER NOT NULL,
     tag TAG NOT NULL,
     FOREIGN KEY (article_id) REFERENCES articles(id) ON DELETE CASCADE
 );
 --We will search in both directions
-CREATE INDEX tags_articles_index ON tags(article_id);
-CREATE INDEX tags_tag_index ON tags(tag);
+CREATE INDEX tags_articles_index ON tags_article(article_id);
+CREATE INDEX tags_tag_index ON tags_article(tag);
 
 CREATE TABLE debates( --debates header can be treated as a comment
     id SERIAL PRIMARY KEY,
@@ -62,5 +62,12 @@ CREATE INDEX favourite_articles_user_index ON favourite_articles(user_id);
 CREATE TABLE people(
     id SERIAL PRIMARY KEY,
     name VARCHAR(50),
-    
-)
+    position VARCHAR(30),
+    age SMALLINT,
+    country VARCHAR(30)
+);
+CREATE TABLE tags_people(
+    people_id INTEGER NOT NULL,
+    tag TAG NOT NULL,
+    FOREIGN KEY (people_id) REFERENCES people(id) ON DELETE CASCADE
+);
