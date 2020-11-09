@@ -58,3 +58,9 @@ CREATE TABLE favourite_articles(
     FOREIGN KEY (article_id) REFERENCES articles(id) ON DELETE CASCADE
 );
 CREATE INDEX favourite_articles_user_index ON favourite_articles(user_id);
+
+CREATE TABLE people(
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(50),
+    
+)

@@ -19,7 +19,7 @@ namespace Database
 		// 	TableName = entity.TableName;
 		// }
 
-		//Not sure if we need dynamic
+		//Not sure if we need dynamic, will leave it here for now
 		public override bool TryGetMember(GetMemberBinder binder, out object result)
 		{
 			return Values.TryGetValue(binder.Name.ToLower(), out result);
