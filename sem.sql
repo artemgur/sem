@@ -15,6 +15,8 @@ CREATE TABLE articles(
     text TEXT NOT NULL,--path to markdown file, not text itself
     photo TEXT --path to photo
 );
+CREATE INDEX articles_time_index ON articles(date DESC);
+--TODO create index for name
 
 CREATE TABLE tags_article(
     article_id INTEGER NOT NULL,
@@ -74,3 +76,13 @@ CREATE TABLE tags_people(
 );
 CREATE INDEX tags_people_index ON tags_people(people_id);
 CREATE INDEX tags_people_tag_index ON tags_people(tag);
+
+CREATE MATERIALIZED VIEW articles_with_tags AS
+    WITH a AS(
+        SELECT id, name, date, text, photo, array_agg(tags_article.tag)
+        FROM tags_article
+        JOIN articles ON articles.id = tags_article.article_id
+        GROUP BY id
+    )
+    SELECT * FROM a
+    ORDER BY date DESC;

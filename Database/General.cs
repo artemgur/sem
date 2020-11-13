@@ -12,7 +12,7 @@ namespace Database
 		private static string connectionString;// = @"Server=127.0.0.1;Port=5432;Database=filmography;User Id=postgres;Password=postgres;";//Filmography for test
 
 		//Select with optional condition, offset and rows number
-		public static IEnumerable<Entity> Select(string tableName, string condition = null, int offset = 0, int number = -1)
+		public static IEnumerable<Entity> Select(string tableName, string condition = null, int offset = 0, int number = -1/*, string orderBy = null*/)
 		{
 			//TODO check if condition valid
 			//var info = EntityInfo.EntityKeys[tableName];
@@ -26,6 +26,12 @@ namespace Database
 				builder.Append(condition);
 				//query += "WHERE " + condition;
 			}
+			// if (orderBy != null)
+			// {
+			// 	builder.Append(" ORDER BY ");
+			// 	builder.Append(orderBy);//TODO fix sql injection
+			// 	builder.Append(" DESC");//TODO add possibility for asc?
+			// }
 			if (offset != 0)
 			{
 				builder.Append(" OFFSET ");

@@ -30,7 +30,16 @@ namespace Database
 		{
 			Relationships = new Dictionary<string, ManyToManyRelationship>
 			{
-				
+				{"favourite_articles", new ManyToManyRelationship(new Dictionary<string, string>
+				{
+					{"users", "user_id"},
+					{"articles", "article_id"}
+				})}, 
+				{"debates_users", new ManyToManyRelationship(new Dictionary<string, string>
+				{
+					{"users", "user_id"},
+					{"debates", "debate_id"}
+				})}
 			};
 		}
 	}
