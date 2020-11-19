@@ -20,7 +20,7 @@ function login() {
 	var password = form.password.value;
 
 	if (!passwordValidate(password)) {
-		alert("Пороль не соответствует требованиям");
+		alert("Пароль не соответствует требованиям");
 		return;
 	}
 	else {
@@ -40,7 +40,7 @@ function register() {
 	var secondPassword = form.password_confirmation;
 
 	if (!passwordValidate(password) || password != secondPassword) {
-		alert("Пороль не соответствует требованиям");
+		alert("Пароль не соответствует требованиям");
 		return;
 	}
 	else {
