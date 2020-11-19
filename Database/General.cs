@@ -46,13 +46,13 @@ namespace Database
 				builder.Append(" ROWS ONLY");
 			}
 			using var connection = new NpgsqlConnection(connectionString);
-			connection.Open();
-			using var command = new NpgsqlCommand(builder.ToString());
+			await connection.OpenAsync();
+			using var command = new NpgsqlCommand(builder.ToString(), connection);
 			using var reader = await command.ExecuteReaderAsync();
 			if (reader.HasRows)
 			{
 				var columns = GetColumnNames(reader);
-				while (reader.Read())
+				while (await reader.ReadAsync())
 				{
 					var instance = new Entity(tableName);
 					foreach (var key in columns)
@@ -91,8 +91,8 @@ namespace Database
 			builder.Append(valuesBuilder);
 			var query = builder.ToString();
 			using var connection = new NpgsqlConnection(connectionString);
-			connection.Open();
-			using var command = new NpgsqlCommand(query);
+			await connection.OpenAsync();
+			using var command = new NpgsqlCommand(query, connection);
 			await command.ExecuteNonQueryAsync();
 		}
 

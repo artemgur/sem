@@ -24,9 +24,11 @@ namespace Sem
 			var password = context.Request.Headers["password"];
 			var user = await User.TryLogIn(username, password);
 			if (user == null) //TODO finish
-				context.Response.Redirect("/login");
+				// context.Response.Headers["Location"] = "https://localhost:5001/login";
+				context.Response.Redirect("login");
 			else
-				context.Response.Redirect("/account-main");
+				// context.Response.Headers["Location"] = "https://localhost:5001/account-main";
+				context.Response.Redirect("account-main");
 		}
 
 		private static async void Register(HttpContext context)
@@ -35,9 +37,11 @@ namespace Sem
 			var password = context.Request.Headers["password"];
 			var user = await User.TryRegister(username, password);
 			if (user == null) //TODO finish
-				context.Response.Redirect("/register");
+				// context.Response.Headers["Location"] = "https://localhost:5001/register";
+				context.Response.Redirect("register");
 			else
-				context.Response.Redirect("/account-main");
+				// context.Response.Headers["Location"] = "https://localhost:5001/account-main";
+				context.Response.Redirect("account-main");
 		}
 	}
 }

@@ -16,7 +16,8 @@ function openDebate() {
 function login() {
 	var form = document.loginForm;
 
-	var mail = form.email.value;
+	//var mail = form.email.value;
+	var username = form.username.value;
 	var password = form.password.value;
 
 	if (!passwordValidate(password)) {
@@ -24,7 +25,18 @@ function login() {
 		return;
 	}
 	else {
-		alert("Все ок")
+		//alert("Все ок")
+		$.ajax({
+			type: 'POST',
+			url: 'https://localhost:5001/authenticate',
+			headers: {
+				'username': username,
+				'password': password
+			}
+			// success: function(msg){
+			// 	alert( "Прибыли данные: " + msg );
+			// }
+		})
 	}
 
 	//TODO: LogIn
@@ -33,18 +45,30 @@ function login() {
 function register() {
 	var form = document.registerForm;
 
-	var mail = form.email.value;
-	var nickname = form.nickname;
+	//var mail = form.email.value;
+	var username = form.username.value;
 	var password = form.password.value;
-	var password = form.password.value;
-	var secondPassword = form.password_confirmation;
+	//var password = form.password.value;
+	var secondPassword = form.password_confirmation.value;
 
-	if (!passwordValidate(password) || password != secondPassword) {
+	if (!passwordValidate(password) || password !== secondPassword) {
 		alert("Пароль не соответствует требованиям");
 		return;
 	}
 	else {
-		alert("Все ок")
+		//alert("Все ок")
+		$.ajax({
+			type: 'POST',
+			url: 'https://localhost:5001/authenticate',
+			headers: {
+				'register': "",
+				'username': username,
+				'password': password
+			}
+			// success: function(msg){
+			// 	alert( "Прибыли данные: " + msg );
+			// }
+			})
 	}
 
 	//TODO: Register

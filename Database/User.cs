@@ -1,6 +1,6 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Security.Cryptography;
-using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 using static Database.General;
@@ -14,7 +14,7 @@ namespace Database
 			var user = await Get(username);
 			if (user == null)
 				return null;
-			var salt = Encoding.ASCII.GetBytes((string)user.Values["salt"]);
+			var salt = Convert.FromBase64String((string)user.Values["salt"]);
 			var hash = GenerateHash(password, salt);
 			if ((string) user.Values["password"] == hash)
 				return user;
@@ -33,7 +33,7 @@ namespace Database
 				{
 					{"username", username},
 					{"password", hash},
-					{"salt", salt}
+					{"salt", Convert.ToBase64String(salt)}
 				}
 			};
 			entity.Insert();
@@ -41,7 +41,7 @@ namespace Database
 		}
 
 		public static async Task<Entity> Get(string username) =>
-			await Select("users", "name='" + username + "'").SingleOrDefaultAsync();
+			await Select("users", "username='" + username + "'").SingleOrDefaultAsync();
 
 		private static byte[] GenerateSalt()
 		{
@@ -53,7 +53,7 @@ namespace Database
 		
 		private static string GenerateHash(string password, byte[] salt)
 		{
-			return Encoding.ASCII.GetString(KeyDerivation.Pbkdf2
+			return Convert.ToBase64String(KeyDerivation.Pbkdf2
 				(password, salt, KeyDerivationPrf.HMACSHA1, 10000, 32));
 		}
 	}

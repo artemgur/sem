@@ -3,8 +3,8 @@ CREATE TYPE TAG AS ENUM ('США', 'Китай', 'Россия', 'Украина
 CREATE TABLE users(
     id SERIAL PRIMARY KEY,
     username VARCHAR(20) NOT NULL UNIQUE,--store hash instead of actual value?
-    password VARCHAR(32) NOT NULL, --length???
-    salt VARCHAR(32) NOT NULL, --length???
+    password VARCHAR(44) NOT NULL, --length???
+    salt VARCHAR(24) NOT NULL, --length???
 --     email TEXT NOT NULL UNIQUE,
     photo TEXT --path to photo
 );
@@ -87,3 +87,12 @@ CREATE MATERIALIZED VIEW articles_with_tags AS
     )
     SELECT * FROM a
     ORDER BY date DESC;
+
+CREATE MATERIALIZED VIEW people_with_tags AS
+    WITH a AS(
+        SELECT id, name, position, age, country, photo, array_agg(tags_people.tag)
+        FROM tags_people
+        JOIN people ON people.id = tags_people.people_id
+        GROUP BY id
+    )
+    SELECT * FROM a;
