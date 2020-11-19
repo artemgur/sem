@@ -1,16 +1,20 @@
 ﻿@page
-@model Sem.Pages.index
+@model Sem.Pages.IndexModel
 
 @{
     Layout = "Shared/_Layout";
 }
 <div class="container-fluid">
     <div class="row">
-        @await Component.InvokeAsync("NewsIndex")
-        @await Component.InvokeAsync("NewsIndex")
-        @await Component.InvokeAsync("NewsIndex")
-        @await Component.InvokeAsync("NewsIndex")
-        @await Component.InvokeAsync("NewsIndex")
-        @await Component.InvokeAsync("NewsIndex")
+        @foreach (var article in await Model.Articles.ToListAsync())//TODO ToList - temporary solution, can be done better
+        {
+            @await Component.InvokeAsync("NewsIndex", article)
+        }
+        @* @await Component.InvokeAsync("NewsIndex") *@
+        @* @await Component.InvokeAsync("NewsIndex") *@
+        @* @await Component.InvokeAsync("NewsIndex") *@
+        @* @await Component.InvokeAsync("NewsIndex") *@
+        @* @await Component.InvokeAsync("NewsIndex") *@
+        @* @await Component.InvokeAsync("NewsIndex") *@
     </div>
 </div>
