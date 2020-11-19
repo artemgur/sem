@@ -1,18 +1,19 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using Npgsql;
 
 namespace Database
 {
 	//IMPORTANT! Primary key should be called "id" (without quotes). That probably could be changed, but it'd make code more complex
-	
+	//TODO make everything async?
 	public static class General
 	{
-		private static string connectionString;// = @"Server=127.0.0.1;Port=5432;Database=filmography;User Id=postgres;Password=postgres;";//Filmography for test
+		private static string connectionString = @"Server=127.0.0.1;Port=5432;Database=politics;User Id=postgres;Password=postgres;";//TODO move to config
 
 		//Select with optional condition, offset and rows number
-		public static IEnumerable<Entity> Select(string tableName, string condition = null, int offset = 0, int number = -1/*, string orderBy = null*/)
+		public static async IAsyncEnumerable<Entity> Select(string tableName, string condition = null, int offset = 0, int number = -1/*, string orderBy = null*/)
 		{
 			//TODO check if condition valid
 			//var info = EntityInfo.EntityKeys[tableName];
@@ -47,7 +48,7 @@ namespace Database
 			using var connection = new NpgsqlConnection(connectionString);
 			connection.Open();
 			using var command = new NpgsqlCommand(builder.ToString());
-			using var reader = command.ExecuteReader();
+			using var reader = await command.ExecuteReaderAsync();
 			if (reader.HasRows)
 			{
 				var columns = GetColumnNames(reader);
@@ -62,13 +63,13 @@ namespace Database
 		}
 
 		//Select without condition, but with offset and rows number
-		public static IEnumerable<Entity> Select(string tableName, int offset, int number)
+		public static IAsyncEnumerable<Entity> Select(string tableName, int offset, int number)
 		{
 			return Select(tableName, null, offset, number);
 		}
 
 		//Inserts entity to table
-		public static void Insert(this Entity entity)
+		public static async void Insert(this Entity entity)
 		{
 			//dynamic entity1 = entity;
 			//entity1.Abc = 8;
@@ -92,31 +93,31 @@ namespace Database
 			using var connection = new NpgsqlConnection(connectionString);
 			connection.Open();
 			using var command = new NpgsqlCommand(query);
-			command.ExecuteNonQuery();
+			await command.ExecuteNonQueryAsync();
 		}
 
-		public static Entity GetOneToManyParent(this Entity entity, string foreignKey, string foreignTable) =>
-			Select(foreignTable, "id=" + entity.Values[foreignKey].ToStringPg()).Single();
+		public static async Task<Entity> GetOneToManyParent(this Entity entity, string foreignKey, string foreignTable) =>
+			await Select(foreignTable, "id=" + entity.Values[foreignKey].ToStringPg()).SingleAsync();
 
-		public static IEnumerable<Entity> GetOneToManyChildren(this Entity entity, string foreignKey, string foreignTable) =>
+		public static IAsyncEnumerable<Entity> GetOneToManyChildren(this Entity entity, string foreignKey, string foreignTable) =>
 			Select(foreignTable, foreignKey + "=" + entity.Values["id"].ToStringPg());
 
-		public static IEnumerable<Entity> GetManyToManyEntities(this Entity entity, string manyToManyTable)
-		{
-			var relationship = ManyToManyRelationship.Relationships[manyToManyTable];
-			var otherTable = relationship.ForeignKeys.Keys.Single(x => x != entity.TableName);
-			var otherIds = Select(manyToManyTable,
-				relationship.ForeignKeys[entity.TableName] + "=" + entity.Values["id"]).Select(x => x.Values[relationship.ForeignKeys[otherTable]]);
-			return Select(otherTable, "id IN " + otherIds.ToStringListPg());
-		}
+		// public static IEnumerable<Entity> GetManyToManyEntities(this Entity entity, string manyToManyTable)
+		// {
+		// 	var relationship = ManyToManyRelationship.Relationships[manyToManyTable];
+		// 	var otherTable = relationship.ForeignKeys.Keys.Single(x => x != entity.TableName);
+		// 	var otherIds = Select(manyToManyTable,
+		// 		relationship.ForeignKeys[entity.TableName] + "=" + entity.Values["id"]).Select(x => x.Values[relationship.ForeignKeys[otherTable]]);
+		// 	return Select(otherTable, "id IN " + otherIds.ToStringListPg());
+		// }
 
-		public static IEnumerable<Entity> SelectByValue(string tableName, string columnName, object obj, int offset = 0, int number = -1) =>
+		public static IAsyncEnumerable<Entity> SelectByValue(string tableName, string columnName, object obj, int offset = 0, int number = -1) =>
 			Select(tableName, columnName + "=" + obj.ToStringPg(), offset, number);
 		
-		public static IEnumerable<Entity> SelectByValues(string tableName, string columnName, IEnumerable<object> obj, int offset = 0, int number = -1) =>
+		public static IAsyncEnumerable<Entity> SelectByValues(string tableName, string columnName, IEnumerable<object> obj, int offset = 0, int number = -1) =>
 			Select(tableName, columnName + "=" + obj.ToStringListPg(), offset, number);
 		
-		public static IEnumerable<Entity> SelectById(string tableName, int pkey) => Select(tableName, "id=" + pkey);
+		public static IAsyncEnumerable<Entity> SelectById(string tableName, int pkey) => Select(tableName, "id=" + pkey);
 
 		private static string[] GetColumnNames(NpgsqlDataReader reader)
 		{

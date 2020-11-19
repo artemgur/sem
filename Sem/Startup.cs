@@ -42,6 +42,8 @@ namespace Sem
 
 			app.UseAuthorization();
 
+			app.Map("/authenticate", Authentication.Authenticate);
+			
 			app.UseEndpoints(endpoints => { endpoints.MapRazorPages(); });
 		}
 	}

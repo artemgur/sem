@@ -5,7 +5,7 @@ namespace Database
 {
 	public static class Article
 	{
-		public static IEnumerable<Entity> SearchByName(string name, int offset, int number) =>
+		public static IAsyncEnumerable<Entity> SearchByName(string name, int offset, int number) =>
 			Select("articles_with_tags", $"name LIKE '%{name}%'", offset, number/*, "date"*/);
 
 		// /// Returns the link to article, that was passed as parameter!
@@ -17,5 +17,10 @@ namespace Database
 		// }
 		
 		//public static IEnumerable<Entity> GetArticles()
+
+		public static IAsyncEnumerable<Entity> Get(int offset, int number) =>
+			Select("articles_with_tags", offset, number);
+		
+		// public static IEnumerable<Entity>
 	}
 }

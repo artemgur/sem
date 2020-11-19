@@ -2,9 +2,10 @@ CREATE TYPE TAG AS ENUM ('США', 'Китай', 'Россия', 'Украина
 
 CREATE TABLE users(
     id SERIAL PRIMARY KEY,
-    login VARCHAR(20) NOT NULL UNIQUE,--store hash instead of actual value?
-    password VARCHAR(32) NOT NULL, --32 is MD5 length
-    email TEXT NOT NULL UNIQUE,
+    username VARCHAR(20) NOT NULL UNIQUE,--store hash instead of actual value?
+    password VARCHAR(32) NOT NULL, --length???
+    salt VARCHAR(32) NOT NULL, --length???
+--     email TEXT NOT NULL UNIQUE,
     photo TEXT --path to photo
 );
 
@@ -15,7 +16,7 @@ CREATE TABLE articles(
     text TEXT NOT NULL,--path to markdown file, not text itself
     photo TEXT --path to photo
 );
-CREATE INDEX articles_time_index ON articles(date DESC);
+-- CREATE INDEX articles_time_index ON articles(date DESC); --Apparently indexes will make queries slower, since our tables will be small
 --TODO create index for name
 
 CREATE TABLE tags_article(
@@ -24,8 +25,8 @@ CREATE TABLE tags_article(
     FOREIGN KEY (article_id) REFERENCES articles(id) ON DELETE CASCADE
 );
 --We will search in both directions
-CREATE INDEX tags_articles_index ON tags_article(article_id);
-CREATE INDEX tags_tag_index ON tags_article(tag);
+-- CREATE INDEX tags_articles_index ON tags_article(article_id);
+-- CREATE INDEX tags_tag_index ON tags_article(tag);
 
 CREATE TABLE debates( --debates header can be treated as a comment
     id SERIAL PRIMARY KEY,
@@ -40,7 +41,7 @@ CREATE TABLE debates_users(
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
     FOREIGN KEY (debate_id) REFERENCES debates(id) ON DELETE CASCADE
 );
-CREATE INDEX debates_users_user_index ON debates_users(debate_id);
+-- CREATE INDEX debates_users_user_index ON debates_users(debate_id);
 
 CREATE TABLE comments(
     user_id INTEGER,
@@ -51,7 +52,7 @@ CREATE TABLE comments(
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
     FOREIGN KEY (debate_id) REFERENCES debates(id) ON DELETE CASCADE
 );
-CREATE INDEX comments_debate_id_index ON comments(debate_id);
+-- CREATE INDEX comments_debate_id_index ON comments(debate_id);
 
 CREATE TABLE favourite_articles(
     user_id INTEGER,
@@ -59,7 +60,7 @@ CREATE TABLE favourite_articles(
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
     FOREIGN KEY (article_id) REFERENCES articles(id) ON DELETE CASCADE
 );
-CREATE INDEX favourite_articles_user_index ON favourite_articles(user_id);
+-- CREATE INDEX favourite_articles_user_index ON favourite_articles(user_id);
 
 CREATE TABLE people(
     id SERIAL PRIMARY KEY,
@@ -74,8 +75,8 @@ CREATE TABLE tags_people(
     tag TAG NOT NULL,
     FOREIGN KEY (people_id) REFERENCES people(id) ON DELETE CASCADE
 );
-CREATE INDEX tags_people_index ON tags_people(people_id);
-CREATE INDEX tags_people_tag_index ON tags_people(tag);
+-- CREATE INDEX tags_people_index ON tags_people(people_id);
+-- CREATE INDEX tags_people_tag_index ON tags_people(tag);
 
 CREATE MATERIALIZED VIEW articles_with_tags AS
     WITH a AS(
