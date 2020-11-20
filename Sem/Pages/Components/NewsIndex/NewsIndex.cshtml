@@ -4,9 +4,9 @@
     <div class="news-card" onclick="openArticle()">
         <div class="news-card-inner">
 
-            <h2 class="news-card-title">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Blanditiis, perferendis!</h2>
+            <h2 class="news-card-title">@Model.Values["name"]</h2>
             <div class="news-card-describe">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. A, blanditiis fugiat doloremque. Nulla vel ipsum cum veniam esse ipsam similique eius nesciunt non eos explicabo, modi nam iste error aspernatur?
+                @Model.Values["text"]
             </div>
             <div class="media-block">
                 <div class="media-block-img">
@@ -17,7 +17,7 @@
             <div class="news-card-footer">
                 <div class="news-card-footer-left">
                     <div class="news-card-keyword">Сша</div>
-                    <div class="news-card-time">21:00</div>
+                    <div class="news-card-time">@Model.Values["date"]</div>
                 </div>
                 <div class="news-card-footer-right">
                     1

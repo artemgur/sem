@@ -64,10 +64,11 @@ CREATE TABLE favourite_articles(
 
 CREATE TABLE people(
     id SERIAL PRIMARY KEY,
-    name VARCHAR(50),
-    position VARCHAR(30),
-    age SMALLINT,
-    country VARCHAR(30),
+    name VARCHAR(50) NOT NULL,
+    position VARCHAR(30) NOT NULL,
+    age SMALLINT NOT NULL,
+    country VARCHAR(30) NOT NULL,
+    text TEXT,--path to markdown file, not text itself
     photo TEXT --path to photo
 );
 CREATE TABLE tags_people(

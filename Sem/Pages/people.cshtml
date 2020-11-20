@@ -1,5 +1,5 @@
 ﻿@page
-@model Sem.Pages.person
+@model Sem.Pages.PeopleModel
 
 @{
     Layout = "Shared/_Layout";
@@ -8,18 +8,20 @@
 <div class="container-fluid">
 		<div class="row">
 
+			@foreach (var person in await Model.People.ToListAsync())
+			{
 			<div class="person-box">
 				<div class="person">
 					<div class="row">
 						<div class="col-md-4 person-left">
 							<div class="person-img-box">
-								<img class="person-img" src="imgs/original.jpg" alt="">
+								<img class="person-img" src="@ResourcesPaths.GetPersonPhotoPath((string)person.Values["photo"])" alt="">
 							</div>
-							<h3 class="person-menu">Владимир Владимирович Путин</h3>
+							<h3 class="person-menu">@person.Values["name"]</h3>
 							<hr class="person-hr">
-							<h6 class="person-menu">Должность: Президент</h6>
-							<h6 class="person-menu">Страна: Россия</h6>
-							<h6 class="person-menu">Возраст: 100500</h6>
+							<h6 class="person-menu">Должность: @person.Values["position"]</h6>
+							<h6 class="person-menu">Страна: @person.Values["country"]</h6>
+							<h6 class="person-menu">Возраст: @person.Values["age"]</h6>
 						</div>
 						<div class="col-md-8">
 							<div class="person-right">
@@ -29,6 +31,6 @@
 					</div>
 				</div>
 			</div>
-
+			}
 		</div>
 	</div>

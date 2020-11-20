@@ -8,7 +8,7 @@ namespace Sem.Pages
 	{
 		public IAsyncEnumerable<Entity> Articles;
 		
-		public void OnGet()
+		public async void OnGet()
 		{
 			Articles = Article.Get(0, 6);
 		}
