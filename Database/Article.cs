@@ -19,7 +19,7 @@ namespace Database
 		//public static IEnumerable<Entity> GetArticles()
 
 		public static IAsyncEnumerable<Entity> Get(int offset, int number) =>
-			Select("articles_with_tags", offset, number);
+			Select("articles", offset, number);//TODO change back to articles_with_tags
 		
 		// public static IEnumerable<Entity>
 	}

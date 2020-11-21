@@ -1,12 +1,16 @@
-﻿using Microsoft.AspNetCore.Mvc.RazorPages;
+﻿using System.Collections.Generic;
+using Database;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Sem.Pages
 {
-	public class index : PageModel
+	public class IndexModel : PageModel
 	{
-		public void OnGet()
+		public IAsyncEnumerable<Entity> Articles;
+		
+		public async void OnGet()
 		{
-			
+			Articles = Article.Get(0, 6);
 		}
 	}
 }

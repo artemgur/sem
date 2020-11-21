@@ -1,4 +1,5 @@
-﻿using Database;
+﻿using System.Threading.Tasks;
+using Database;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 
@@ -12,36 +13,42 @@ namespace Sem
 			{
 				var request = context.Request;
 				if (request.Headers.ContainsKey("register"))
-					Register(context);
+					await Register(context);
 				else
-					LogIn(context);
+					await LogIn(context);
 			});
 		}
 
-		private static async void LogIn(HttpContext context)
+		private static async Task LogIn(HttpContext context)
 		{
 			var username = context.Request.Headers["username"];
 			var password = context.Request.Headers["password"];
 			var user = await User.TryLogIn(username, password);
 			if (user == null) //TODO finish
-				// context.Response.Headers["Location"] = "https://localhost:5001/login";
-				context.Response.Redirect("login");
+				//context.Response.Redirect("login");
+				context.Response.Headers.Add("auth_result", "failure");
 			else
-				// context.Response.Headers["Location"] = "https://localhost:5001/account-main";
-				context.Response.Redirect("account-main");
+			{
+				//context.Response.Redirect("account-main");
+				context.Response.Headers.Add("auth_result", "success");
+				context.Session.SetInt32("user_id", (int) user.Values["id"]);
+			}		
 		}
 
-		private static async void Register(HttpContext context)
+		private static async Task Register(HttpContext context)
 		{
 			var username = context.Request.Headers["username"];
 			var password = context.Request.Headers["password"];
 			var user = await User.TryRegister(username, password);
 			if (user == null) //TODO finish
-				// context.Response.Headers["Location"] = "https://localhost:5001/register";
-				context.Response.Redirect("register");
+				//context.Response.Redirect("register");
+				context.Response.Headers.Add("auth_result", "failure");
 			else
-				// context.Response.Headers["Location"] = "https://localhost:5001/account-main";
-				context.Response.Redirect("account-main");
+			{
+				//context.Response.Redirect("account-main");
+				context.Response.Headers.Add("auth_result", "success");
+				context.Session.SetInt32("user_id", (int) user.Values["id"]);
+			}		
 		}
 	}
 }

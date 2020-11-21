@@ -20,11 +20,11 @@ function login() {
 	var username = form.username.value;
 	var password = form.password.value;
 
-	if (!passwordValidate(password)) {
-		alert("Пароль не соответствует требованиям");
-		return;
-	}
-	else {
+	// if (!passwordValidate(password)) {
+	// 	alert("Пароль не соответствует требованиям");
+	// 	return;
+	// }
+	// else {
 		//alert("Все ок")
 		$.ajax({
 			type: 'POST',
@@ -32,12 +32,16 @@ function login() {
 			headers: {
 				'username': username,
 				'password': password
+			},
+			success: function(res, status, xhr) {
+				var result = xhr.getResponseHeader("auth_result")
+				if (result === "success")
+					document.location.href = "account-main"
+				else
+					alert("Неверный логин или пароль")
 			}
-			// success: function(msg){
-			// 	alert( "Прибыли данные: " + msg );
-			// }
 		})
-	}
+	// }
 
 	//TODO: LogIn
 }
@@ -64,11 +68,15 @@ function register() {
 				'register': "",
 				'username': username,
 				'password': password
+			},
+			success: function(res, status, xhr) {
+				var result = xhr.getResponseHeader("auth_result")
+				if (result === "success")
+					document.location.href = "account-main"
+				else 
+					alert("Пользователь с таким логином уже зарегистрирован")
 			}
-			// success: function(msg){
-			// 	alert( "Прибыли данные: " + msg );
-			// }
-			})
+		})
 	}
 
 	//TODO: Register
