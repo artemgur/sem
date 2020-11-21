@@ -20,24 +20,28 @@ function login() {
 	var username = form.username.value;
 	var password = form.password.value;
 
-	if (!passwordValidate(password)) {
-		alert("Пароль не соответствует требованиям");
-		return;
-	}
-	else {
+	// if (!passwordValidate(password)) {
+	// 	alert("Пароль не соответствует требованиям");
+	// 	return;
+	// }
+	// else {
 		//alert("Все ок")
-		$.ajax({
-			type: 'POST',
-			url: 'https://localhost:5001/authenticate',
-			headers: {
-				'username': username,
-				'password': password
-			}
-			// success: function(msg){
-			// 	alert( "Прибыли данные: " + msg );
-			// }
-		})
-	}
+	$.ajax({
+		type: 'GET',
+		url: 'https://localhost:5001/authenticate',
+		headers: {
+			'username': username,
+			'password': password
+		},
+		success: function(res, status, xhr) {
+			let result = xhr.getResponseHeader("user_exists")
+			if (result === '0')
+				alert("Неверный логин или пароль")
+			else
+				document.location.href = "account-main"
+		}
+	})
+	// }
 
 	//TODO: LogIn
 }
@@ -64,10 +68,14 @@ function register() {
 				'register': "",
 				'username': username,
 				'password': password
+			},
+			success: function(res, status, xhr) {
+				let result = xhr.getResponseHeader("user_exists")
+				if (result === '1')
+					alert("Пользователь с таким логином уже зарегистрирован")
+				else
+					document.location.href = "account-main"
 			}
-			// success: function(msg){
-			// 	alert( "Прибыли данные: " + msg );
-			// }
 			})
 	}
 

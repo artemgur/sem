@@ -56,5 +56,7 @@ namespace Database
 			return Convert.ToBase64String(KeyDerivation.Pbkdf2
 				(password, salt, KeyDerivationPrf.HMACSHA1, 10000, 32));
 		}
+
+		public static async Task<Entity> GetById(int id) => await SelectById("users", id);
 	}
 }

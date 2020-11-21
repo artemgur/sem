@@ -117,7 +117,8 @@ namespace Database
 		public static IAsyncEnumerable<Entity> SelectByValues(string tableName, string columnName, IEnumerable<object> obj, int offset = 0, int number = -1) =>
 			Select(tableName, columnName + "=" + obj.ToStringListPg(), offset, number);
 		
-		public static IAsyncEnumerable<Entity> SelectById(string tableName, int pkey) => Select(tableName, "id=" + pkey);
+		public static async Task<Entity> SelectById(string tableName, int pkey)
+			=> await Select(tableName, "id=" + pkey).SingleAsync();
 
 		private static string[] GetColumnNames(NpgsqlDataReader reader)
 		{

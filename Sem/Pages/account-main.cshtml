@@ -45,7 +45,7 @@
                     </div>
                     <div class="account-face-name">
                         Здравствуйте,
-                        <div class="account-name">Shacall</div>
+                        <div class="account-name">@Model.User.Values["username"]</div>
                     </div>
                 </div>
                 <a class="account-function" href="@Url.Page("./account-main")">
@@ -71,12 +71,12 @@
 
                     <div class="account-info">
                         <div class="account-info-title">Имя:</div>
-                        <div class="account-info-value">Shacall</div>
+                        <div class="account-info-value">@Model.User.Values["username"]</div>
                     </div>
-                    <div class="account-info">
-                        <div class="account-info-title">E-mail:</div>
-                        <div class="account-info-value">davleev_zinnur@mail.ru</div>
-                    </div>
+                    @* <div class="account-info"> *@
+                    @*     <div class="account-info-title">E-mail:</div> *@
+                    @*     <div class="account-info-value">davleev_zinnur@mail.ru</div> *@
+                    @* </div> *@
                     <div class="account-info">
                         <div class="account-info-title">Пароль:</div>
                         <div class="account-info-value">***********</div>

@@ -1,12 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc.RazorPages;
-
-namespace Sem.Pages
+﻿namespace Sem.Pages
 {
-	public class account_news : PageModel
+	public class account_news : RestrictedPageModel
 	{
-		public void OnGet()
-		{
-			
-		}
 	}
 }
