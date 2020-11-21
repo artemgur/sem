@@ -57,6 +57,7 @@ namespace Database
 				(password, salt, KeyDerivationPrf.HMACSHA1, 10000, 32));
 		}
 
-		public static async Task<Entity> GetById(int id) => await SelectById("users", id);
+		public static async Task<Entity> GetById(int id)
+			=> await SelectById("users", id).SingleAsync();
 	}
 }

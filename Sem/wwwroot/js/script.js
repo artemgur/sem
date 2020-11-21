@@ -26,21 +26,21 @@ function login() {
 	// }
 	// else {
 		//alert("Все ок")
-	$.ajax({
-		type: 'GET',
-		url: 'https://localhost:5001/authenticate',
-		headers: {
-			'username': username,
-			'password': password
-		},
-		success: function(res, status, xhr) {
-			let result = xhr.getResponseHeader("user_exists")
-			if (result === '0')
-				alert("Неверный логин или пароль")
-			else
-				document.location.href = "account-main"
-		}
-	})
+		$.ajax({
+			type: 'POST',
+			url: 'https://localhost:5001/authenticate',
+			headers: {
+				'username': username,
+				'password': password
+			},
+			success: function(res, status, xhr) {
+				var result = xhr.getResponseHeader("auth_result")
+				if (result === "success")
+					document.location.href = "account-main"
+				else
+					alert("Неверный логин или пароль")
+			}
+		})
 	// }
 
 	//TODO: LogIn
@@ -70,13 +70,13 @@ function register() {
 				'password': password
 			},
 			success: function(res, status, xhr) {
-				let result = xhr.getResponseHeader("user_exists")
-				if (result === '1')
-					alert("Пользователь с таким логином уже зарегистрирован")
-				else
+				var result = xhr.getResponseHeader("auth_result")
+				if (result === "success")
 					document.location.href = "account-main"
+				else 
+					alert("Пользователь с таким логином уже зарегистрирован")
 			}
-			})
+		})
 	}
 
 	//TODO: Register

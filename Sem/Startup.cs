@@ -28,7 +28,6 @@ namespace Sem
 		{
 			app.UseStaticFiles();
 			app.UseSession();
-			
 			if (env.IsDevelopment())
 			{
 				app.UseDeveloperExceptionPage();

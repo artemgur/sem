@@ -1,19 +1,21 @@
 ﻿using System.Threading.Tasks;
 using Database;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Sem
 {
-	public abstract class RestrictedPageModel : PageModel
+	public class RestrictedPageModel: PageModel
 	{
 		public Entity User;
-		
+
 		public async Task<IActionResult> OnGet()
 		{
-			User = await Authentication.GetUserInfoOrRedirect(HttpContext);
-			if (User == null)
+			var id = HttpContext.Session.GetInt32("user_id");
+			if (id == null)
 				return Redirect("login");
+			User = await Database.User.GetById((int) id);
 			return null;
 		}
 	}

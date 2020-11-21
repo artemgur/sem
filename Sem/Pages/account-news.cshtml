@@ -35,7 +35,7 @@
             <div class="account">
                 <div class="account-face">
                     <div class="account-face-img">
-                        <img class="account-img" src="../imgs/dog.png" alt="">
+                        <img class="account-img" src="@ResourcesPaths.GetUserImagesPath(Model.User.Values["photo"])" alt="">
 
                         <div class="account-face-img-hiden">
                             <button type="button" class="account-face-img-change" data-toggle="modal" data-target="#exampleModal">
@@ -45,7 +45,7 @@
                     </div>
                     <div class="account-face-name">
                         Здравствуйте,
-                        <div class="account-name">Shacall</div>
+                        <div class="account-name">@Model.User.Values["username"]</div>
                     </div>
                 </div>
                 <a class="account-function" href="@Url.Page("./account-main")">
