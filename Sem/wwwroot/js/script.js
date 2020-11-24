@@ -217,6 +217,45 @@ function loadImgForm() {
 }
 
 
+
+
+//Поиск по сайту
+function searchInfo() {
+	var form = document.searchForm;
+
+	var searchValue = form.search.value;
+	var searchFilter = form.searchFilterBox.innerHTML;
+
+	if (searchFilter == "Фильтры") {
+		searchFilter = "";
+	}
+
+	//Тут у нас имеется 2 параметра
+	//Само значени: searchValue
+	//И фильтр: searchFilter, если фильтр не выбран, то searchFilter пустая строка
+
+	//TODO: searching
+
+	alert(searchValue + " " + searchFilter);
+}
+
+function changeSearchFilter(filter) {
+	var filterValue = filter.innerHTML;
+
+	var form = document.searchForm;
+	if (filterValue == "Не выбрано") {
+		form.searchFilterBox.innerHTML = "Фильтры";
+	}
+	else {
+		form.searchFilterBox.innerHTML = filterValue;
+    }
+}
+
+
+
+
+
+
 // Custom methods
 function log(srt) {
 	console.log(srt);
