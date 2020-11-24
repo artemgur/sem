@@ -1,7 +1,7 @@
 ﻿@model Database.Entity
 
 <div class="col-md-4 news">
-    <div class="news-card" onclick="openArticle()">
+    <div class="news-card" onclick="location.href='news/' + @Model.Values["id"]">
         <div class="news-card-inner">
 
             <h2 class="news-card-title">@Model.Values["name"]</h2>

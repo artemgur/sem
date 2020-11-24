@@ -1,4 +1,4 @@
-﻿@page
+﻿@page "{id?}"
 @model Sem.Pages.news
 
 @{
@@ -10,25 +10,25 @@
         <div class="article-top">
             <div class="article-top-left">
                 <div class="article-img-box">
-                    <img src="imgs/dog.png" alt="" class="article-img">
+                    <img src="@ResourcesPaths.GetArticleImagePath(Model.Article.Values["photo"])" alt="" class="article-img">
                 </div>
             </div>
             <div class="article-top-right">
-                <h2 class="article-title">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Expedita, harum!</h2>
+                <h2 class="article-title">@Model.Article.Values["name"]</h2>
                 <div class="article-functions">
                     <div class="article-funindexction">
-                        <img class="article-functions-svg" src="icons/chat.svg" alt="">
+                        <img class="article-functions-svg" src="~/icons/chat.svg" alt="">
                         Создать дискуссию
                     </div>
                     <div class="article-function">
-                        <img class="article-functions-svg" src="icons/heart.svg" alt="">
+                        <img class="article-functions-svg" src="~/icons/heart.svg" alt="">
                         Добавить в избранные
                     </div>
                 </div>
                 <div class="article-footer">
                     <div class="article-footer-left">
                         <div class="article-keyword">Сша</div>
-                        <div class="article-time">18:00</div>
+                        <div class="article-time">@Model.Article.Values["date"]</div>
                     </div>
                     <div class="article-footer-right">Комментарий</div>
                 </div>

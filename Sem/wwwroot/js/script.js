@@ -1,7 +1,7 @@
-// Открытие страницы (статья)
-function openArticle() {
-	document.location.href = "news"
-}
+// // Открытие страницы (статья)
+// function openArticle() {
+// 	document.location.href = "news"
+// }
 
 // Открытие страницы (дискуссия)
 function openDebate() {

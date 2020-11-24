@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using static Database.General;
 
 namespace Database
@@ -22,5 +23,8 @@ namespace Database
 			Select("articles", offset, number);//TODO change back to articles_with_tags
 		
 		// public static IEnumerable<Entity>
+
+		public static async Task<Entity> Get(int id)
+			=> await SelectById("articles", id);
 	}
 }

@@ -58,6 +58,6 @@ namespace Database
 		}
 
 		public static async Task<Entity> GetById(int id)
-			=> await SelectById("users", id).SingleAsync();
+			=> await SelectById("users", id);
 	}
 }
