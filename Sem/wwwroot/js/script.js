@@ -14,11 +14,11 @@ function openDebate() {
 
 // Вход / Регистрация
 function login() {
-	var form = document.loginForm;
+	let form = document.loginForm;
 
 	//var mail = form.email.value;
-	var username = form.username.value;
-	var password = form.password.value;
+	let username = form.username.value;
+	let password = form.password.value;
 
 	// if (!passwordValidate(password)) {
 	// 	alert("Пароль не соответствует требованиям");
@@ -34,7 +34,7 @@ function login() {
 				'password': password
 			},
 			success: function(res, status, xhr) {
-				var result = xhr.getResponseHeader("auth_result")
+				let result = xhr.getResponseHeader("auth_result")
 				if (result === "success")
 					document.location.href = "account-main"
 				else
@@ -47,13 +47,13 @@ function login() {
 }
 
 function register() {
-	var form = document.registerForm;
+	let form = document.registerForm;
 
 	//var mail = form.email.value;
-	var username = form.username.value;
-	var password = form.password.value;
+	let username = form.username.value;
+	let password = form.password.value;
 	//var password = form.password.value;
-	var secondPassword = form.password_confirmation.value;
+	let secondPassword = form.password_confirmation.value;
 
 	if (!passwordValidate(password) || password !== secondPassword) {
 		alert("Пароль не соответствует требованиям");
@@ -70,7 +70,7 @@ function register() {
 				'password': password
 			},
 			success: function(res, status, xhr) {
-				var result = xhr.getResponseHeader("auth_result")
+				let result = xhr.getResponseHeader("auth_result")
 				if (result === "success")
 					document.location.href = "account-main"
 				else 
@@ -221,10 +221,10 @@ function loadImgForm() {
 
 //Поиск по сайту
 function searchInfo() {
-	var form = document.searchForm;
+	let form = document.searchForm;
 
-	var searchValue = form.search.value;
-	var searchFilter = form.searchFilterBox.innerHTML;
+	let searchValue = form.search.value;
+	let searchFilter = form.searchFilterBox.innerHTML;
 
 	// if (searchFilter == "Фильтры") {
 	// 	searchFilter = "";
@@ -236,7 +236,7 @@ function searchInfo() {
 
 	//TODO: searching
 
-	var l = "index?search_text="+searchValue
+	let l = "index?search_text="+searchValue
 	if (searchFilter != "Фильтры") {
 		l += "&search_tag="+searchFilter
 	}
@@ -246,15 +246,47 @@ function searchInfo() {
 }
 
 function changeSearchFilter(filter) {
-	var filterValue = filter.innerHTML;
+	let filterValue = filter.innerHTML;
 
-	var form = document.searchForm;
+	let form = document.searchForm;
 	if (filterValue == "Не выбрано") {
 		form.searchFilterBox.innerHTML = "Фильтры";
 	}
 	else {
 		form.searchFilterBox.innerHTML = filterValue;
     }
+}
+
+
+
+
+//Добавление или удаление из избранного
+function addToFavorites() {
+	let path = document.location;
+	let id = /\d+$/g.exec(path); //Тут применяется регулярное выражение
+	alert(id); //В дальнейшем удалить
+
+	//TODO: Добавить статью в избранные с указанным id
+
+
+
+	//Изменяем кнопку на противоположные как только выполнилось данная функция
+	$("#article-function-addToFavorites").css("display", "none");
+	$("#article-function-removeFromFavorites").css("display", "flex");
+}
+
+function removeFromFavorites() {
+	let path = document.location;
+	let id = /\d+$/g.exec(path); //Тут применяется регулярное выражение
+	alert(id); //В дальнейшем удалить
+
+	//TODO: Удалить статью из избранного с указанным id
+
+
+
+	//Изменяем кнопку на противоположные как только выполнилось данная функция
+	$("#article-function-addToFavorites").css("display", "flex");
+	$("#article-function-removeFromFavorites").css("display", "none");
 }
 
 
@@ -280,11 +312,11 @@ function passwordValidate(str) {
 	const minimum8Chars = /.{8,}/; // Минимум 8 символов
 	const withoutSpaces = /\S/; // Не содержит пробелы
 
-	var a = beginWithoutDigit.test(str);
-	var b = withoutSpecialChars.test(str);
-	var c = containsLetters.test(str);
-	var d = minimum8Chars.test(str);
-	var e = withoutSpaces.test(str);
+	let a = beginWithoutDigit.test(str);
+	let b = withoutSpecialChars.test(str);
+	let c = containsLetters.test(str);
+	let d = minimum8Chars.test(str);
+	let e = withoutSpaces.test(str);
 
 
 	log(a + " " + b + " " + c + " " + d + " " + e);
@@ -297,9 +329,9 @@ function passwordValidate(str) {
 }
 
 function changeAccountImage() {
-	var form = document.accountChangeImg;
+	let form = document.accountChangeImg;
 
-	var img = form.accountLoadImg.value;
+	let img = form.accountLoadImg.value;
 
 	// Тут по идеи нужно скачивать выбранное фото и после устанавливать
 

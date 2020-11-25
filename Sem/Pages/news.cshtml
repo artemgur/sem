@@ -20,10 +20,21 @@
                         <img class="article-functions-svg" src="~/icons/chat.svg" alt="">
                         Создать дискуссию
                     </div>
-                    <div class="article-function">
+
+
+                    @*Тут нужно будет изменять 'display' опираясь на ситуацию *@
+                    <div style="display: flex" onclick="addToFavorites()" class="article-function" id="article-function-addToFavorites">
                         <img class="article-functions-svg" src="~/icons/heart.svg" alt="">
                         Добавить в избранные
                     </div>
+
+                    @*Тут нужно будет изменять 'display' опираясь на ситуацию *@
+                    <div style="display: none" onclick="removeFromFavorites()" class="article-function" id="article-function-removeFromFavorites">
+                        <img class="article-functions-svg" src="~/icons/broken-heart.svg" alt="">
+                        Удалить из избранного
+                    </div>
+
+
                 </div>
                 <div class="article-footer">
                     <div class="article-footer-left">
