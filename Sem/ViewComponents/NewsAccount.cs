@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using Database;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Sem.ViewComponents
@@ -8,9 +9,9 @@ namespace Sem.ViewComponents
 		public NewsAccountViewComponent()
 		{
 		}
-		public async Task<IViewComponentResult> InvokeAsync()
+		public async Task<IViewComponentResult> InvokeAsync(Entity entity)
 		{
-			return View("NewsAccount");
+			return View("NewsAccount", entity);
 		}
 	}
 }

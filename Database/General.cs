@@ -102,20 +102,24 @@ namespace Database
 		public static IAsyncEnumerable<Entity> GetOneToManyChildren(this Entity entity, string foreignKey, string foreignTable) =>
 			Select(foreignTable, foreignKey + "=" + entity.Values["id"].ToStringPg());
 
-		// public static IEnumerable<Entity> GetManyToManyEntities(this Entity entity, string manyToManyTable)
-		// {
-		// 	var relationship = ManyToManyRelationship.Relationships[manyToManyTable];
-		// 	var otherTable = relationship.ForeignKeys.Keys.Single(x => x != entity.TableName);
-		// 	var otherIds = Select(manyToManyTable,
-		// 		relationship.ForeignKeys[entity.TableName] + "=" + entity.Values["id"]).Select(x => x.Values[relationship.ForeignKeys[otherTable]]);
-		// 	return Select(otherTable, "id IN " + otherIds.ToStringListPg());
-		// }
+		public static async IAsyncEnumerable<Entity> GetManyToManyEntities(this Entity entity, string manyToManyTable)
+		{
+			var relationship = ManyToManyRelationship.Relationships[manyToManyTable];
+			var otherTable = relationship.ForeignKeys.Keys.Single(x => x != entity.TableName);
+			var otherIds = Select(manyToManyTable,
+				relationship.ForeignKeys[entity.TableName] + "=" + entity.Values["id"]).Select(x => x.Values[relationship.ForeignKeys[otherTable]]);
+			var condition = "id IN " + await otherIds.ToStringListPg();
+			if (condition.Length == 7)//Length of empty condition
+				yield break;
+			await foreach (var x in Select(otherTable, condition))
+				yield return x;
+		}
 
 		public static IAsyncEnumerable<Entity> SelectByValue(string tableName, string columnName, object obj, int offset = 0, int number = -1) =>
 			Select(tableName, columnName + "=" + obj.ToStringPg(), offset, number);
 		
-		public static IAsyncEnumerable<Entity> SelectByValues(string tableName, string columnName, IEnumerable<object> obj, int offset = 0, int number = -1) =>
-			Select(tableName, columnName + "=" + obj.ToStringListPg(), offset, number);
+		// public static IAsyncEnumerable<Entity> SelectByValues(string tableName, string columnName, IEnumerable<object> obj, int offset = 0, int number = -1) =>
+		// 	Select(tableName, columnName + "=" + obj.ToStringListPg(), offset, number);
 		
 		public static async Task<Entity> SelectById(string tableName, int pkey) => await Select(tableName, "id=" + pkey).SingleAsync();
 

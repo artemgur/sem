@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Database
 {
@@ -16,10 +17,10 @@ namespace Database
 			return a.ToString();
 		}
 
-		public static string ToStringListPg(this IEnumerable<object> objects)
+		public static async Task<string> ToStringListPg(this IAsyncEnumerable<object> objects)
 		{
 			var builder = new StringBuilder(" (");
-			foreach (var x in objects)
+			await foreach (var x in objects)
 			{
 				builder.Append(x.ToStringPg());
 				builder.Append(", ");

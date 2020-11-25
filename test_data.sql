@@ -20,3 +20,6 @@ INSERT INTO tags_article VALUES (3, 'Украина');
 INSERT INTO tags_article VALUES (4, 'США');
 INSERT INTO tags_article VALUES (5, 'Китай');
 INSERT INTO tags_article VALUES (6, 'Украина');
+
+INSERT INTO favourite_articles VALUES (1, 1);
+INSERT INTO favourite_articles VALUES (1, 5);

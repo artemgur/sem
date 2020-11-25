@@ -37,7 +37,7 @@ namespace Database
 				}
 			};
 			entity.Insert();
-			return entity;
+			return await Select("users", "username='"+username+"'").SingleAsync();
 		}
 
 		public static async Task<Entity> Get(string username) =>

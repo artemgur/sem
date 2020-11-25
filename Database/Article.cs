@@ -29,5 +29,8 @@ namespace Database
 
 		public static IAsyncEnumerable<Entity> SearchByNameAndTag(string name, string tag, int offset = 0,
 			int number = -1) => Select($"select_articles_by_name_and_tag('%{name}%', '{tag}')", offset, number);
+
+		public static IAsyncEnumerable<Entity> GetFavoriteArticles(Entity user)
+			=> user.GetManyToManyEntities("favourite_articles");
 	}
 }
