@@ -27,7 +27,11 @@
                 </div>
                 <div class="article-footer">
                     <div class="article-footer-left">
-                        <div class="article-keyword">Сша</div>
+                        @* <div class="article-keyword">Сша</div> *@
+                        @foreach (var tag in (string[]) Model.Article.Values["tags"])
+                        {
+                            <div class="article-keyword">@tag</div>
+                        }
                         <div class="article-time">@Model.Article.Values["date"]</div>
                     </div>
                     <div class="article-footer-right">Комментарий</div>

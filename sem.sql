@@ -4,17 +4,17 @@ CREATE TABLE users(
     id SERIAL PRIMARY KEY,
     username VARCHAR(20) NOT NULL UNIQUE,--store hash instead of actual value?
     password VARCHAR(44) NOT NULL, --length???
-    salt VARCHAR(24) NOT NULL, --length???
+    salt VARCHAR(24) NOT NULL --length???
 --     email TEXT NOT NULL UNIQUE,
-    photo TEXT --path to photo
+--     photo TEXT --path to photo
 );
 
 CREATE TABLE articles(
     id SERIAL PRIMARY KEY,
     name VARCHAR(30) NOT NULL, --TODO should be unique?
-    date TIMESTAMP,
-    text TEXT NOT NULL,--path to markdown file, not text itself
-    photo TEXT --path to photo
+    date TIMESTAMP
+--     text TEXT NOT NULL--path to markdown file, not text itself
+--     photo TEXT --path to photo
 );
 -- CREATE INDEX articles_time_index ON articles(date DESC); --Apparently indexes will make queries slower, since our tables will be small
 --TODO create index for name
@@ -67,9 +67,9 @@ CREATE TABLE people(
     name VARCHAR(50) NOT NULL,
     position VARCHAR(30) NOT NULL,
     age SMALLINT NOT NULL,
-    country VARCHAR(30) NOT NULL,
-    text TEXT,--path to markdown file, not text itself
-    photo TEXT --path to photo
+    country VARCHAR(30) NOT NULL
+--     text TEXT--path to markdown file, not text itself
+--     photo TEXT --path to photo
 );
 CREATE TABLE tags_people(
     people_id INTEGER NOT NULL,
@@ -81,7 +81,7 @@ CREATE TABLE tags_people(
 
 CREATE MATERIALIZED VIEW articles_with_tags AS
     WITH a AS(
-        SELECT id, name, date, text, photo, array_agg(tags_article.tag) AS tags
+        SELECT id, name, date, text, array_agg(tags_article.tag) AS tags
         FROM tags_article
         JOIN articles ON articles.id = tags_article.article_id
         GROUP BY id
@@ -91,7 +91,7 @@ CREATE MATERIALIZED VIEW articles_with_tags AS
 
 CREATE MATERIALIZED VIEW people_with_tags AS
     WITH a AS(
-        SELECT id, name, position, age, country, photo, array_agg(tags_people.tag) AS tags
+        SELECT id, name, position, age, country, array_agg(tags_people.tag) AS tags
         FROM tags_people
         JOIN people ON people.id = tags_people.people_id
         GROUP BY id
