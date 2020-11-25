@@ -1,29 +1,21 @@
-﻿using System;
-using Database;
+﻿using System.IO;
 
 namespace Sem
 {
 	public static class ResourcesPaths
 	{
-		public static string GetPersonPhotoPath(object s)
-		{
-			//e.Values.TryGetValue("photo", out var s);
-			//var s = e.Values["photo"];
-			return s is DBNull ? "imgs/dog.png" : $"Resources/PeoplePhotos/{s}.jpg";
-		}
+		public static string GetPersonPhotoPath(object s) => GetPath((int) s, "PeoplePhotos");
 
-		public static string GetArticleImagePath(object s)
-		{
-			//e.Values.TryGetValue("photo", out var s);
-			//var s = e.Values["photo"];
-			return s is DBNull ? "imgs/dog.png" : $"Resources/ArticleImages/{s}.jpg";
-		}
+		public static string GetArticleImagePath(object s) => GetPath((int) s, "ArticleImages");
 
-		public static string GetUserImagesPath(object s)
+		public static string GetUserImagesPath(object s) => GetPath((int) s, "UserImages");
+
+		private static string GetPath(int s, string folder)
 		{
-			//e.Values.TryGetValue("photo", out var s);
-			//var s = e.Values["photo"];
-			return s is DBNull ? "imgs/dog.png" : $"Resources/UserImages/{s}.jpg";
+			var a = Directory.GetCurrentDirectory();
+			var path = $"Resources/{folder}/{s}.jpg";
+			var path2 = "wwwroot/" + path;
+			return !File.Exists(path2) ? "imgs/dog.png" : path;
 		}
 	}
 }

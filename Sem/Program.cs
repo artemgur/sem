@@ -1,3 +1,4 @@
+using System.IO;
 using Database;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
@@ -8,7 +9,7 @@ namespace Sem
 	{
 		public static void Main(string[] args)
 		{
-			Initializer.Init();//Necessary to init ORM
+			Initializer.Init();//TODO Necessary to init ORM?
 			CreateHostBuilder(args).Build().Run();
 		}
 
