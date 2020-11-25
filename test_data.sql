@@ -11,3 +11,12 @@ INSERT INTO articles (id, name, date, text) VALUES (6, 'Test 2', '2000-01-01', '
 --People
 INSERT INTO people (name, position, age, country, photo) VALUES ('Путин, Владимир Владимирович', 'Президент', 68, 'Россия', 'putin');
 INSERT INTO people (name, position, age, country, photo) VALUES ('Байден, Джо', 'Президент', 77, 'США', 'biden')
+
+INSERT INTO tags_article VALUES (1, 'США');
+INSERT INTO tags_article VALUES (1, 'Россия');
+INSERT INTO tags_article VALUES (2, 'Китай');
+INSERT INTO tags_article VALUES (2, 'Северная Корея');
+INSERT INTO tags_article VALUES (3, 'Украина');
+INSERT INTO tags_article VALUES (4, 'США');
+INSERT INTO tags_article VALUES (5, 'Китай');
+INSERT INTO tags_article VALUES (6, 'Украина');

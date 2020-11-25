@@ -226,9 +226,9 @@ function searchInfo() {
 	var searchValue = form.search.value;
 	var searchFilter = form.searchFilterBox.innerHTML;
 
-	if (searchFilter == "Фильтры") {
-		searchFilter = "";
-	}
+	// if (searchFilter == "Фильтры") {
+	// 	searchFilter = "";
+	// }
 
 	//Тут у нас имеется 2 параметра
 	//Само значени: searchValue
@@ -236,7 +236,13 @@ function searchInfo() {
 
 	//TODO: searching
 
-	alert(searchValue + " " + searchFilter);
+	var l = "index?search_text="+searchValue
+	if (searchFilter != "Фильтры") {
+		l += "&search_tag="+searchFilter
+	}
+	document.location = l
+
+	//alert(searchValue + " " + searchFilter);
 }
 
 function changeSearchFilter(filter) {

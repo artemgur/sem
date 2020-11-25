@@ -6,7 +6,7 @@ namespace Database
 {
 	public static class Article
 	{
-		public static IAsyncEnumerable<Entity> SearchByName(string name, int offset, int number) =>
+		public static IAsyncEnumerable<Entity> SearchByName(string name, int offset = 0, int number = -1) =>
 			Select("articles_with_tags", $"name LIKE '%{name}%'", offset, number/*, "date"*/);
 
 		// /// Returns the link to article, that was passed as parameter!
@@ -19,12 +19,15 @@ namespace Database
 		
 		//public static IEnumerable<Entity> GetArticles()
 
-		public static IAsyncEnumerable<Entity> Get(int offset, int number) =>
-			Select("articles", offset, number);//TODO change back to articles_with_tags
+		public static IAsyncEnumerable<Entity> Get(int offset = 0, int number = -1) =>
+			Select("articles_with_tags", offset, number);//TODO change back to articles_with_tags
 		
 		// public static IEnumerable<Entity>
 
-		public static async Task<Entity> Get(int id)
-			=> await SelectById("articles", id);
+		public static async Task<Entity> GetById(int id)
+			=> await SelectById("articles_with_tags", id);
+
+		public static IAsyncEnumerable<Entity> SearchByNameAndTag(string name, string tag, int offset = 0,
+			int number = -1) => Select($"select_articles_by_name_and_tag('%{name}%', '{tag}')", offset, number);
 	}
 }

@@ -16,7 +16,11 @@
 
             <div class="news-card-footer">
                 <div class="news-card-footer-left">
-                    <div class="news-card-keyword">Сша</div>
+                    @* <div class="news-card-keyword">Сша</div> *@
+                    @foreach (var tag in (string[]) Model.Values["tags"])
+                    {
+                        <div class="news-card-keyword">@tag</div>
+                    }
                     <div class="news-card-time">@Model.Values["date"]</div>
                 </div>
                 <div class="news-card-footer-right">

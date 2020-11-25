@@ -81,7 +81,7 @@ CREATE TABLE tags_people(
 
 CREATE MATERIALIZED VIEW articles_with_tags AS
     WITH a AS(
-        SELECT id, name, date, text, photo, array_agg(tags_article.tag)
+        SELECT id, name, date, text, photo, array_agg(tags_article.tag) AS tags
         FROM tags_article
         JOIN articles ON articles.id = tags_article.article_id
         GROUP BY id
@@ -91,9 +91,25 @@ CREATE MATERIALIZED VIEW articles_with_tags AS
 
 CREATE MATERIALIZED VIEW people_with_tags AS
     WITH a AS(
-        SELECT id, name, position, age, country, photo, array_agg(tags_people.tag)
+        SELECT id, name, position, age, country, photo, array_agg(tags_people.tag) AS tags
         FROM tags_people
         JOIN people ON people.id = tags_people.people_id
         GROUP BY id
     )
-    SELECT * FROM a;
+    SELECT * FROM a
+    ORDER BY name;
+
+CREATE FUNCTION select_articles_by_name_and_tag(a VARCHAR(30), b TAG)
+RETURNS TABLE (id INTEGER, name VARCHAR(30), date TIMESTAMP, text TEXT, photo TEXT, tags TAG[]) AS $$
+    SELECT id, name, date, text, photo, tags FROM articles_with_tags
+    JOIN tags_article ON article_id = id AND tag = b AND name LIKE a;
+$$ LANGUAGE sql;
+
+CREATE FUNCTION select_people_by_name_and_tag(a VARCHAR(30), b TAG)
+RETURNS TABLE (id INTEGER, name VARCHAR(30), position VARCHAR(30), age SMALLINT, country VARCHAR(30), text TEXT, photo TEXT, tags TAG[]) AS $$
+    SELECT id, name, position, age, country, photo, tags FROM people_with_tags
+    JOIN tags_people ON people_id = id AND tag = b AND name LIKE a;
+$$ LANGUAGE sql;
+--TODO fix
+-- ERROR:  syntax error at or near "position"
+-- LINE 2: RETURNS TABLE (id INTEGER, name VARCHAR(30), position VARCHA...

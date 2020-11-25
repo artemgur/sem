@@ -13,7 +13,7 @@ namespace Sem.Pages
 		{
 			if (!int.TryParse(id, out var parsed))
 				return Redirect("index");
-			Article = await Database.Article.Get(parsed);
+			Article = await Database.Article.GetById(parsed);
 			return null;
 		}
 	}
