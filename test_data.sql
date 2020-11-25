@@ -9,8 +9,8 @@ INSERT INTO articles (id, name, date, text) VALUES (6, 'Test 2', '2000-01-01', '
 --REFRESH MATERIALIZED VIEW articles_with_tags;
 
 --People
-INSERT INTO people (name, position, age, country, photo) VALUES ('Путин, Владимир Владимирович', 'Президент', 68, 'Россия', 'putin');
-INSERT INTO people (name, position, age, country, photo) VALUES ('Байден, Джо', 'Президент', 77, 'США', 'biden')
+INSERT INTO people (name, position, age, country) VALUES ('Путин, Владимир Владимирович', 'Президент', 68, 'Россия');
+INSERT INTO people (name, position, age, country) VALUES ('Байден, Джо', 'Президент', 77, 'США');
 
 INSERT INTO tags_article VALUES (1, 'США');
 INSERT INTO tags_article VALUES (1, 'Россия');
