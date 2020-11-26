@@ -1,4 +1,4 @@
-﻿@page "{id?}"
+﻿@page "{articleId?}"
 @model Sem.Pages.news
 
 @{
@@ -23,16 +23,32 @@
 
 
                     @*Тут нужно будет изменять 'display' опираясь на ситуацию *@
-                    <div style="display: flex" onclick="addToFavorites()" class="article-function" id="article-function-addToFavorites">
-                        <img class="article-functions-svg" src="~/icons/heart.svg" alt="">
-                        Добавить в избранные
-                    </div>
+                    @if (Model.IsFavorite)
+                    {
+                        <div style="display: none" onclick="addToFavorites()" class="article-function" id="article-function-addToFavorites">
+                            <img class="article-functions-svg" src="~/icons/heart.svg" alt="">
+                            Добавить в избранные
+                        </div>
 
-                    @*Тут нужно будет изменять 'display' опираясь на ситуацию *@
-                    <div style="display: none" onclick="removeFromFavorites()" class="article-function" id="article-function-removeFromFavorites">
-                        <img class="article-functions-svg" src="~/icons/broken-heart.svg" alt="">
-                        Удалить из избранного
-                    </div>
+                        @*Тут нужно будет изменять 'display' опираясь на ситуацию *@
+                        <div style="display: flex" onclick="removeFromFavorites()" class="article-function" id="article-function-removeFromFavorites">
+                            <img class="article-functions-svg" src="~/icons/broken-heart.svg" alt="">
+                            Удалить из избранного
+                        </div>
+                    }
+                    @if (!Model.IsFavorite)//TODO change to else
+                    {
+                        <div style="display: flex" onclick="addToFavorites()" class="article-function" id="article-function-addToFavorites">
+                            <img class="article-functions-svg" src="~/icons/heart.svg" alt="">
+                            Добавить в избранные
+                        </div>
+
+                        @*Тут нужно будет изменять 'display' опираясь на ситуацию *@
+                        <div style="display: none" onclick="removeFromFavorites()" class="article-function" id="article-function-removeFromFavorites">
+                            <img class="article-functions-svg" src="~/icons/broken-heart.svg" alt="">
+                            Удалить из избранного
+                        </div>
+                    }
 
 
                 </div>
@@ -45,7 +61,7 @@
                         }
                         <div class="article-time">@Model.Article.Values["date"]</div>
                     </div>
-                    <div class="article-footer-right">Комментарий</div>
+                    <div class="article-footer-right">Комментарий</div>@*TODO why do we need it?*@
                 </div>
             </div>
         </div>

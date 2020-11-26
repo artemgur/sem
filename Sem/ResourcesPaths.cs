@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using System.Linq;
 
 namespace Sem
 {
@@ -12,10 +13,10 @@ namespace Sem
 
 		private static string GetPath(int s, string folder)
 		{
-			var a = Directory.GetCurrentDirectory();
-			var path = $"Resources/{folder}/{s}.jpg";
-			var path2 = "wwwroot/" + path;
-			return !File.Exists(path2) ? "imgs/dog.png" : path;
+			var file = Path.GetFileName(Directory.GetFiles(@$"wwwroot\Resources\{folder}\", s + ".*").FirstOrDefault());
+			if (file == null)
+				return "imgs/dog.png";
+			return $"Resources/{folder}/" + (string) file;
 		}
 	}
 }

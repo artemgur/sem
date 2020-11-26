@@ -13,12 +13,12 @@
                 }
                 <div class="account-news-time">@Model.Values["date"]</div>
             </div>
-            <div class="account-news-footer-right">
+            <div class="account-news-footer-right">@*TODO why do we need it?*@
                 1
             </div>
         </div>
     </div>
-    <div class="account-news-delete" onclick="alert('Вы удалили сообщение')">
+    <div class="account-news-delete" onclick="removeFromFavoritesNewsAccount(@Model["id"])">
         <img class="account-news-delete-img" src="icons/delete (1).svg" alt="">
     </div>
 </div>

@@ -7,7 +7,6 @@ using Npgsql;
 namespace Database
 {
 	//IMPORTANT! Primary key should be called "id" (without quotes). That probably could be changed, but it'd make code more complex
-	//TODO make everything async?
 	public static class General
 	{
 		private static string connectionString = @"Server=ec2-54-228-170-125.eu-west-1.compute.amazonaws.com;Port=5432;Database=de1qv1gqr08u0s;Username=hysncxmhxhkwps;Password=42e0e146881cccf42a9871ecc03e3a6add375337314c4179d919d2e4577ba8b1;SslMode=Require;Trust Server Certificate=true;";//TODO move to config
@@ -130,6 +129,30 @@ namespace Database
 			for (var i = 0; i < fieldCount; i++)
 				result[i] = reader.GetName(i);
 			return result;
+		}
+
+		public static async void Delete(this Entity entity)
+		{
+			var builder = new StringBuilder($"DELETE FROM {entity.TableName} WHERE ");
+			foreach (var pair in entity.Values)
+			{
+				//builder.Append(' ');
+				builder.Append(pair.Key);
+				builder.Append("=");
+				builder.Append(pair.Value.ToStringPg());
+				builder.Append("AND ");
+			}
+			builder.Remove(builder.Length - 4, 4);
+			var query = builder.ToString();
+			await using var connection = new NpgsqlConnection(connectionString);
+			await connection.OpenAsync();
+			await using var command = new NpgsqlCommand(query, connection);
+			await command.ExecuteNonQueryAsync();
+		}
+
+		internal static void InitConnectionString()
+		{
+			//TODO
 		}
 	}
 }

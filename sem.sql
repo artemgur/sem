@@ -1,4 +1,4 @@
-CREATE TYPE TAG AS ENUM ('США', 'Китай', 'Россия', 'Украина', 'Северная Корея');--TODO add more
+CREATE TYPE TAG AS ENUM ('США', 'Китай', 'Россия', 'Украина', 'Северная Корея', 'Япония', 'Беларусь', 'ООН', 'ЕС', 'Сирия', 'Турция');--TODO add more
 
 CREATE TABLE users(
     id SERIAL PRIMARY KEY,
@@ -11,8 +11,8 @@ CREATE TABLE users(
 
 CREATE TABLE articles(
     id SERIAL PRIMARY KEY,
-    name VARCHAR(30) NOT NULL, --TODO should be unique?
-    date TIMESTAMP
+    name VARCHAR(30) NOT NULL,
+    date TIMESTAMP NOT NULL
 --     text TEXT NOT NULL--path to markdown file, not text itself
 --     photo TEXT --path to photo
 );
@@ -32,7 +32,7 @@ CREATE TABLE debates( --debates header can be treated as a comment
     id SERIAL PRIMARY KEY,
     name VARCHAR(30) NOT NULL,
     text TEXT,
-    date TIMESTAMP
+    date TIMESTAMP NOT NULL
 );
 
 CREATE TABLE debates_users(
@@ -46,15 +46,15 @@ CREATE TABLE debates_users(
 CREATE TABLE comments(
     user_id INTEGER,
     debate_id INTEGER,
-    date TIMESTAMP,
-    opinion BOOLEAN,--comment for or against
+    date TIMESTAMP NOT NULL,
+    opinion BOOLEAN NOT NULL,--comment for or against
     text TEXT,
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
     FOREIGN KEY (debate_id) REFERENCES debates(id) ON DELETE CASCADE
 );
 -- CREATE INDEX comments_debate_id_index ON comments(debate_id);
 
-CREATE TABLE favourite_articles(
+CREATE TABLE favorite_articles(
     user_id INTEGER,
     article_id INTEGER,
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
@@ -72,7 +72,7 @@ CREATE TABLE people(
 --     photo TEXT --path to photo
 );
 CREATE TABLE tags_people(
-    people_id INTEGER NOT NULL,
+    people_id INTEGER,
     tag TAG NOT NULL,
     FOREIGN KEY (people_id) REFERENCES people(id) ON DELETE CASCADE
 );
@@ -81,7 +81,7 @@ CREATE TABLE tags_people(
 
 CREATE MATERIALIZED VIEW articles_with_tags AS
     WITH a AS(
-        SELECT id, name, date, text, array_agg(tags_article.tag) AS tags
+        SELECT id, name, date, array_agg(tags_article.tag) AS tags
         FROM tags_article
         JOIN articles ON articles.id = tags_article.article_id
         GROUP BY id
@@ -100,14 +100,14 @@ CREATE MATERIALIZED VIEW people_with_tags AS
     ORDER BY name;
 
 CREATE FUNCTION select_articles_by_name_and_tag(a VARCHAR(30), b TAG)
-RETURNS TABLE (id INTEGER, name VARCHAR(30), date TIMESTAMP, text TEXT, photo TEXT, tags TAG[]) AS $$
-    SELECT id, name, date, text, photo, tags FROM articles_with_tags
+RETURNS TABLE (id INTEGER, name VARCHAR(30), date TIMESTAMP, tags TAG[]) AS $$
+    SELECT id, name, date, tags FROM articles_with_tags
     JOIN tags_article ON article_id = id AND tag = b AND name LIKE a;
 $$ LANGUAGE sql;
 
 CREATE FUNCTION select_people_by_name_and_tag(a VARCHAR(30), b TAG)
-RETURNS TABLE (id INTEGER, name VARCHAR(30), position VARCHAR(30), age SMALLINT, country VARCHAR(30), text TEXT, photo TEXT, tags TAG[]) AS $$
-    SELECT id, name, position, age, country, photo, tags FROM people_with_tags
+RETURNS TABLE (id INTEGER, name VARCHAR(30), position VARCHAR(30), age SMALLINT, country VARCHAR(30), tags TAG[]) AS $$
+    SELECT id, name, position, age, country, tags FROM people_with_tags
     JOIN tags_people ON people_id = id AND tag = b AND name LIKE a;
 $$ LANGUAGE sql;
 --TODO fix

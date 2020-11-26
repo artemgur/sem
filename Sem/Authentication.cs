@@ -24,7 +24,7 @@ namespace Sem
 			var username = context.Request.Headers["username"];
 			var password = context.Request.Headers["password"];
 			var user = await User.TryLogIn(username, password);
-			if (user == null) //TODO finish
+			if (user == null)
 				//context.Response.Redirect("login");
 				context.Response.Headers.Add("auth_result", "failure");
 			else
@@ -40,7 +40,7 @@ namespace Sem
 			var username = context.Request.Headers["username"];
 			var password = context.Request.Headers["password"];
 			var user = await User.TryRegister(username, password);
-			if (user == null) //TODO finish
+			if (user == null)
 				//context.Response.Redirect("register");
 				context.Response.Headers.Add("auth_result", "failure");
 			else

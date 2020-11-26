@@ -9,7 +9,7 @@ namespace Sem
 	{
 		public static void Main(string[] args)
 		{
-			Initializer.Init();//TODO Necessary to init ORM?
+			Initializer.Init();//Necessary to init many to many tables
 			CreateHostBuilder(args).Build().Run();
 		}
 

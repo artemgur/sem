@@ -7,6 +7,7 @@ namespace Database
 	{
 		public static void Init()
 		{
+			General.InitConnectionString();
 			InitManyToMany();
 			//InitEntityInfo();
 		}
@@ -30,7 +31,7 @@ namespace Database
 		{
 			Relationships = new Dictionary<string, ManyToManyRelationship>
 			{
-				{"favourite_articles", new ManyToManyRelationship(new Dictionary<string, string>
+				{"favorite_articles", new ManyToManyRelationship(new Dictionary<string, string>
 				{
 					{"users", "user_id"},
 					{"articles_with_tags", "article_id"}

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using static Database.General;
 
@@ -20,7 +21,7 @@ namespace Database
 		//public static IEnumerable<Entity> GetArticles()
 
 		public static IAsyncEnumerable<Entity> Get(int offset = 0, int number = -1) =>
-			Select("articles_with_tags", offset, number);//TODO change back to articles_with_tags
+			Select("articles_with_tags", offset, number);
 		
 		// public static IEnumerable<Entity>
 
@@ -31,6 +32,25 @@ namespace Database
 			int number = -1) => Select($"select_articles_by_name_and_tag('%{name}%', '{tag}')", offset, number);
 
 		public static IAsyncEnumerable<Entity> GetFavoriteArticles(Entity user)
-			=> user.GetManyToManyEntities("favourite_articles");
+			=> user.GetManyToManyEntities("favorite_articles");
+
+		public static void AddFavoriteArticle(int userId, int articleId)
+		{
+			var entity = new Entity("favorite_articles");
+			entity["user_id"] = userId;
+			entity["article_id"] = articleId;
+			entity.Insert();
+		}
+		
+		public static void RemoveFavoriteArticle(int userId, int articleId)
+		{
+			var entity = new Entity("favorite_articles");
+			entity["user_id"] = userId;
+			entity["article_id"] = articleId;
+			entity.Delete();
+		}
+
+		public static async Task<bool> IsFavorite(int userId, int articleId)
+			=> await Select("favorite_articles", $"user_id={userId} AND article_id={articleId}", 0, 1).AnyAsync();
 	}
 }

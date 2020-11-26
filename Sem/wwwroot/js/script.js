@@ -41,9 +41,6 @@ function login() {
 					alert("Неверный логин или пароль")
 			}
 		})
-	// }
-
-	//TODO: LogIn
 }
 
 function register() {
@@ -78,8 +75,6 @@ function register() {
 			}
 		})
 	}
-
-	//TODO: Register
 }
 
 
@@ -234,8 +229,6 @@ function searchInfo() {
 	//Само значени: searchValue
 	//И фильтр: searchFilter, если фильтр не выбран, то searchFilter пустая строка
 
-	//TODO: searching
-
 	let l = "index?search_text="+searchValue
 	if (searchFilter != "Фильтры") {
 		l += "&search_tag="+searchFilter
@@ -264,29 +257,89 @@ function changeSearchFilter(filter) {
 function addToFavorites() {
 	let path = document.location;
 	let id = /\d+$/g.exec(path); //Тут применяется регулярное выражение
-	alert(id); //В дальнейшем удалить
+	//alert(id); //В дальнейшем удалить
 
 	//TODO: Добавить статью в избранные с указанным id
 
+	$.ajax({
+		type: 'POST',
+		url: 'https://localhost:5001/favorite',
+		headers: {
+			'action': 'add',
+			'article_id': id
+		},
+		success: function(res, status, xhr) {
+			let result = xhr.getResponseHeader("status")
+			if (result === "success")
+			{
+				$("#article-function-addToFavorites").css("display", "none");
+				$("#article-function-removeFromFavorites").css("display", "flex");
+			}
+			else
+				alert("Чтобы добавить статью в избранное, нужно зарегистрироваться")
+		}
+	})
 
 
 	//Изменяем кнопку на противоположные как только выполнилось данная функция
-	$("#article-function-addToFavorites").css("display", "none");
-	$("#article-function-removeFromFavorites").css("display", "flex");
+	// $("#article-function-addToFavorites").css("display", "none");
+	// $("#article-function-removeFromFavorites").css("display", "flex");
 }
 
 function removeFromFavorites() {
 	let path = document.location;
 	let id = /\d+$/g.exec(path); //Тут применяется регулярное выражение
-	alert(id); //В дальнейшем удалить
+	//alert(id); //В дальнейшем удалить
 
 	//TODO: Удалить статью из избранного с указанным id
 
+	$.ajax({
+		type: 'POST',
+		url: 'https://localhost:5001/favorite',
+		headers: {
+			'action': 'delete',
+			'article_id': id
+		},
+		success: function(res, status, xhr) {
+			let result = xhr.getResponseHeader("status")
+			if (result === "success")
+			{
+				$("#article-function-addToFavorites").css("display", "flex");
+				$("#article-function-removeFromFavorites").css("display", "none");
+			}
+			else
+				alert("Чтобы добавить статью в избранное, нужно зарегистрироваться")
+		}
+	})
 
 
 	//Изменяем кнопку на противоположные как только выполнилось данная функция
-	$("#article-function-addToFavorites").css("display", "flex");
-	$("#article-function-removeFromFavorites").css("display", "none");
+	// $("#article-function-addToFavorites").css("display", "flex");
+	// $("#article-function-removeFromFavorites").css("display", "none");
+}
+
+function removeFromFavoritesNewsAccount(id) {
+	//TODO: Удалить статью из избранного с указанным id
+
+	$.ajax({
+		type: 'POST',
+		url: 'https://localhost:5001/favorite',
+		headers: {
+			'action': 'delete',
+			'article_id': id
+		},
+		success: function(res, status, xhr) {
+			let result = xhr.getResponseHeader("status")
+			if (result === "success")
+			{
+				//TODO hide/remove card somehow
+				//$("#article-function-addToFavorites").css("display", "flex");
+				//$("#article-function-removeFromFavorites").css("display", "none");
+			}
+			else
+				alert("Чтобы добавить статью в избранное, нужно зарегистрироваться")
+		}
+	})
 }
 
 
@@ -333,7 +386,19 @@ function changeAccountImage() {
 
 	let img = form.accountLoadImg.value;
 
-	// Тут по идеи нужно скачивать выбранное фото и после устанавливать
+	let extension = img.split('.').pop()//Not sure if correct
 
+	//TODO check what is actually stored in img variable
+	
+	// Тут по идеи нужно скачивать выбранное фото и после устанавливать
+	$.ajax({
+		type: 'POST',
+		url: 'https://localhost:5001/save_image',
+		data: img,//Image itself should be here
+		dataType: 'image/'+extension
+		// headers: {
+		// 	'filename': img
+		// }
+	})
 	$(".account-img").attr("src", img);
 }
