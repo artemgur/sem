@@ -28,7 +28,7 @@ function login() {
 		//alert("Все ок")
 		$.ajax({
 			type: 'POST',
-			url: 'https://localhost:5001/authenticate',
+			url: 'authenticate',
 			headers: {
 				'username': username,
 				'password': password
@@ -60,7 +60,7 @@ function register() {
 		//alert("Все ок")
 		$.ajax({
 			type: 'POST',
-			url: 'https://localhost:5001/authenticate',
+			url: 'authenticate',
 			headers: {
 				'register': "",
 				'username': username,
@@ -263,7 +263,7 @@ function addToFavorites() {
 
 	$.ajax({
 		type: 'POST',
-		url: 'https://localhost:5001/favorite',
+		url: 'favorite',
 		headers: {
 			'action': 'add',
 			'article_id': id
@@ -295,7 +295,7 @@ function removeFromFavorites() {
 
 	$.ajax({
 		type: 'POST',
-		url: 'https://localhost:5001/favorite',
+		url: 'favorite',
 		headers: {
 			'action': 'delete',
 			'article_id': id
@@ -323,7 +323,7 @@ function removeFromFavoritesNewsAccount(id) {
 
 	$.ajax({
 		type: 'POST',
-		url: 'https://localhost:5001/favorite',
+		url: 'favorite',
 		headers: {
 			'action': 'delete',
 			'article_id': id
@@ -393,7 +393,7 @@ function changeAccountImage() {
 	// Тут по идеи нужно скачивать выбранное фото и после устанавливать
 	$.ajax({
 		type: 'POST',
-		url: 'https://localhost:5001/save_image',
+		url: 'save_image',
 		data: img,//Image itself should be here
 		dataType: 'image/'+extension
 		// headers: {
