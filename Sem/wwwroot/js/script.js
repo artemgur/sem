@@ -170,8 +170,11 @@ function createDebate() {
 
 	let title = form.con_title.value;
 	let describe = form.con_describe.value;
-	let key_words = form.con_keywords.value;
 
+	//Тут приходит масив ключевых слов. На данный момент максимальное количество = 3 |-> selectKeyWord() -> maxKeywords
+	let key_words = document.getElementById("con-keywords-read").innerText.split("\n");
+
+	//Вывод
 	log(title);
 	log(describe);
 	log(key_words);
@@ -182,17 +185,31 @@ function createDebate() {
 // Выбор ключевых слов
 function selectKeyWord(key) {
 	let con_keywords_input = $(".con-keywords-input")
-	if (con_keywords_input.children().length >= 3){
+	let currentKey = key.innerHTML;
+
+	//Тут можно задать максимальное количество для выбора ключевых слова
+	let maxKeywords = 3;
+	if (con_keywords_input.children().length >= maxKeywords){
 		
-		alert("Максимальное количество ключевых слов равно 3");
+		alert("Максимальное количество ключевых слов равно " + maxKeywords);
 
 		return;
 	}
 
-	let word = key.innerHTML;
+	//Будем проверять, входит ли уже это ключевое слово, если оно уже присутствует -> return
+	let key_words = document.getElementById("con-keywords-read").innerText.split("\n");
+	if (key_words.indexOf(currentKey) != -1) {
+
+		alert(currentKey + " уже выбрано");
+
+		return;
+    } 
+
+
+
 	let model = "<div onclick=\"deleteKeyWord(this)\" class=\"key-word-box\">" +
 					"<div class=\"key-word-text\">" +
-						word +
+						currentKey +
 					"</div>" +
 					"<div class=\"key-word-delete-box\">" +
 						"<img class=\"key-word-delete\" src=\"icons/delete.svg\" alt=\"\">" +
