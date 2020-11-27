@@ -8,6 +8,10 @@ function openDebate() {
 	document.location.href = "debate";
 }
 
+function openDebateConstructor() {
+	document.location.href = "constructor";
+}
+
 
 
 

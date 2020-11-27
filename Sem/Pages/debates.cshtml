@@ -7,7 +7,7 @@
 
 <div class="container-fluid">
     <div class="col-md-12 debate-top">
-        <button>Создать дискуссию</button>
+        <button onclick="openDebateConstructor()">Создать дискуссию</button>
     </div>
     <div class="row">
         @foreach (var debate in await Model.Debates.ToListAsync())
