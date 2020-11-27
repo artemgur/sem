@@ -382,23 +382,22 @@ function passwordValidate(str) {
 }
 
 function changeAccountImage() {
-	let form = document.accountChangeImg;
-
-	let img = form.accountLoadImg.value;
-
-	let extension = img.split('.').pop()//Not sure if correct
-
-	//TODO check what is actually stored in img variable
-	
-	// Тут по идеи нужно скачивать выбранное фото и после устанавливать
-	$.ajax({
-		type: 'POST',
-		url: 'save_image',
-		data: img,//Image itself should be here
-		dataType: 'image/'+extension
-		// headers: {
-		// 	'filename': img
-		// }
-	})
-	$(".account-img").attr("src", img);
+	// var input1 = $("#image_input");
+	// var fd = new FormData;
+	//
+	// fd.append('img', input1.prop('files')[0]);
+	//
+	// $.ajax({
+	// 	type: 'POST',
+	// 	url: 'https://localhost:5001/save_image',
+	// 	data: fd,//Image itself should be here
+	// 	dataType: 'image/jpg',//+extension
+	// 	success: function(res, status, xhr) {
+	// 		alert(1)
+	// 	}
+	// 	// headers: {
+	// 	// 	'filename': img
+	// 	// }
+	// })
+	// $(".account-img").attr("src", img);
 }

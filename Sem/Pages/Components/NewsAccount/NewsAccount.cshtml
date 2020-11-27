@@ -1,6 +1,6 @@
 ﻿@model Database.Entity
 
-<div class="col-md-4 account-news-box">
+<div class="col-md-4 account-news-box" onclick="location.href='news/' + @Model.Values["id"]">
     <div class="account-news">
         <div class="account-news-title">@Model.Values["name"]</div>
         <div class="account-news-describe">Lorem ipsum, dolor sit amet, consectetur adipisicing elit. Sed, voluptates. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Accusantium, maiores?</div>

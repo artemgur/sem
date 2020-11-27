@@ -24,7 +24,8 @@ INSERT INTO favorite_articles VALUES (1, 5);
 INSERT INTO tags_people VALUES (1, 'Россия');
 INSERT INTO tags_people VALUES (2, 'США');
 
-
+INSERT INTO debates (id, name, text, date) VALUES (1, 'Test Debate', 'Lorem Ipsum', '2012-10-12');
+INSERT INTO debates_users (user_id, debate_id) VALUES (1,1);
 
 
 

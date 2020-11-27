@@ -10,8 +10,9 @@
         <button>Создать дискуссию</button>
     </div>
     <div class="row">
-        @await Component.InvokeAsync("DebatesIndex")
-        @await Component.InvokeAsync("DebatesIndex")
-        @await Component.InvokeAsync("DebatesIndex")
+        @foreach (var debate in await Model.Debates.ToListAsync())
+        {
+            @await Component.InvokeAsync("DebatesIndex", debate)
+        }
     </div>
 </div>

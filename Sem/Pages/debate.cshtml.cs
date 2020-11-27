@@ -4,7 +4,7 @@ namespace Sem.Pages
 {
 	public class debate : PageModel
 	{
-		public void OnGet()
+		public void OnGet(string debateId)
 		{
 			
 		}

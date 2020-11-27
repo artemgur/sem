@@ -1,4 +1,5 @@
 ﻿@page
+@using Database
 @model Sem.Pages.account_debates
 
 @{
@@ -71,9 +72,13 @@
                     <div class="account-main-describe">Вы в любой момент можете обновить вашу учетную запись и внести любые изменения в приведеннфе ниже данные.</div>
 
                     <div class="row">
-                        @await Component.InvokeAsync("DebatesAccount")
-                        @await Component.InvokeAsync("DebatesAccount")
-                        @await Component.InvokeAsync("DebatesAccount")
+                        @* @await Component.InvokeAsync("DebatesAccount") *@
+                        @* @await Component.InvokeAsync("DebatesAccount") *@
+                        @* @await Component.InvokeAsync("DebatesAccount") *@
+                        @foreach (var debate in await Debates.GetUserDebates(Model.User).ToListAsync())
+                        {
+                            @await Component.InvokeAsync("DebatesAccount", debate)
+                        }
                     </div>
                 </div>
             </div>
