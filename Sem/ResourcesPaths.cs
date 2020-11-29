@@ -15,8 +15,8 @@ namespace Sem
 		{
 			var file = Path.GetFileName(Directory.GetFiles(@$"wwwroot\Resources\{folder}\", s + ".*").FirstOrDefault());
 			if (file == null)
-				return "imgs/dog.png";
-			return $"Resources/{folder}/" + (string) file;
+				return "/imgs/dog.png";
+			return $"/Resources/{folder}/" + (string) file;
 		}
 	}
 }

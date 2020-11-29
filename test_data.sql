@@ -27,7 +27,15 @@ INSERT INTO tags_people VALUES (2, 'США');
 INSERT INTO debates (id, name, text, date) VALUES (1, 'Test Debate', 'Lorem Ipsum', '2012-10-12');
 INSERT INTO debates_users (user_id, debate_id) VALUES (1,1);
 
+INSERT INTO comments (user_id, debate_id, date, opinion, text) VALUES (1, 1, '2012-10-11', true, 'qwe');
+INSERT INTO comments (user_id, debate_id, date, opinion, text) VALUES (1, 1, '2012-10-12', true, '13');
+INSERT INTO comments (user_id, debate_id, date, opinion, text) VALUES (2, 1, '2012-10-13', true, 'old comment');
+INSERT INTO comments (user_id, debate_id, date, opinion, text) VALUES (2, 1, '2012-10-14', true, 'new comment');
 
+INSERT INTO comments (user_id, debate_id, date, opinion, text) VALUES (2, 1, '2011-10-10', false, 'new comment against');
+INSERT INTO comments (user_id, debate_id, date, opinion, text) VALUES (1, 1, '2011-10-13', false, 'rty');
+INSERT INTO comments (user_id, debate_id, date, opinion, text) VALUES (1, 1, '2011-10-09', false, '53');
+INSERT INTO comments (user_id, debate_id, date, opinion, text) VALUES (2, 1, '2011-10-12', false, 'old comment against');
 
 
 

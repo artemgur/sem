@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using static Database.General;
 
 namespace Database
@@ -10,5 +11,8 @@ namespace Database
 		
 		public static IAsyncEnumerable<Entity> Get(int offset = 0, int number = -1) =>
 			Select("debates", offset, number);
+		
+		public static async Task<Entity> GetById(int id)
+			=> await SelectById("debates", id);
 	}
 }

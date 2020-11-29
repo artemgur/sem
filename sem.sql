@@ -79,7 +79,7 @@ CREATE TABLE tags_people(
 -- CREATE INDEX tags_people_index ON tags_people(people_id);
 -- CREATE INDEX tags_people_tag_index ON tags_people(tag);
 
-CREATE MATERIALIZED VIEW articles_with_tags AS
+CREATE /*MATERIALIZED*/ VIEW articles_with_tags AS
     WITH a AS(
         SELECT id, name, date, array_agg(tags_article.tag) AS tags
         FROM tags_article
@@ -89,7 +89,7 @@ CREATE MATERIALIZED VIEW articles_with_tags AS
     SELECT * FROM a
     ORDER BY date DESC;
 
-CREATE MATERIALIZED VIEW people_with_tags AS
+CREATE /*MATERIALIZED*/ VIEW people_with_tags AS
     WITH a AS(
         SELECT id, name, position, age, country, array_agg(tags_people.tag) AS tags
         FROM tags_people

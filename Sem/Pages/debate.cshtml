@@ -9,8 +9,8 @@
 
     <div class="one-debate-box">
         <div class="one-debate">
-            <h2 class="one-debate-title">Заголовок</h2>
-            <div class="one-debate-describe">Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero perferendis reprehenderit dolor libero quo itaque repellendus. Voluptas, facere in id tenetur, amet cupiditate voluptates tempora inventore sunt nesciunt consectetur beatae.</div>
+            <h2 class="one-debate-title">@Model.Debate["name"]</h2>
+            <div class="one-debate-describe">@Model.Debate["text"]</div>
             @* <div class="col-md-1 offset-md-11 one-debate-peoples"> *@
             @*     <img class="one-debate-peoples-svg" src="icons/people.svg" alt=""> *@
             @*     <div class="one-debate-peoples-count">0</div> *@
@@ -22,36 +22,74 @@
                     <div class="chat-container-box">
                         <div id="chat-red" class="chat-container">
 
-                            <div class="message-red">
-                                <img class="messege-img" src="https://img.icons8.com/color/36/000000/administrator-male.png" alt="">
-                                <div class="message-place">
+                            @{
+                                var userOld = -1;
+                                var first = true;
+                                foreach (var comment in Model.Comments[false])
+                                {
+                                    if (userOld != (int)comment["user_id"])
+                                    {
+                                        userOld = (int) comment["user_id"];
+                                        if (first)
+                                        {
+                                            first = false;
+                                        }
+                                        else
+                                        {
+                                            @:</div>
+                                            @:</div>
+                                        }
+                                        @:<div class="message-red">
+                                            <img class="messege-img" src=@ResourcesPaths.GetUserImagesPath(comment["user_id"]) alt="">
+                                            @:<div class="message-place">
+                                    }
                                     <div class="message-box">
-                                        <div class="message">Hi</div>
+                                        <div class="message">@comment["text"]</div>
                                     </div>
-                                    <div class="message-box">
-                                        <div class="message">How are you ...???</div>
-                                    </div>
-                                </div>
-                            </div>
-
+                                }
+                                if (userOld != -1)
+                                {
+                                    @:</div>
+                                    @:</div>
+                                }
+                            }
                         </div>
                     </div>
 
                     <div class="chat-container-box">
                         <div id="chat-green" class="chat-container">
 
-                            <div class="message-green">
-                                <img class="messege-img" src="https://img.icons8.com/color/36/000000/administrator-male.png" alt="">
-                                <div class="message-place">
+                            @{
+                                var userOld1 = -1;
+                                var first1 = true;
+                                foreach (var comment in Model.Comments[true])
+                                {
+                                    if (userOld1 != (int)comment["user_id"])
+                                    {
+                                        userOld1 = (int) comment["user_id"];
+                                        if (first1)
+                                        {
+                                            first1 = false;
+                                        }
+                                        else
+                                        {
+                                            @:</div>
+                                            @:</div>
+                                        }
+                                        @:<div class="message-green">
+                                            <img class="messege-img" src=@ResourcesPaths.GetUserImagesPath(comment["user_id"]) alt="">
+                                            @:<div class="message-place">
+                                    }
                                     <div class="message-box">
-                                        <div class="message">Hi</div>
+                                        <div class="message">@comment["text"]</div>
                                     </div>
-                                    <div class="message-box">
-                                        <div class="message">How are you ...???</div>
-                                    </div>
-                                </div>
-                            </div>
-
+                                }
+                                if (userOld1 != -1)
+                                {
+                                    @:</div>
+                                    @:</div>
+                                }
+                            }
                         </div>
                     </div>
 
