@@ -32,7 +32,7 @@ function login() {
 		//alert("Все ок")
 		$.ajax({
 			type: 'POST',
-			url: 'authenticate',
+			url: '/authenticate',
 			headers: {
 				'username': username,
 				'password': password
@@ -64,7 +64,7 @@ function register() {
 		//alert("Все ок")
 		$.ajax({
 			type: 'POST',
-			url: 'authenticate',
+			url: '/authenticate',
 			headers: {
 				'register': "",
 				'username': username,
@@ -177,6 +177,8 @@ function createDebate() {
 	log(title);
 	log(describe);
 	log(key_words);
+	
+	//alert("dfassdf")
 }
 
 
@@ -283,7 +285,7 @@ function addToFavorites() {
 
 	$.ajax({
 		type: 'POST',
-		url: 'favorite',
+		url: '/favorite',
 		headers: {
 			'action': 'add',
 			'article_id': id
@@ -315,7 +317,7 @@ function removeFromFavorites() {
 
 	$.ajax({
 		type: 'POST',
-		url: 'favorite',
+		url: '/favorite',
 		headers: {
 			'action': 'delete',
 			'article_id': id
@@ -343,7 +345,7 @@ function removeFromFavoritesNewsAccount(id) {
 
 	$.ajax({
 		type: 'POST',
-		url: 'favorite',
+		url: '/favorite',
 		headers: {
 			'action': 'delete',
 			'article_id': id
@@ -409,7 +411,7 @@ function changeAccountImage() {
 	//
 	// $.ajax({
 	// 	type: 'POST',
-	// 	url: 'https://localhost:5001/save_image',
+	// 	url: '/save_image',
 	// 	data: fd,//Image itself should be here
 	// 	dataType: 'image/jpg',//+extension
 	// 	success: function(res, status, xhr) {
