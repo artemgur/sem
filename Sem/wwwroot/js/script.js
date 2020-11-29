@@ -81,7 +81,6 @@ function register() {
 	}
 }
 
-
 // Изменение сторон дебатов
 function chatChangeAgainst(index) {
 	let against_btn = $("#against-btn")
@@ -166,10 +165,10 @@ function messageFilter(str) {
 
 // Создание дискуссии
 function createDebate() {
-	let form = document.Construntor;
+	let form = document.construntorForm;
 
-	let title = form.con_title.value;
-	let describe = form.con_describe.value;
+	let title = form.construntorForm_title.value;
+	let describe = form.construntorForm_describe.value;
 
 	//Тут приходит масив ключевых слов. На данный момент максимальное количество = 3 |-> selectKeyWord() -> maxKeywords
 	let key_words = document.getElementById("con-keywords-read").innerText.split("\n");
