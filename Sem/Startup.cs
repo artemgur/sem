@@ -50,6 +50,7 @@ namespace Sem
 			app.Map("/favorite", FavoriteArticles.Manage);
 			app.Map("/save_image", SaveImage.Save);
 			app.Map("/create_debate", CreateDebate.Create);
+			app.Map("/save_comment", SaveComment.Save);
 			
 			app.UseEndpoints(endpoints => { endpoints.MapRazorPages(); });
 		}

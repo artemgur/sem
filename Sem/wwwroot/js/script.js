@@ -128,7 +128,7 @@ function chatSendMessage(){
 
 
 
-
+	var opinion;
 	if (against === "btn-success"){
 		let model = "<div class=\"message-green\">" +
 						"<img class=\"messege-img\" src=\"https://img.icons8.com/color/36/000000/administrator-male.png\" alt=\"\">"+
@@ -141,6 +141,8 @@ function chatSendMessage(){
 		let chat_green = $("#chat-green")
 		chat_green.append(model);
 		chat_green.scrollTop(chat_green.prop('scrollHeight'));
+		
+		opinion = true
 	}
 	else if (against === "btn-danger"){
 		let model = "<div class=\"message-red\">" +
@@ -154,7 +156,31 @@ function chatSendMessage(){
 		let chat_red = $("#chat-red")
 		chat_red.append(model);
 		chat_red.scrollTop(chat_red.prop('scrollHeight'));
+		
+		opinion = false
 	}
+	let path = document.location
+	let debate_id = /\d+#?$/g.exec(path)[0]
+	if (debate_id.charAt(debate_id.length - 1) === '#')
+		debate_id = debate_id.slice(0, -1)
+	$.ajax({
+		type: 'POST',
+		url: '/save_comment',
+		headers: {
+			'text': messege,
+			'opinion': opinion,
+			'debate_id': debate_id,
+			//'tags': stringified
+		},
+		//data: stringified,
+		// success: function(res, status, xhr) {
+		// 	let id = xhr.getResponseHeader("id")
+		// 	let result = xhr.getResponseHeader("status")
+		// 	if (result === "success")
+		// 		document.location.href = "/debate/"+id
+		// }
+	})
+
 
 }
 
