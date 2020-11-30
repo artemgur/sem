@@ -18,8 +18,13 @@
 								<img class="person-img" src="@ResourcesPaths.GetPersonPhotoPath(person.Values["id"])" alt="">
 							</div>
 							<h3 class="person-menu">@person.Values["name"]</h3>
+                            <div class="person-keywords">
+                                <div class="person-keyword">США</div>
+                                <div class="person-keyword">Путин</div>
+                                <div class="person-keyword">Армения</div>
+                            </div>
 							<hr class="person-hr">
-							<h6 class="person-menu">Должность: @person.Values["position"]</h6>
+							@*<h6 class="person-menu">Должность: @person.Values["position"]</h6>*@
 							<h6 class="person-menu">Страна: @person.Values["country"]</h6>
 							<h6 class="person-menu">Возраст: @person.Values["age"]</h6>
 						</div>

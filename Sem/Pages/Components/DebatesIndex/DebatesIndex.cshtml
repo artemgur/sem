@@ -3,6 +3,13 @@
     <div class="debate">
         <h2 class="debate-title">@Model["name"]</h2>
         <div class="debate-describe">@Model["text"]</div>
+
+        <div class="debate-keywords">
+            <div class="debate-keyword">США</div>
+            <div class="debate-keyword">Путин</div>
+            <div class="debate-keyword">Армения</div>
+        </div>
+
         <hr>
         <div class="debate-footer">
             <button onclick="location.href='debate/' + @Model.Values["id"]">Присоединиться</button>
