@@ -240,6 +240,11 @@ body{
 
 	overflow: hidden;
 	text-overflow: ellipsis;
+
+	color: #31708F;
+}
+.news-card-keyword::before {
+	content: "#";
 }
 
 .news-card-time {
@@ -357,12 +362,12 @@ hr{
 .article-footer-right{
 
 }
-.article-keyword:before{
-	content: "#";
-}
 .article-keyword{
 	margin-right: 50px;
 	color: #31708F;
+}
+.article-keyword:before{
+	content: "#";
 }
 .article-time{
 
@@ -381,7 +386,7 @@ hr{
 
 /*Блок дебвтов*/
 .debate-top{
-	display: flex;;
+	display: flex;
 	justify-content: center;
 }
 .debate-top button{
@@ -426,10 +431,25 @@ hr{
 
 	margin-bottom: 10px;
 }
-.debate-footer{
+.debate-keywords {
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+}
+.debate-keyword {
+	margin-right: 10px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+
+	color: #31708F;
+}
+.debate-keyword::before{
+	content: "#";
+}
+.debate-footer {
 	display: flex;
 	flex-direction: column;
-
 	text-align: center;
 }
 
@@ -614,7 +634,7 @@ hr{
 	margin-right: 10px;
 }
 .account-info-value{
-	font-weight: 60;
+	font-weight: 600;
 }
 
 
@@ -784,8 +804,12 @@ hr{
 .account-news-footer-right{
 
 }
-.account-news-keyword{
+.account-news-keyword {
 	margin-right: 10px;
+	color: #31708F;
+}
+.account-news-keyword::before{
+	content: "#";
 }
 .account-news-time{
 
@@ -1201,7 +1225,8 @@ hr{
 	border-radius: 8px;
 }
 .person-menu{
-	padding: 0 15px;}
+	padding: 0 15px;
+}
 
 .person-hr{
 	padding: 0;
@@ -1215,7 +1240,22 @@ hr{
 	padding: 10px;
 }
 
+.person-keywords{
+	padding: 10px 0 0 15px;
 
+	display: flex;
+	flex-direction: row;
+}
+.person-keyword {
+	margin-right: 10px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	color: #31708F;
+}
+.person-keyword:before{
+	content: "#";
+}
 
 /* Дополнительно */
 @media screen and (max-width: 956px) {

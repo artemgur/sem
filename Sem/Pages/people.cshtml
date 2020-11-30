@@ -1,4 +1,5 @@
 ﻿@page
+@using Database
 @model Sem.Pages.PeopleModel
 
 @{
@@ -22,6 +23,15 @@
 							<h6 class="person-menu">Должность: @person.Values["post"]</h6>
 							<h6 class="person-menu">Страна: @person.Values["country"]</h6>
 							<h6 class="person-menu">Возраст: @person.Values["age"]</h6>
+							<div class="person-keywords">
+								@foreach (var tag in (string[])person["tags"])
+                                {
+                                    <div class="person-keyword">@tag</div>
+                                }
+			     @*                <div class="person-keyword">США</div> *@
+								@* <div class="person-keyword">Путин</div> *@
+								@* <div class="person-keyword">Армения</div> *@
+							</div>
 						</div>
 						<div class="col-md-8">
 							<div class="person-right">

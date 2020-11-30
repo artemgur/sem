@@ -21,11 +21,14 @@
                     {
                         <div class="news-card-keyword">@tag</div>
                     }
-                    <div class="news-card-time">@Utilities.DateToString(Model)</div>
+                    @* <div class="news-card-time">@Utilities.DateToString(Model)</div> *@
                 </div>
                 @* <div class="news-card-footer-right">$1$why do we need it?#1# *@
                 @*     1 *@
                 @* </div> *@
+                <div class="news-card-footer-right">
+                    <div class="news-card-time">@Utilities.DateToString(Model)</div>
+                </div>
             </div>
         </div>
     </div>

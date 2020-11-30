@@ -12,10 +12,10 @@ namespace Database
 			=> user.GetManyToManyEntities("debates_users");
 		
 		public static IAsyncEnumerable<Entity> Get(int offset = 0, int number = -1) =>
-			Select("debates", offset, number);
+			Select("debates_with_tags", offset, number);
 		
 		public static async Task<Entity> GetById(int id)
-			=> await SelectById("debates", id);
+			=> await SelectById("debates_with_tags", id);
 		
 		public static IAsyncEnumerable<Entity> SearchByName(string name, int offset = 0, int number = -1) =>
 			Select("debates_with_tags", $"name LIKE '%{name}%'", offset, number/*, "date"*/);
