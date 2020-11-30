@@ -172,6 +172,11 @@ function createDebate() {
 
 	//Тут приходит масив ключевых слов. На данный момент максимальное количество = 3 |-> selectKeyWord() -> maxKeywords
 	let key_words = document.getElementById("con-keywords-read").innerText.split("\n");
+	if (key_words[0] === "")
+	{
+		alert("Выберите ключевые слова")
+		return 
+	}
 
 	//Вывод
 	//log(title);
