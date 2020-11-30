@@ -49,6 +49,7 @@ namespace Sem
 			app.Map("/authenticate", Authentication.Authenticate);
 			app.Map("/favorite", FavoriteArticles.Manage);
 			app.Map("/save_image", SaveImage.Save);
+			app.Map("/create_debate", CreateDebate.Create);
 			
 			app.UseEndpoints(endpoints => { endpoints.MapRazorPages(); });
 		}
