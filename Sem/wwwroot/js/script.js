@@ -251,7 +251,13 @@ function searchInfo() {
 	//Само значени: searchValue
 	//И фильтр: searchFilter, если фильтр не выбран, то searchFilter пустая строка
 
-	let l = "index?search_text="+searchValue
+	let path = document.location.href;
+	var pathBeginning = "index"
+	if (path.includes("debate"))
+		pathBeginning = "debates"
+	if (path.includes("people"))
+		pathBeginning = "people"
+	let l = pathBeginning + "?search_text="+searchValue
 	if (searchFilter != "Фильтры") {
 		l += "&search_tag="+searchFilter
 	}
