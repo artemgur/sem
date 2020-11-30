@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,7 +10,7 @@ namespace Database
 	//IMPORTANT! Primary key should be called "id" (without quotes). That probably could be changed, but it'd make code more complex
 	public static class General
 	{
-		private static string connectionString = @"Server=ec2-54-228-170-125.eu-west-1.compute.amazonaws.com;Port=5432;Database=de1qv1gqr08u0s;Username=hysncxmhxhkwps;Password=42e0e146881cccf42a9871ecc03e3a6add375337314c4179d919d2e4577ba8b1;SslMode=Require;Trust Server Certificate=true;";//TODO move to config
+		private static string connectionString;
 
 		//Select with optional condition, offset and rows number
 		public static async IAsyncEnumerable<Entity> Select(string tableName, string condition = null, int offset = 0, int number = -1/*, string orderBy = null*/)
@@ -152,7 +153,7 @@ namespace Database
 
 		internal static void InitConnectionString()
 		{
-			//TODO
+			connectionString = File.ReadAllText("ConnectionString.txt");
 		}
 
 		public static async Task<string[]> GetEnum(string name)

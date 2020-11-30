@@ -1,4 +1,5 @@
 ﻿@page
+@using Database
 @model Sem.Pages.constructor
 
 @{
@@ -33,11 +34,15 @@
 								<button class="dropdown-toggle btn btn-secondary con-keywords-btn" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 							    	 
 							  	</button>
-							  	<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-							  		<a class="dropdown-item" onclick="selectKeyWord(this)" href="#">США</a>
-								    <a class="dropdown-item" onclick="selectKeyWord(this)" href="#">Путин</a>
-								    <a class="dropdown-item" onclick="selectKeyWord(this)" href="#">Армения</a>
-							  	</div>
+	                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    @foreach (var tag in await Tags.Get())
+                                    {
+	                                    <a class="dropdown-item" onclick="selectKeyWord(this)" href="#">@tag</a>
+                                    }
+		                            @* <a class="dropdown-item" onclick="selectKeyWord(this)" href="#">США</a> *@
+		                            @*  <a class="dropdown-item" onclick="selectKeyWord(this)" href="#">Путин</a> *@
+		                            @*  <a class="dropdown-item" onclick="selectKeyWord(this)" href="#">Армения</a> *@
+	                            </div>
 							</div>
 							<div type="text" class="form-control con-keywords-input" id="con-keywords-read" readonly>
 								

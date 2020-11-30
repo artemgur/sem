@@ -5,11 +5,11 @@
 
 // Открытие страницы (дискуссия)
 function openDebate() {
-	document.location.href = "debate";
+	document.location.href = "/debate";
 }
 
 function openDebateConstructor() {
-	document.location.href = "constructor";
+	document.location.href = "/constructor";
 }
 
 
@@ -174,10 +174,28 @@ function createDebate() {
 	let key_words = document.getElementById("con-keywords-read").innerText.split("\n");
 
 	//Вывод
-	log(title);
-	log(describe);
-	log(key_words);
-	
+	//log(title);
+	//log(describe);
+	//log(key_words);
+	let stringified = JSON.stringify(key_words)
+	$.ajax({
+		type: 'POST',
+		url: '/create_debate',
+		headers: {
+			'title': title,
+			'text': describe
+			//'tags': stringified
+		},
+		data: stringified,
+		success: function(res, status, xhr) {
+			let id = xhr.getResponseHeader("id")
+			let result = xhr.getResponseHeader("status")
+			if (result === "success")
+				document.location.href = "/debate/"+id
+		}
+	})
+
+
 	//alert("dfassdf")
 }
 
@@ -251,7 +269,13 @@ function searchInfo() {
 	//Само значени: searchValue
 	//И фильтр: searchFilter, если фильтр не выбран, то searchFilter пустая строка
 
-	let l = "index?search_text="+searchValue
+	let path = document.location.href;
+	var pathBeginning = "index"
+	if (path.includes("debate") || path.includes("constructor"))
+		pathBeginning = "debates"
+	if (path.includes("people"))
+		pathBeginning = "people"
+	let l = pathBeginning + "?search_text="+searchValue
 	if (searchFilter != "Фильтры") {
 		l += "&search_tag="+searchFilter
 	}

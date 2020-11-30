@@ -65,7 +65,7 @@ CREATE TABLE favorite_articles(
 CREATE TABLE people(
     id SERIAL PRIMARY KEY,
     name VARCHAR(50) NOT NULL,
-    position VARCHAR(30) NOT NULL,
+    post VARCHAR(30) NOT NULL,
     age SMALLINT NOT NULL,
     country VARCHAR(30) NOT NULL
 --     text TEXT--path to markdown file, not text itself
@@ -76,6 +76,13 @@ CREATE TABLE tags_people(
     tag TAG NOT NULL,
     FOREIGN KEY (people_id) REFERENCES people(id) ON DELETE CASCADE
 );
+
+CREATE TABLE tags_debates(
+    debate_id INTEGER,
+    tag TAG NOT NULL,
+    FOREIGN KEY (debate_id) REFERENCES debates(id) ON DELETE CASCADE
+);
+
 -- CREATE INDEX tags_people_index ON tags_people(people_id);
 -- CREATE INDEX tags_people_tag_index ON tags_people(tag);
 
@@ -91,9 +98,19 @@ CREATE /*MATERIALIZED*/ VIEW articles_with_tags AS
 
 CREATE /*MATERIALIZED*/ VIEW people_with_tags AS
     WITH a AS(
-        SELECT id, name, position, age, country, array_agg(tags_people.tag) AS tags
+        SELECT id, name, post, age, country, array_agg(tags_people.tag) AS tags
         FROM tags_people
         JOIN people ON people.id = tags_people.people_id
+        GROUP BY id
+    )
+    SELECT * FROM a
+    ORDER BY name;
+
+CREATE /*MATERIALIZED*/ VIEW debates_with_tags AS
+    WITH a AS(
+        SELECT id, name, text, date, array_agg(tags_debates.tag) AS tags
+        FROM tags_debates
+        JOIN debates ON debates.id = tags_debates.debate_id
         GROUP BY id
     )
     SELECT * FROM a
@@ -106,9 +123,15 @@ RETURNS TABLE (id INTEGER, name VARCHAR(30), date TIMESTAMP, tags TAG[]) AS $$
 $$ LANGUAGE sql;
 
 CREATE FUNCTION select_people_by_name_and_tag(a VARCHAR(30), b TAG)
-RETURNS TABLE (id INTEGER, name VARCHAR(30), position VARCHAR(30), age SMALLINT, country VARCHAR(30), tags TAG[]) AS $$
-    SELECT id, name, position, age, country, tags FROM people_with_tags
+RETURNS TABLE (id INTEGER, name VARCHAR(30), post VARCHAR(30), age SMALLINT, country VARCHAR(30), tags TAG[]) AS $$
+    SELECT id, name, post, age, country, tags FROM people_with_tags
     JOIN tags_people ON people_id = id AND tag = b AND name LIKE a;
+$$ LANGUAGE sql;
+
+CREATE FUNCTION select_debates_by_name_and_tag(a VARCHAR(30), b TAG)
+RETURNS TABLE (id INTEGER, name VARCHAR(30), text TEXT, date TIMESTAMP, tags TAG[]) AS $$
+    SELECT id, name, text, date, tags FROM debates_with_tags
+    JOIN tags_debates ON debate_id = id AND tag = b AND name LIKE a;
 $$ LANGUAGE sql;
 --TODO fix
 -- ERROR:  syntax error at or near "position"

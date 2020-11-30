@@ -12,7 +12,10 @@ namespace Sem
 			{
 				var id = context.Session.GetInt32("user_id");
 				if (id == null)
+				{
 					context.Response.Headers.Add("status", "not_registered");
+					return;
+				}
 				var files = Directory.GetFiles(@"wwwroot\Resources\UserImages\", id + ".*");
 				foreach (var x in files)
 					File.Delete(x);

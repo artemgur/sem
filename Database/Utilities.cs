@@ -12,8 +12,10 @@ namespace Database
 		
 		public static string ToStringPg(this object a)
 		{
-			if (a is string || a is DateTime)
+			if (a is string)
 				return '\'' + a.ToString() + '\'';
+			if (a is DateTime d)
+				return $"'{d.Year}-{d.Month}-{d.Day} {d.Hour}:{d.Minute}:{d.Second}'";
 			return a.ToString();
 		}
 

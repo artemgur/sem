@@ -1,4 +1,5 @@
 ﻿@page "{debateId?}"
+@using Database
 @model Sem.Pages.debate
 
 @{
@@ -25,7 +26,7 @@
                             @{
                                 var userOld = -1;
                                 var first = true;
-                                foreach (var comment in Model.Comments[false])
+                                foreach (var comment in Model.Comments.ValueOrDefault(false) ?? Enumerable.Empty<Entity>())
                                 {
                                     if (userOld != (int)comment["user_id"])
                                     {
@@ -62,7 +63,7 @@
                             @{
                                 var userOld1 = -1;
                                 var first1 = true;
-                                foreach (var comment in Model.Comments[true])
+                                foreach (var comment in Model.Comments.ValueOrDefault(true) ?? Enumerable.Empty<Entity>())
                                 {
                                     if (userOld1 != (int)comment["user_id"])
                                     {
