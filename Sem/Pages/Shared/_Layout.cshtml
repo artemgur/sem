@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using Database
+<!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
@@ -51,9 +52,13 @@
 					<button name="searchFilterBox" class="dropdown-toggle search-filter fontColor" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Фильтры</button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         <h6 class="dropdown-header">Популярные</h6>@*TODO: Automatically fetch tags from database*@
-                        <a class="dropdown-item" onclick="changeSearchFilter(this)" href="#">США</a>
-                        <a class="dropdown-item" onclick="changeSearchFilter(this)" href="#">Путин</a>
-                        <a class="dropdown-item" onclick="changeSearchFilter(this)" href="#">Армения</a>
+                        @* <a class="dropdown-item" onclick="changeSearchFilter(this)" href="#">США</a> *@
+                        @* <a class="dropdown-item" onclick="changeSearchFilter(this)" href="#">Путин</a> *@
+                        @* <a class="dropdown-item" onclick="changeSearchFilter(this)" href="#">Армения</a> *@
+                        @foreach (var tag in await Tags.Get())
+                        {
+	                        <a class="dropdown-item" onclick="changeSearchFilter(this)" href="#">@tag</a>
+                        }
                         <h6 class="dropdown-header"></h6>
                         <a class="dropdown-item" onclick="changeSearchFilter(this)" href="#">Не выбрано</a>
                     </div>

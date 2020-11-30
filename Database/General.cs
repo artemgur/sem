@@ -154,5 +154,21 @@ namespace Database
 		{
 			//TODO
 		}
+
+		public static async Task<string[]> GetEnum(string name)
+		{
+			var query = $"SELECT enum_range(NULL::{name})";
+			await using var connection = new NpgsqlConnection(connectionString);
+			await connection.OpenAsync();
+			await using var command = new NpgsqlCommand(query, connection);
+			await using var reader = await command.ExecuteReaderAsync();
+			if (reader.HasRows)
+			{
+				var columns = GetColumnNames(reader);
+				await reader.ReadAsync();
+				return (string[]) reader[0];
+			}
+			return null;
+		}
 	}
 }
