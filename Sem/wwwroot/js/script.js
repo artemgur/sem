@@ -475,7 +475,7 @@ function changeAccountImage() {
 	// Set up a handler for when the task for the request is complete
 	xhr.onload = function () {
 		if (xhr.status === 200) {
-			location.reload()//To update photo on page
+			location.reload();//To update photo on page
 			//alert('Upload copmlete!');
 		}/* else {
 			alert('Upload error. Try again.');
