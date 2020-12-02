@@ -19,9 +19,10 @@ namespace Sem
 				var files = Directory.GetFiles(@"wwwroot\Resources\UserImages\", id + ".*");
 				foreach (var x in files)
 					File.Delete(x);
-				var filename = context.Request.Headers["filename"];
+				//var filename = context.Request.Headers["filename"];
 				var file = context.Request.Form.Files.GetFile("image");
-				var extension = Path.GetExtension(filename);
+				//var a = file.ContentType;
+				var extension = Path.GetExtension(file.FileName);
 				// var extension = "jpg";//context.Request.ContentType.Split('/')[1];
 				var fileStream = File.Open(@$"wwwroot\Resources\UserImages\{id}{extension}", FileMode.Create);
 				await file.CopyToAsync(fileStream);

@@ -459,7 +459,7 @@ function passwordValidate(str) {
 }
 
 function changeAccountImage() {
-	var input = document.getElementById("image_input");
+	var input = document.getElementById("image_input")
 	//var input1 = $("#image_input");
 	var fd = new FormData();
 	var file = input.files[0];
@@ -470,7 +470,7 @@ function changeAccountImage() {
 
 	// Open the connection
 	xhr.open('POST', '/save_image', true);
-	xhr.setRequestHeader("filename", file.name);
+	//xhr.setRequestHeader("filename", file.name)
 
 	// Set up a handler for when the task for the request is complete
 	xhr.onload = function () {
