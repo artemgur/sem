@@ -29,18 +29,18 @@ namespace Database
 			entity["name"] = title;
 			entity["text"] = text;
 			entity["date"] = DateTime.UtcNow;
-			entity.Insert();
+			await entity.Insert();
 			var index = (int)(await Select("debates", $"name='{title}' AND date={entity["date"].ToStringPg()}").SingleAsync())["id"];
 			var entity1 = new Entity("debates_users");
 			entity1["user_id"] = userId;
 			entity1["debate_id"] = index;
-			entity1.Insert();
+			await entity1.Insert();
 			foreach (var tag in tags)
 			{
 				var entity2 = new Entity("tags_debates");
 				entity2["debate_id"] = index;
 				entity2["tag"] = tag;
-				entity2.Insert();
+				await entity2.Insert();
 			}
 			return index;
 		}

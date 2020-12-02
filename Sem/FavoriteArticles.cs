@@ -1,4 +1,5 @@
-﻿using Database;
+﻿using System.Threading.Tasks;
+using Database;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 
@@ -14,23 +15,23 @@ namespace Sem
 				if (id == null)
 					context.Response.Headers.Add("status", "not_registered");
 				else if (context.Request.Headers["action"] == "add")
-					Add(context, (int) id);
+					await Add(context, (int) id);
 				else
-					Remove(context, (int) id);
+					await Remove(context, (int) id);
 			});
 		}
 
-		private static void Remove(HttpContext context, int id)
+		private static async Task Remove(HttpContext context, int id)
 		{
 			var articleId = int.Parse(context.Request.Headers["article_id"].ToString());
-			Article.RemoveFavoriteArticle(id, articleId);
+			await Article.RemoveFavoriteArticle(id, articleId);
 			context.Response.Headers.Add("status", "success");
 		}
 
-		private static void Add(HttpContext context, int id)
+		private static async Task Add(HttpContext context, int id)
 		{
 			var articleId = int.Parse(context.Request.Headers["article_id"].ToString());
-			Article.AddFavoriteArticle(id, articleId);
+			await Article.AddFavoriteArticle(id, articleId);
 			context.Response.Headers.Add("status", "success");
 		}
 	}

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace Database
@@ -9,7 +10,8 @@ namespace Database
 	public static class Utilities
 	{
 		private static readonly string[] ProhibitedStrings = {";", "--", "/*", "*/"};
-		
+		private static readonly Regex TableNameRegex = new Regex(@"^(\w|_|-)+$");//Quoted identifiers are not supported
+
 		public static string ToStringPg(this object a)
 		{
 			if (a is string)
@@ -31,8 +33,16 @@ namespace Database
 			builder.Append(')');
 			return builder.ToString();
 		}
+		
+		internal static void CheckIfTableNameValid(string table)
+		{
+			if (table == null)
+				throw new ArgumentNullException(nameof(table));
+			if (!TableNameRegex.IsMatch(table))
+				throw new ArgumentException("Invalid table name");
+		}
 
-		public static void CheckIfQueryValid(string query)
+		internal static void CheckIfQueryValid(string query)
 		{
 			if (query.ContainsOneOf(ProhibitedStrings))
 				throw new ArgumentException("Possible attempt of SQL injection");

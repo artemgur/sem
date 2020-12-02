@@ -14,7 +14,7 @@ namespace Database
 		}
 
 
-		public static void Save(int id, string debateId, string text, string opinion)
+		public static async Task Save(int id, string debateId, string text, string opinion)
 		{
 			var entity = new Entity("comments");
 			entity["debate_id"] = debateId;
@@ -22,7 +22,7 @@ namespace Database
 			entity["user_id"] = id;
 			entity["opinion"] = opinion;
 			entity["date"] = DateTime.UtcNow;
-			entity.Insert();
+			await entity.Insert();
 		}
 	}
 }

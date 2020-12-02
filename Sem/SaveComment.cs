@@ -19,7 +19,7 @@ namespace Sem
 				var debateId = context.Request.Headers["debate_id"];
 				var text = context.Request.Headers["text"];
 				var opinion = context.Request.Headers["opinion"];
-				Comments.Save((int) id, debateId, text, opinion);
+				await Comments.Save((int) id, debateId, text, opinion);
 			});
 		}
 	}

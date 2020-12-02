@@ -34,20 +34,16 @@ namespace Database
 		public static IAsyncEnumerable<Entity> GetFavoriteArticles(Entity user)
 			=> user.GetManyToManyEntities("favorite_articles");
 
-		public static void AddFavoriteArticle(int userId, int articleId)
+		public static async Task AddFavoriteArticle(int userId, int articleId)
 		{
-			var entity = new Entity("favorite_articles");
-			entity["user_id"] = userId;
-			entity["article_id"] = articleId;
-			entity.Insert();
+			var entity = new Entity("favorite_articles") {["user_id"] = userId, ["article_id"] = articleId};
+			await entity.Insert();
 		}
 		
-		public static void RemoveFavoriteArticle(int userId, int articleId)
+		public static async Task RemoveFavoriteArticle(int userId, int articleId)
 		{
-			var entity = new Entity("favorite_articles");
-			entity["user_id"] = userId;
-			entity["article_id"] = articleId;
-			entity.Delete();
+			var entity = new Entity("favorite_articles") {["user_id"] = userId, ["article_id"] = articleId};
+			await entity.Delete();
 		}
 
 		public static async Task<bool> IsFavorite(int userId, int articleId)

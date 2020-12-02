@@ -18,6 +18,7 @@ namespace Database
 			//TODO check if condition valid
 			//var info = EntityInfo.EntityKeys[tableName];
 			//var query =  + tableName;
+			Utilities.CheckIfTableNameValid(tableName);
 			var builder = new StringBuilder("SELECT * FROM ");
 			builder.Append(tableName);
 			if (condition != null)
@@ -69,7 +70,7 @@ namespace Database
 		}
 
 		//Inserts entity to table
-		public static async void Insert(this Entity entity)
+		public static async Task Insert(this Entity entity)
 		{
 			//dynamic entity1 = entity;
 			//entity1.Abc = 8;
@@ -90,6 +91,7 @@ namespace Database
 			valuesBuilder.Append(')');
 			builder.Append(valuesBuilder);
 			var query = builder.ToString();
+			Utilities.CheckIfQueryValid(query);
 			await using var connection = new NpgsqlConnection(connectionString);
 			await connection.OpenAsync();
 			await using var command = new NpgsqlCommand(query, connection);
@@ -132,7 +134,7 @@ namespace Database
 			return result;
 		}
 
-		public static async void Delete(this Entity entity)
+		public static async Task Delete(this Entity entity)
 		{
 			var builder = new StringBuilder($"DELETE FROM {entity.TableName} WHERE ");
 			foreach (var pair in entity.Values)
@@ -158,6 +160,7 @@ namespace Database
 
 		public static async Task<string[]> GetEnum(string name)
 		{
+			Utilities.CheckIfTableNameValid(name);
 			var query = $"SELECT enum_range(NULL::{name})";
 			await using var connection = new NpgsqlConnection(connectionString);
 			await connection.OpenAsync();
@@ -165,7 +168,7 @@ namespace Database
 			await using var reader = await command.ExecuteReaderAsync();
 			if (reader.HasRows)
 			{
-				var columns = GetColumnNames(reader);
+				//var columns = GetColumnNames(reader);
 				await reader.ReadAsync();
 				return (string[]) reader[0];
 			}

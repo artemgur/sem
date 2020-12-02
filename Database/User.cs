@@ -16,9 +16,7 @@ namespace Database
 				return null;
 			var salt = Convert.FromBase64String((string)user.Values["salt"]);
 			var hash = GenerateHash(password, salt);
-			if ((string) user.Values["password"] == hash)
-				return user;
-			return null;
+			return (string) user.Values["password"] == hash ? user : null;
 		}
 
 		public static async Task<Entity> TryRegister(string username, string password)
@@ -36,7 +34,7 @@ namespace Database
 					{"salt", Convert.ToBase64String(salt)}
 				}
 			};
-			entity.Insert();
+			await entity.Insert();
 			return await Select("users", "username='"+username+"'").SingleAsync();
 		}
 
