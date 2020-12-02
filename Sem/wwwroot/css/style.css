@@ -1030,11 +1030,22 @@ hr{
 	flex-direction: row-reverse;
 }
 
-.messege-img{
+.message-img{
 	width: 36px;
 	height: 36px;
+
+	border-radius: 50%;
 }
-.message-place{
+.message-red .message-img {
+	margin-right: 5px;
+}
+.message-green .message-img {
+	margin-left: 5px;
+}
+
+
+
+.message-place {
 	display: flex;
 	flex-direction: column;
 	max-width: 50%;
