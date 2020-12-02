@@ -459,23 +459,43 @@ function passwordValidate(str) {
 }
 
 function changeAccountImage() {
-	var input1 = $("#image_input");
-	var fd = new FormData;
+	var input = document.getElementById("image_input")
+	//var input1 = $("#image_input");
+	var fd = new FormData();
+	var file = input.files[0];
 	
-	fd.append('img', input1.prop('files')[0]);
+	fd.append('image', file, file.name);
 
-	
-	 //$.ajax({
-	 //	type: 'POST',
-	 //	url: '/save_image',
-	 //	data: fd, //Image itself should be here
-	 //	dataType: 'image/jpg', //+extension
-	 //	success: function(res, status, xhr) {
-		//	  alert(1);
-	 //	}
-	 //	//headers: {
-	 //	// 'filename': img
-	 //	//}
-	 //})
-	 //$(".account-img").attr("src", img);
+	var xhr = new XMLHttpRequest();
+
+	// Open the connection
+	xhr.open('POST', '/save_image', true);
+	xhr.setRequestHeader("filename", file.name)
+
+	// Set up a handler for when the task for the request is complete
+	xhr.onload = function () {
+		if (xhr.status === 200) {
+			location.reload()
+			//alert('Upload copmlete!');
+		}/* else {
+			alert('Upload error. Try again.');
+		}*/
+	};
+
+	// Send the data.
+	xhr.send(fd);
+	//location.reload()
+	 // $.ajax({
+	 // 	type: 'POST',
+	 // 	url: '/save_image',
+	 // 	data: fd, //Image itself should be here
+	 // 	dataType: 'image/jpg', //+extension
+	 // 	success: function(res, status, xhr) {
+		// 	  alert(1);
+	 // 	}
+	 // 	//headers: {
+	 // 	// 'filename': img
+	 // 	//}
+	 // })
+	 // $(".account-img").attr("src", img);
 }
