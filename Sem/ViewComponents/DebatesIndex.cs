@@ -6,9 +6,6 @@ namespace Sem.ViewComponents
 {
 	public class DebatesIndexViewComponent : ViewComponent
 	{
-		public DebatesIndexViewComponent()
-		{
-		}
 		public async Task<IViewComponentResult> InvokeAsync(Entity entity)
 		{
 			return View("DebatesIndex", entity);

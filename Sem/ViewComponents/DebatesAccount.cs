@@ -6,9 +6,6 @@ namespace Sem.ViewComponents
 {
 	public class DebatesAccountViewComponent : ViewComponent
 	{
-		public DebatesAccountViewComponent()
-		{
-		}
 		public async Task<IViewComponentResult> InvokeAsync(Entity entity)
 		{
 			return View("DebatesAccount", entity);

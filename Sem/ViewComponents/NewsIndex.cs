@@ -7,10 +7,7 @@ namespace Sem.ViewComponents
 	public class NewsIndexViewComponent : ViewComponent
 	{
 		// public Entity Article;
-		
-		public NewsIndexViewComponent()
-		{
-		}
+
 		public async Task<IViewComponentResult> InvokeAsync(Entity entity)
 		{
 			return View("NewsIndex", entity);
