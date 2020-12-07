@@ -395,7 +395,8 @@ function removeFromFavorites() {
 	// $("#article-function-removeFromFavorites").css("display", "none");
 }
 
-function removeFromFavoritesNewsAccount(id) {
+function removeFromFavoritesNewsAccount(element, id) {
+	event.stopPropagation()
 	//TODO: Удалить статью из избранного с указанным id
 
 	$.ajax({
@@ -409,6 +410,7 @@ function removeFromFavoritesNewsAccount(id) {
 			let result = xhr.getResponseHeader("status")
 			if (result === "success")
 			{
+				element.parentNode.remove();
 				//TODO hide/remove card somehow
 				//$("#article-function-addToFavorites").css("display", "flex");
 				//$("#article-function-removeFromFavorites").css("display", "none");
