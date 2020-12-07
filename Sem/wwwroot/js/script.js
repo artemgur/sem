@@ -112,8 +112,8 @@ function chatSendMessage(){
 		return;
 	}
 	let chatInput = $("#chatInput")
-	let messege = messageFilter(chatInput.val());
-	if (messege === "") return;
+	let message = messageFilter(chatInput.val());
+	if (message === "") return;
 	chatInput.val("");
 
 
@@ -126,15 +126,15 @@ function chatSendMessage(){
 	//let lastMessage = $(".chat-body").children().last().children(".message-box");
 	// console.log(lastMessage);
 
+	let imagePath = $("#user-image-path").val();
 
-
-	var opinion;
+	let opinion;
 	if (against === "btn-success"){
 		let model = "<div class=\"message-green\">" +
-						"<img class=\"messege-img\" src=\"https://img.icons8.com/color/36/000000/administrator-male.png\" alt=\"\">"+
+						"<img class=\"message-img\" src=\"" + imagePath + "\" alt=\"\">"+
 						"<div class=\"message-place\">" +
 							"<div class=\"message-box\">" +
-								"<div class=\"message\">" + messege + "</div>" +
+								"<div class=\"message\">" + message + "</div>" +
 							"</div>" +
 						"</div>" +
 					"</div>";
@@ -146,10 +146,10 @@ function chatSendMessage(){
 	}
 	else if (against === "btn-danger"){
 		let model = "<div class=\"message-red\">" +
-						"<img class=\"messege-img\" src=\"https://img.icons8.com/color/36/000000/administrator-male.png\" alt=\"\">"+
+						"<img class=\"message-img\" src=\"" + imagePath + "\" alt=\"\">"+
 						"<div class=\"message-place\">" +
 							"<div class=\"message-box\">" +
-								"<div class=\"message\">" + messege + "</div>" +
+								"<div class=\"message\">" + message + "</div>" +
 							"</div>" +
 						"</div>" +
 					"</div>";
@@ -167,7 +167,7 @@ function chatSendMessage(){
 		type: 'POST',
 		url: '/save_comment',
 		headers: {
-			'text': encodeURIComponent(messege),
+			'text': encodeURIComponent(message),
 			'opinion': opinion,
 			'debate_id': debate_id,
 			//'tags': stringified
