@@ -13,7 +13,7 @@ namespace Sem
 
 		private static string GetPath(int s, string folder)
 		{
-			var file = Path.GetFileName(Directory.GetFiles(@$"wwwroot\Resources\{folder}\", s + ".*").FirstOrDefault());
+			var file = Path.GetFileName(Directory.GetFiles(@$"wwwroot/Resources/{folder}/", s + ".*").FirstOrDefault());
 			if (file == null)
 				return "/imgs/dog.png";
 			return $"/Resources/{folder}/" + (string) file;
