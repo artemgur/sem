@@ -7,7 +7,7 @@ namespace Database
 	{
 		public static void Init()
 		{
-			General.InitConnectionString();
+			//General.InitConnectionString();
 			InitManyToMany();
 			//InitEntityInfo();
 		}
