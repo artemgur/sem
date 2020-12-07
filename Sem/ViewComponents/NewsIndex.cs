@@ -8,7 +8,7 @@ namespace Sem.ViewComponents
 	{
 		// public Entity Article;
 
-		public async Task<IViewComponentResult> InvokeAsync(Entity entity)
+		public IViewComponentResult InvokeAsync(Entity entity)
 		{
 			return View("NewsIndex", entity);
 		}
