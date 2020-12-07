@@ -167,7 +167,7 @@ function chatSendMessage(){
 		type: 'POST',
 		url: '/save_comment',
 		headers: {
-			'text': messege,
+			'text': encodeURIComponent(messege),
 			'opinion': opinion,
 			'debate_id': debate_id,
 			//'tags': stringified

@@ -1,4 +1,5 @@
-﻿using Database;
+﻿using System.Web;
+using Database;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 
@@ -17,7 +18,7 @@ namespace Sem
 					return;
 				}
 				var debateId = context.Request.Headers["debate_id"];
-				var text = context.Request.Headers["text"];
+				var text = HttpUtility.UrlDecode(context.Request.Headers["text"]);
 				var opinion = context.Request.Headers["opinion"];
 				await Comments.Save((int) id, debateId, text, opinion);
 			});
