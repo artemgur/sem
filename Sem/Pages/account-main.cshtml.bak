@@ -1,6 +1,5 @@
 ﻿@page
-@using Database
-@model Sem.Pages.account_news
+@model Sem.Pages.account_main
 
 @{
     Layout = "Shared/_Layout";
@@ -66,16 +65,23 @@
         <div class="col-md-8 account-box">
             <div class="account">
                 <div class="account-main">
-                    <img class="account-svg" src="icons/news.svg" alt="">
-                    <h2 class="account-main-title">МОИ ИЗБРАННЫЕ НОВОСТИ</h2>
-                    <div class="account-main-describe">Вы в любой момент можете обновить вашу учетную запись и внести любые изменения в приведеннфе ниже данные.</div>
+                    <img class="account-svg" src="icons/avatar.svg" alt="">
+                    <h2 class="account-main-title">МОЯ ИНФОРМАЦИЯ</h2>
+                    @* <div class="account-main-describe">Вы в любой момент можете обновить вашу учетную запись и внести любые изменения в приведеннфе ниже данные.</div> *@
 
-                    <div class="row">
-                        @foreach (var article in await Article.GetFavoriteArticles(Model.User).ToListAsync())
-                        {
-                            @await Component.InvokeAsync("NewsAccount", article)
-                        }
+                    <div class="account-info">
+                        <div class="account-info-title">Имя:</div>
+                        <div class="account-info-value">@Model.User.Values["username"]</div>
                     </div>
+                    @* <div class="account-info"> *@
+                    @*     <div class="account-info-title">E-mail:</div> *@
+                    @*     <div class="account-info-value">davleev_zinnur@mail.ru</div> *@
+                    @* </div> *@
+                    <div class="account-info">
+                        <div class="account-info-title">Пароль:</div>
+                        <div class="account-info-value">***********</div>
+                    </div>
+
                 </div>
             </div>
         </div>

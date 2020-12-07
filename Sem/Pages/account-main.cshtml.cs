@@ -1,6 +1,6 @@
 ﻿namespace Sem.Pages
 {
-	public class account_main : RestrictedPageModel
+	public class account_news : RestrictedPageModel
 	{
 	}
 }

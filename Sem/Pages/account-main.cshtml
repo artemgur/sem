@@ -1,5 +1,6 @@
 ﻿@page
-@model Sem.Pages.account_main
+@using Database
+@model Sem.Pages.account_news
 
 @{
     Layout = "Shared/_Layout";
@@ -48,11 +49,11 @@
                         <div class="account-name">@Model.User.Values["username"]</div>
                     </div>
                 </div>
+                @* <a class="account-function" href="@Url.Page("./account-main")"> *@
+                @*     <img class="account-function-svg" src="icons/avatar.svg" alt=""> *@
+                @*     <div class="account-function-name">Просмотр учетной записи</div> *@
+                @* </a> *@
                 <a class="account-function" href="@Url.Page("./account-main")">
-                    <img class="account-function-svg" src="icons/avatar.svg" alt="">
-                    <div class="account-function-name">Просмотр учетной записи</div>
-                </a>
-                <a class="account-function" href="@Url.Page("./account-news")">
                     <img class="account-function-svg" src="icons/news.svg" alt="">
                     <div class="account-function-name">Избранные новости</div>
                 </a>
@@ -65,23 +66,16 @@
         <div class="col-md-8 account-box">
             <div class="account">
                 <div class="account-main">
-                    <img class="account-svg" src="icons/avatar.svg" alt="">
-                    <h2 class="account-main-title">МОЯ ИНФОРМАЦИЯ</h2>
-                    @* <div class="account-main-describe">Вы в любой момент можете обновить вашу учетную запись и внести любые изменения в приведеннфе ниже данные.</div> *@
+                    <img class="account-svg" src="icons/news.svg" alt="">
+                    <h2 class="account-main-title">МОИ ИЗБРАННЫЕ НОВОСТИ</h2>
+                    <div class="account-main-describe">Вы в любой момент можете обновить вашу учетную запись и внести любые изменения в приведеннфе ниже данные.</div>
 
-                    <div class="account-info">
-                        <div class="account-info-title">Имя:</div>
-                        <div class="account-info-value">@Model.User.Values["username"]</div>
+                    <div class="row">
+                        @foreach (var article in await Article.GetFavoriteArticles(Model.User).ToListAsync())
+                        {
+                            @await Component.InvokeAsync("NewsAccount", article)
+                        }
                     </div>
-                    @* <div class="account-info"> *@
-                    @*     <div class="account-info-title">E-mail:</div> *@
-                    @*     <div class="account-info-value">davleev_zinnur@mail.ru</div> *@
-                    @* </div> *@
-                    <div class="account-info">
-                        <div class="account-info-title">Пароль:</div>
-                        <div class="account-info-value">***********</div>
-                    </div>
-
                 </div>
             </div>
         </div>
