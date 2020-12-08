@@ -168,13 +168,14 @@ body{
 	flex-direction: column;
 }
 
-.media-block{
+.media-block {
 	margin-top: auto;
 	position: relative;
 	overflow: hidden;
 	border-radius: 8px;
 
-	background-color: red;
+	background-color: #E2E4E6;
+	/*background-color: red;*/
 }
 .media-block-img{
 	padding-bottom: 50%;
