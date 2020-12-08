@@ -23,19 +23,21 @@ function login() {
 	//var mail = form.email.value;
 	let username = form.username.value;
 	let password = form.password.value;
+	let remember = form.remember.checked;
 
 	// if (!passwordValidate(password)) {
 	// 	alert("Пароль не соответствует требованиям");
 	// 	return;
 	// }
 	// else {
-		//alert("Все ок")
+		alert("Все ок")
 		$.ajax({
 			type: 'POST',
 			url: '/authenticate',
 			headers: {
 				'username': username,
-				'password': password
+				'password': password,
+				'remember': remember
 			},
 			success: function(res, status, xhr) {
 				let result = xhr.getResponseHeader("auth_result")
