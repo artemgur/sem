@@ -10,7 +10,7 @@ namespace Database
 
 		internal Entity(string tableName)
 		{
-			Utilities.CheckIfTableNameValid(tableName);
+			//Utilities.CheckIfTableNameValid(tableName);
 			TableName = tableName;
 		}
 
