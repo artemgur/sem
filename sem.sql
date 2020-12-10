@@ -13,7 +13,7 @@ CREATE TABLE articles(
     id SERIAL PRIMARY KEY,
     name VARCHAR(30) NOT NULL,
     date TIMESTAMP NOT NULL,
-    description VARCHAR(35),
+    --description VARCHAR(35),
     text TEXT NOT NULL
 );
 -- CREATE INDEX articles_time_index ON articles(date DESC); --Apparently indexes will make queries slower, since our tables will be small
@@ -88,7 +88,7 @@ CREATE TABLE tags_debates(
 
 CREATE /*MATERIALIZED*/ VIEW articles_with_tags AS
     WITH a AS(
-        SELECT id, name, date, array_agg(tags_article.tag) AS tags
+        SELECT id, name, date, text, array_agg(tags_article.tag) AS tags
         FROM tags_article
         JOIN articles ON articles.id = tags_article.article_id
         GROUP BY id
@@ -117,8 +117,8 @@ CREATE /*MATERIALIZED*/ VIEW debates_with_tags AS
     ORDER BY name;
 
 CREATE FUNCTION select_articles_by_name_and_tag(a VARCHAR(30), b TAG)
-RETURNS TABLE (id INTEGER, name VARCHAR(30), date TIMESTAMP, tags TAG[]) AS $$
-    SELECT id, name, date, tags FROM articles_with_tags
+RETURNS TABLE (id INTEGER, name VARCHAR(30), date TIMESTAMP, text TEXT, tags TAG[]) AS $$
+    SELECT id, name, date, text, tags FROM articles_with_tags
     JOIN tags_article ON article_id = id AND tag = b AND name LIKE a;
 $$ LANGUAGE sql;
 
