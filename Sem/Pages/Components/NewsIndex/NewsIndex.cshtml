@@ -6,7 +6,7 @@
 
             <h2 class="news-card-title">@Model.Values["name"]</h2>
             <div class="news-card-describe">
-                @(((string)Model["text"]).Substring(0, 40))
+                @(((string)Model["text"]).Substring(0, 100))
             </div>
             <div class="media-block">
                 <div class="media-block-img">
