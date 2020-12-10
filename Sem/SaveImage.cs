@@ -16,7 +16,7 @@ namespace Sem
 					context.Response.Headers.Add("status", "not_registered");
 					return;
 				}
-				var files = Directory.GetFiles(@"wwwroot\Resources\UserImages\", id + ".*");
+				var files = Directory.GetFiles(@"wwwroot/Resources/UserImages/", id + ".*");
 				foreach (var x in files)
 					File.Delete(x);
 				//var filename = context.Request.Headers["filename"];
