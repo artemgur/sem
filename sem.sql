@@ -11,7 +11,7 @@ CREATE TABLE users(
 
 CREATE TABLE articles(
     id SERIAL PRIMARY KEY,
-    name VARCHAR(30) NOT NULL,
+    name TEXT NOT NULL,
     date TIMESTAMP NOT NULL,
     --description VARCHAR(35),
     text TEXT NOT NULL
@@ -117,7 +117,7 @@ CREATE /*MATERIALIZED*/ VIEW debates_with_tags AS
     ORDER BY name;
 
 CREATE FUNCTION select_articles_by_name_and_tag(a VARCHAR(30), b TAG)
-RETURNS TABLE (id INTEGER, name VARCHAR(30), date TIMESTAMP, text TEXT, tags TAG[]) AS $$
+RETURNS TABLE (id INTEGER, name TEXT, date TIMESTAMP, text TEXT, tags TAG[]) AS $$
     SELECT id, name, date, text, tags FROM articles_with_tags
     JOIN tags_article ON article_id = id AND tag = b AND name LIKE a;
 $$ LANGUAGE sql;
