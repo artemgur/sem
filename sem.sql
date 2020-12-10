@@ -12,9 +12,9 @@ CREATE TABLE users(
 CREATE TABLE articles(
     id SERIAL PRIMARY KEY,
     name VARCHAR(30) NOT NULL,
-    date TIMESTAMP NOT NULL
---     text TEXT NOT NULL--path to markdown file, not text itself
---     photo TEXT --path to photo
+    date TIMESTAMP NOT NULL,
+    description VARCHAR(35),
+    text TEXT NOT NULL
 );
 -- CREATE INDEX articles_time_index ON articles(date DESC); --Apparently indexes will make queries slower, since our tables will be small
 --TODO create index for name
@@ -67,8 +67,8 @@ CREATE TABLE people(
     name VARCHAR(50) NOT NULL,
     post VARCHAR(30) NOT NULL,
     age SMALLINT NOT NULL,
-    country VARCHAR(30) NOT NULL
---     text TEXT--path to markdown file, not text itself
+    country VARCHAR(30) NOT NULL,
+    text TEXT
 --     photo TEXT --path to photo
 );
 CREATE TABLE tags_people(
@@ -98,7 +98,7 @@ CREATE /*MATERIALIZED*/ VIEW articles_with_tags AS
 
 CREATE /*MATERIALIZED*/ VIEW people_with_tags AS
     WITH a AS(
-        SELECT id, name, post, age, country, array_agg(tags_people.tag) AS tags
+        SELECT id, name, post, age, country, text, array_agg(tags_people.tag) AS tags
         FROM tags_people
         JOIN people ON people.id = tags_people.people_id
         GROUP BY id
@@ -123,8 +123,8 @@ RETURNS TABLE (id INTEGER, name VARCHAR(30), date TIMESTAMP, tags TAG[]) AS $$
 $$ LANGUAGE sql;
 
 CREATE FUNCTION select_people_by_name_and_tag(a VARCHAR(30), b TAG)
-RETURNS TABLE (id INTEGER, name VARCHAR(30), post VARCHAR(30), age SMALLINT, country VARCHAR(30), tags TAG[]) AS $$
-    SELECT id, name, post, age, country, tags FROM people_with_tags
+RETURNS TABLE (id INTEGER, name VARCHAR(30), post VARCHAR(30), age SMALLINT, country VARCHAR(30), text TEXT, tags TAG[]) AS $$
+    SELECT id, name, post, age, country, text, tags FROM people_with_tags
     JOIN tags_people ON people_id = id AND tag = b AND name LIKE a;
 $$ LANGUAGE sql;
 

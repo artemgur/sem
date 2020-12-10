@@ -17,7 +17,7 @@ namespace Database
 			//TODO check if condition valid
 			//var info = EntityInfo.EntityKeys[tableName];
 			//var query =  + tableName;
-			Utilities.CheckIfTableNameValid(tableName);
+			//Utilities.CheckIfTableNameValid(tableName);
 			var builder = new StringBuilder("SELECT * FROM ");
 			builder.Append(tableName);
 			if (condition != null)
@@ -159,7 +159,7 @@ namespace Database
 
 		public static async Task<string[]> GetEnum(string name)
 		{
-			Utilities.CheckIfTableNameValid(name);
+			//Utilities.CheckIfTableNameValid(name);
 			var query = $"SELECT enum_range(NULL::{name})";
 			await using var connection = new NpgsqlConnection(connectionString);
 			await connection.OpenAsync();

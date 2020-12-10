@@ -34,13 +34,13 @@ namespace Database
 			return builder.ToString();
 		}
 		
-		internal static void CheckIfTableNameValid(string table)
-		{
-			if (table == null)
-				throw new ArgumentNullException(nameof(table));
-			if (!TableNameRegex.IsMatch(table))
-				throw new ArgumentException("Invalid table name");
-		}
+		// internal static void CheckIfTableNameValid(string table)//User dosen't enter table name anyway
+		// {
+		// 	if (table == null)
+		// 		throw new ArgumentNullException(nameof(table));
+		// 	if (!TableNameRegex.IsMatch(table))
+		// 		throw new ArgumentException("Invalid table name");
+		// }
 
 		internal static void CheckIfQueryValid(string query)
 		{

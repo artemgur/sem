@@ -30,7 +30,7 @@ function login() {
 	// 	return;
 	// }
 	// else {
-		alert("Все ок")
+		//alert("Все ок")
 		$.ajax({
 			type: 'POST',
 			url: '/authenticate',
