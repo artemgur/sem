@@ -39,7 +39,8 @@ function login() {
 				'password': password,
 				'remember': remember
 			},
-			success: function(res, status, xhr) {
+			success: function (res, status, xhr) {
+				alert(123);
 				let result = xhr.getResponseHeader("auth_result")
 				if (result === "success")
 					document.location.href = "account-main"
