@@ -20,6 +20,10 @@ body{
 
 	background-color: #31708E;
 	color: #F7F9FB;
+
+	position: fixed;
+	top: 0;
+	z-index: 4;
 }
 
 
@@ -104,6 +108,11 @@ body{
 	background-color: #5085A5;
 	color: #F7F9FB;
 }
+.header-center input::-ms-clear {
+/*	width: 0;*/
+/*	height: 0;*/
+	background-color: red;
+}
 .header-center input::placeholder {
 	color: #31708E;
 }
@@ -125,7 +134,7 @@ body{
 
 /*Тело сайта*/
 .container-fluid{
-	margin-top: 10px;
+	margin-top: 70px;
 	min-width: 924px;
 	max-width: 1224px;
 }
@@ -1299,4 +1308,37 @@ hr{
 }
 .img{
 	width: 100%;
+}
+
+
+
+.scroller {
+	display: none;
+	height: 100vh;
+	width: 120px;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 3;
+	padding-top: 70px;
+}
+.scroller:hover{
+	background-color: rgba(80, 133, 165, 0.1);
+}
+
+.scroller-box {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	color: rgba(80,133,165, 0.5);
+	margin: 0 10px;
+}
+.scroller:hover .scroller-box {
+	color: rgba(80,133,165, 1);
+}
+
+.scroller-text{
+	display: flex;
+	font-size: 14.5px;
+	font-weight: 500;
 }

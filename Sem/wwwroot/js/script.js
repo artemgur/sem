@@ -40,7 +40,7 @@ function login() {
 				'remember': remember
 			},
 			success: function (res, status, xhr) {
-				alert(123);
+				//alert(123);
 				let result = xhr.getResponseHeader("auth_result")
 				if (result === "success")
 					document.location.href = "account-main"
@@ -426,19 +426,6 @@ function removeFromFavoritesNewsAccount(element, id) {
 
 
 
-
-
-
-// Custom methods
-function log(srt) {
-	console.log(srt);
-}
-
-//Тут можно написать фильтрацию сообщений
-function messageFilter(str) {
-	return str;
-}
-
 // Валидация пароля
 function passwordValidate(str) {
 	const beginWithoutDigit = /^\D/; // Начинается не с цифры
@@ -462,6 +449,7 @@ function passwordValidate(str) {
 		return false;
 	}
 }
+
 
 function changeAccountImage() {
 	var input = document.getElementById("image_input")
@@ -503,4 +491,36 @@ function changeAccountImage() {
 	 // 	//}
 	 // })
 	 // $(".account-img").attr("src", img);
+}
+
+
+//Скролинг
+$(window).scroll(function () {
+	var target = $(this).scrollTop();
+	if (target > 400) {
+		$(".scroller").css("display", "block");
+	}
+	else {
+		$(".scroller").css("display", "none");
+    }
+})
+
+function toScrollTop() {
+	$("html").animate({
+		scrollTop: 0
+	}, 1000);
+}
+
+
+
+
+
+// Custom methods
+function log(srt) {
+	console.log(srt);
+}
+
+//Тут можно написать фильтрацию сообщений
+function messageFilter(str) {
+	return str;
 }

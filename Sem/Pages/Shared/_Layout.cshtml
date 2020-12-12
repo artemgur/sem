@@ -19,37 +19,37 @@
 	<script type="text/javascript" src="~/js/script.js"></script>
 </head>
 <body>
-	<div class="header">
-		<div class="header-left">
-			<a class="aNotChanged" href="@Url.Page("./index")">
-				<h1>Политика <span style="color: #E85A4F">News</span></h1>
-			</a>
-		</div>
+    <div class="header">
+        <div class="header-left">
+            <a class="aNotChanged" href="@Url.Page("./index")">
+                <h1>Политика <span style="color: #E85A4F">News</span></h1>
+            </a>
+        </div>
 
-		<div class="header-center">
-			<div class="header-menu">
-				<a class="header-menu-box" href="@Url.Page("./index")">Новости</a>
-				<a class="header-menu-box" href="@Url.Page("./debates")">Дебаты</a>
-				<a class="header-menu-box" href="@Url.Page("./people")">Личности</a>
-			</div>
-			<div class="header-menu-hiden">
-				<div class="dropdown">
-					<button class="dropdown-toggle search-filter" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						<span class="fontColor">Меню</span>
-				  	</button>
-				  	<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-					    <a class="dropdown-item" href="@Url.Page("./index")">Новости</a>
+        <div class="header-center">
+            <div class="header-menu">
+                <a class="header-menu-box" href="@Url.Page("./index")">Новости</a>
+                <a class="header-menu-box" href="@Url.Page("./debates")">Дебаты</a>
+                <a class="header-menu-box" href="@Url.Page("./people")">Личности</a>
+            </div>
+            <div class="header-menu-hiden">
+                <div class="dropdown">
+                    <button class="dropdown-toggle search-filter" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="fontColor">Меню</span>
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="@Url.Page("./index")">Новости</a>
                         <a class="dropdown-item" href="@Url.Page("./people")">Личности</a>
-					    <a class="dropdown-item" href="@Url.Page("./debates")">Дебаты</a>
-				  	</div>
-				</div>
-			</div>
+                        <a class="dropdown-item" href="@Url.Page("./debates")">Дебаты</a>
+                    </div>
+                </div>
+            </div>
 
-			<form onsubmit="searchInfo(); return false;" class="search-box" name="searchForm" action="">
-				<img onclick="searchInfo()" class="svg" src="~/icons/magnifying-glass.svg">
-				<input type="search" name="search" placeholder="Поиск">
-				<div class="dropdown">
-					<button name="searchFilterBox" class="dropdown-toggle search-filter fontColor" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Фильтры</button>
+            <form onsubmit="searchInfo(); return false;" class="search-box" name="searchForm" action="">
+                <img onclick="searchInfo()" class="svg" src="~/icons/magnifying-glass.svg">
+                <input type="search" name="search" placeholder="Поиск" autocomplete="off">
+                <div class="dropdown">
+                    <button name="searchFilterBox" class="dropdown-toggle search-filter fontColor" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Фильтры</button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         <h6 class="dropdown-header">Популярные</h6>@*TODO: Automatically fetch tags from database*@
                         @* <a class="dropdown-item" onclick="changeSearchFilter(this)" href="#">США</a> *@
@@ -57,20 +57,30 @@
                         @* <a class="dropdown-item" onclick="changeSearchFilter(this)" href="#">Армения</a> *@
                         @foreach (var tag in await Tags.Get())
                         {
-	                        <a class="dropdown-item" onclick="changeSearchFilter(this)" href="#">@tag</a>
+                            <a class="dropdown-item" onclick="changeSearchFilter(this)" href="#">@tag</a>
                         }
                         <h6 class="dropdown-header"></h6>
                         <a class="dropdown-item" onclick="changeSearchFilter(this)" href="#">Не выбрано</a>
                     </div>
-				</div>
-			</form>
-		</div>
+                </div>
+            </form>
+        </div>
 
-		<div class="header-right">
-			<div class="reg-online"><a href="@Url.Page("./account-main")">Личный кабинет</a></div>
-			<!-- <div class="reg-offline"><a href="@Url.Page("./login")">Вход</a> | <a href="@Url.Page("./register")">Регистрация</a></div> -->
-		</div>
-	</div>
-@RenderBody()
+        <div class="header-right">
+            <div class="reg-online"><a href="@Url.Page("./account-main")">Личный кабинет</a></div>
+            <!-- <div class="reg-offline"><a href="@Url.Page("./login")">Вход</a> | <a href="@Url.Page("./register")">Регистрация</a></div> -->
+        </div>
+    </div>
+
+    <div onclick="toScrollTop()" class="scroller">
+        <div class="scroller-box">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-chevron-up scroller-arrow" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708l6-6z" />
+            </svg> 
+            <div class="scroller-text">Наверх</div>
+        </div>
+    </div>
+
+    @RenderBody()
 </body>
-</html>
+    </html>
