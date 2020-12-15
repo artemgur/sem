@@ -16,7 +16,7 @@ function openDebateConstructor() {
 
 
 
-// Вход / Регистрация
+// Вход / Регистрация / Выход
 function login() {
 	let form = document.loginForm;
 
@@ -53,7 +53,6 @@ function login() {
 			}
 		})
 }
-
 function register() {
 	let form = document.registerForm;
 
@@ -92,6 +91,25 @@ function register() {
 			}
 		})
 	}
+}
+function logout() {
+
+	//$.ajax({
+	//	type: 'POST',
+	//	url: '/authenticate',
+	//	headers: {
+	//		'register': "logout"
+	//	}
+	//	//success: function (res, status, xhr) {
+	//	//	let result = xhr.getResponseHeader("auth_result")
+	//	//	if (result === "success")
+	//	//		document.location.href = searchParams.has('desired_path') ? searchParams.get('desired_path') : "account-main"
+	//	//	else
+	//	//		alert("Пользователь с таким логином уже зарегистрирован")
+	//	//}
+	//})
+
+	alert("Вы вышли из системы");
 }
 
 // Изменение сторон дебатов
