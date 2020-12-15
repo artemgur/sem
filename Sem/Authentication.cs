@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Database;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
@@ -52,6 +53,13 @@ namespace Sem
 				context.Response.Headers.Add("auth_result", "success");
 				context.Session.SetInt32("user_id", (int) user.Values["id"]);
 			}		
+		}
+
+		private static async Task Remember(HttpContext context, int id)
+		{
+			var guid = Guid.NewGuid();
+			context.Response.Cookies.Append("guid", guid.ToString());
+			await RememberedGuids.Add(guid, id);
 		}
 	}
 }

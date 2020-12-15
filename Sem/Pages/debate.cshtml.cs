@@ -17,6 +17,7 @@ namespace Sem.Pages
 		
 		public async Task<IActionResult> OnGet(string debateId)
 		{
+			await RestrictedPageModel.AddSessionIfRemembered(HttpContext);
 			var user_id = HttpContext.Session.GetInt32("user_id");
 			if (user_id == null)
 				return Redirect("login?desired_path="+HttpContext.Request.Path.ToString());

@@ -16,12 +16,14 @@ namespace Database
 
 		public static async Task Save(int id, string debateId, string text, string opinion)
 		{
-			var entity = new Entity("comments");
-			entity["debate_id"] = debateId;
-			entity["text"] = text;
-			entity["user_id"] = id;
-			entity["opinion"] = opinion;
-			entity["date"] = DateTime.UtcNow;
+			var entity = new Entity("comments")
+			{
+				["debate_id"] = debateId,
+				["text"] = text,
+				["user_id"] = id,
+				["opinion"] = opinion,
+				["date"] = DateTime.UtcNow
+			};
 			await entity.Insert();
 		}
 	}

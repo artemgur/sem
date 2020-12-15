@@ -133,6 +133,11 @@ RETURNS TABLE (id INTEGER, name VARCHAR(30), text TEXT, date TIMESTAMP, tags TAG
     SELECT id, name, text, date, tags FROM debates_with_tags
     JOIN tags_debates ON debate_id = id AND tag = b AND name LIKE a;
 $$ LANGUAGE sql;
---TODO fix
--- ERROR:  syntax error at or near "position"
--- LINE 2: RETURNS TABLE (id INTEGER, name VARCHAR(30), position VARCHA...
+
+
+
+CREATE TABLE remembered_guids(
+    guid UUID,
+    user_id INTEGER,
+    FOREIGN KEY (user_id) REFERENCES users(id)
+);
