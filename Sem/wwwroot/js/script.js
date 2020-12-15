@@ -25,25 +25,29 @@ function login() {
 	let password = form.password.value;
 	let remember = form.remember.checked;
 
+	let searchParams = new URLSearchParams(window.location.search)
+
 	// if (!passwordValidate(password)) {
 	// 	alert("Пароль не соответствует требованиям");
 	// 	return;
 	// }
 	// else {
 		//alert("Все ок")
-		$.ajax({
+
+	$.ajax({
 			type: 'POST',
 			url: '/authenticate',
 			headers: {
 				'username': username,
 				'password': password,
 				'remember': remember
+				//'desired_path': searchParams.has('desired_path') ? searchParams.get('desired_path') : ""
 			},
 			success: function (res, status, xhr) {
 				//alert(123);
 				let result = xhr.getResponseHeader("auth_result")
 				if (result === "success")
-					document.location.href = "account-main"
+					document.location.href = searchParams.has('desired_path') ? searchParams.get('desired_path') : "account-main"
 				else
 					alert("Неверный логин или пароль")
 			}
@@ -58,12 +62,16 @@ function register() {
 	let password = form.password.value;
 	//var password = form.password.value;
 	let secondPassword = form.password_confirmation.value;
-
+	let remember = form.remember.checked;
+	
+	let searchParams = new URLSearchParams(window.location)
+	
 	if (!passwordValidate(password) || password !== secondPassword) {
 		alert("Пароль не соответствует требованиям");
 		return;
 	}
 	else {
+		//console.log(searchParams.get('desired_path'))
 		//alert("Все ок")
 		$.ajax({
 			type: 'POST',
@@ -71,12 +79,14 @@ function register() {
 			headers: {
 				'register': "",
 				'username': username,
-				'password': password
+				'password': password,
+				'remember': remember
+				//'desired_path': searchParams.has('desired_path') ? searchParams.get('desired_path') : ""
 			},
 			success: function(res, status, xhr) {
 				let result = xhr.getResponseHeader("auth_result")
 				if (result === "success")
-					document.location.href = "account-main"
+					document.location.href = searchParams.has('desired_path') ? searchParams.get('desired_path') : "account-main"
 				else 
 					alert("Пользователь с таким логином уже зарегистрирован")
 			}
@@ -216,8 +226,8 @@ function createDebate() {
 		type: 'POST',
 		url: '/create_debate',
 		headers: {
-			'title': title,
-			'text': describe
+			'title': encodeURIComponent(title),
+			'text': encodeURIComponent(describe)
 			//'tags': stringified
 		},
 		data: stringified,

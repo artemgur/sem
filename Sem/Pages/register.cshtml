@@ -41,6 +41,17 @@
                         <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required="">
                     </div>
                 </div>
+                
+                <div class="form-group">
+                    <div class="col-md-6">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="remember"> Запомнить меня
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
 
                 <div class="col-md-6 offset-md-5">
                     <button type="submit" onclick="register()" class="form-btn">
@@ -53,8 +64,8 @@
 
         <div class="col-md-3">
             <div class="log-menu">
-                <a href="@Url.Page("./login")" rel="noindex, nofollow">Войти</a>
-                <a href="@Url.Page("./register")" class="log-menu-active" rel="noindex, nofollow">Регистрация</a>
+                <a href="@("./login" + Model.DesiredPath)" rel="noindex, nofollow">Войти</a>
+                <a href="@("./register" + Model.DesiredPath)" class="log-menu-active" rel="noindex, nofollow">Регистрация</a>
             </div>
         </div>
 

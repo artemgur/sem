@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using System.Web;
 using Database;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
@@ -18,8 +19,8 @@ namespace Sem
 					context.Response.Headers.Add("status", "not_registered");
 					return;
 				}
-				var title = (string)context.Request.Headers["title"];
-				var text = (string)context.Request.Headers["text"];
+				var title = HttpUtility.UrlDecode((string)context.Request.Headers["title"]);
+				var text = HttpUtility.UrlDecode((string)context.Request.Headers["text"]);
 				using var r = new StreamReader(context.Request.Body);
 				var s = await r.ReadToEndAsync();
 				var tags = JsonConvert.DeserializeObject<string[]>(s/*.Headers["tags"]*/);
