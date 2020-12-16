@@ -35,7 +35,9 @@ namespace Sem
 				// if (context.Response.Headers["remember"] == "true")
 				// 	context.Session.SetInt32("user_id", (int) user["id"]);
 				// else
-					context.Session.SetInt32("user_id", (int) user["id"]);
+				context.Session.SetInt32("user_id", (int) user["id"]);
+				if (context.Request.Headers["remember"].ToString() == "true")
+					await Remember(context, (int) user["id"]);
 			}		
 		}
 
@@ -52,6 +54,8 @@ namespace Sem
 				//context.Response.Redirect("account-main");
 				context.Response.Headers.Add("auth_result", "success");
 				context.Session.SetInt32("user_id", (int) user["id"]);
+				if (context.Request.Headers["remember"].ToString() == "true")
+					await Remember(context, (int) user["id"]);
 			}		
 		}
 

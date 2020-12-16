@@ -23,11 +23,14 @@ namespace Sem
 
 		public static async Task AddSessionIfRemembered(HttpContext context)
 		{
-			return;//TODO remove later
+			//return;//TODO remove later
 			var guid = context.Request.Cookies["guid"];//If no cookie - exception or default?
-			var id = await RememberedGuids.GetIdOr0(Guid.Parse(guid));
-			if (id > 0)
-				context.Session.SetInt32("user_id", id);
+			if (guid != null)
+			{
+				var id = await RememberedGuids.GetIdOr0(Guid.Parse(guid));
+				if (id > 0)
+					context.Session.SetInt32("user_id", id);
+			}
 		}
 	}
 }

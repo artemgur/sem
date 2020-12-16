@@ -4,7 +4,7 @@
 }
 
 body{
-	background-color: #E2E4E6;
+	background-color: #e2e4e6;
 	min-width: 750px;
 }
 
@@ -19,7 +19,7 @@ body{
 	justify-content: space-between;
 
 	background-color: #31708E;
-	color: #F7F9FB;
+	color: #f7f9fb;
 
 	position: fixed;
 	top: 0;

@@ -12,7 +12,7 @@ namespace Database
 			var entity = new Entity("remembered_guids")
 			{
 				["guid"] = guid,
-				["id"] = id
+				["user_id"] = id
 			};
 			await entity.Insert();
 		}
@@ -28,7 +28,7 @@ namespace Database
 		public static async Task<int> GetIdOr0(Guid guid)
 		{
 			var e = await General.SelectByValue("remembered_guids", "guid", guid).FirstOrDefaultAsync();
-			return (int?) e?["id"] ?? 0;
+			return (int?) e?["user_id"] ?? 0;
 		}
 	}
 }
