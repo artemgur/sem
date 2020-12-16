@@ -13,8 +13,8 @@ namespace Database
 		// /// Returns the link to article, that was passed as parameter!
 		// public static Entity ToArticleWithTags(Entity article)
 		// {
-		// 	var tags = Select("tags_article", $"article_id={article.Values["id"]}");
-		// 	article.Values["tags"] = tags;
+		// 	var tags = Select("tags_article", $"article_id={article["id"]}");
+		// 	article["tags"] = tags;
 		// 	return article;
 		// }
 		

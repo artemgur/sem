@@ -1,13 +1,13 @@
 ﻿@model Database.Entity
 
-<div class="col-md-4 account-news-box" onclick="location.href='news/' + @Model.Values["id"]">
+<div class="col-md-4 account-news-box" onclick="location.href='news/' + @Model["id"]">
     <div class="account-news">
-        <div class="account-news-title">@Model.Values["name"]</div>
+        <div class="account-news-title">@Model["name"]</div>
         <div class="account-news-describe">Lorem ipsum, dolor sit amet, consectetur adipisicing elit. Sed, voluptates. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Accusantium, maiores?</div>
         <div class="account-news-footer">
             <div class="account-news-footer-left">
                 @* <div class="account-news-keyword">Сша</div> *@
-                @foreach (var tag in (string[]) Model.Values["tags"])
+                @foreach (var tag in (string[]) Model["tags"])
                 {
                     <div class="account-news-keyword">@tag</div>
                 }

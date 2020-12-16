@@ -56,7 +56,7 @@ namespace Database
 				{
 					var instance = new Entity(tableName);
 					foreach (var key in columns)
-						instance.Values[key] = reader[key];
+						instance[key] = reader[key];
 					yield return instance;
 				}
 			}		
@@ -98,17 +98,17 @@ namespace Database
 		}
 
 		public static async Task<Entity> GetOneToManyParent(this Entity entity, string foreignKey, string foreignTable) =>
-			await Select(foreignTable, "id=" + entity.Values[foreignKey].ToStringPg()).SingleAsync();
+			await Select(foreignTable, "id=" + entity[foreignKey].ToStringPg()).SingleAsync();
 
 		public static IAsyncEnumerable<Entity> GetOneToManyChildren(this Entity entity, string foreignKey, string foreignTable) =>
-			Select(foreignTable, foreignKey + "=" + entity.Values["id"].ToStringPg());
+			Select(foreignTable, foreignKey + "=" + entity["id"].ToStringPg());
 
 		public static async IAsyncEnumerable<Entity> GetManyToManyEntities(this Entity entity, string manyToManyTable)
 		{
 			var relationship = ManyToManyRelationship.Relationships[manyToManyTable];
 			var otherTable = relationship.ForeignKeys.Keys.Single(x => x != entity.TableName);
 			var otherIds = Select(manyToManyTable,
-				relationship.ForeignKeys[entity.TableName] + "=" + entity.Values["id"]).Select(x => x.Values[relationship.ForeignKeys[otherTable]]);
+				relationship.ForeignKeys[entity.TableName] + "=" + entity["id"]).Select(x => x[relationship.ForeignKeys[otherTable]]);
 			var condition = "id IN " + await otherIds.ToStringListPg();
 			if (condition.Length == 7)//Length of empty condition
 				yield break;

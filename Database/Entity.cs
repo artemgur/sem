@@ -5,8 +5,7 @@ namespace Database
 	public class Entity// : DynamicObject
 	{
 		public readonly string TableName;
-		public readonly Dictionary<string, object> Values = new Dictionary<string, object>();
-		//public Dictionary<string, object> Extra;
+		internal readonly Dictionary<string, object> Values = new Dictionary<string, object>();
 
 		internal Entity(string tableName)
 		{
@@ -41,7 +40,7 @@ namespace Database
 		public object this[string index]
 		{
 			get => Values[index];
-			set => Values[index] = value;
+			internal set => Values[index] = value;
 		}
 	}
 }

@@ -33,9 +33,9 @@ namespace Sem
 				//context.Response.Redirect("account-main");
 				context.Response.Headers.Add("auth_result", "success");
 				// if (context.Response.Headers["remember"] == "true")
-				// 	context.Session.SetInt32("user_id", (int) user.Values["id"]);
+				// 	context.Session.SetInt32("user_id", (int) user["id"]);
 				// else
-					context.Session.SetInt32("user_id", (int) user.Values["id"]);
+					context.Session.SetInt32("user_id", (int) user["id"]);
 			}		
 		}
 
@@ -51,7 +51,7 @@ namespace Sem
 			{
 				//context.Response.Redirect("account-main");
 				context.Response.Headers.Add("auth_result", "success");
-				context.Session.SetInt32("user_id", (int) user.Values["id"]);
+				context.Session.SetInt32("user_id", (int) user["id"]);
 			}		
 		}
 

@@ -24,7 +24,7 @@ namespace Database
 		// 			//new []{typeof(int), typeof(string), typeof(string), typeof(string), typeof(DateTime)})
 		// 	};
 		// 	foreach (var manyToMany in Relationships)
-		// 		EntityKeys[manyToMany.Key] = manyToMany.Value.ForeignKeys.Values.ToArray();
+		// 		EntityKeys[manyToMany.Key] = manyToMany.Value.ForeignKeys.ToArray();
 		// }
 
 		private static void InitManyToMany()
