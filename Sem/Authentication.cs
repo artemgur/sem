@@ -71,8 +71,9 @@ namespace Sem
 			if (context.Session.GetInt32("user_id") != null)
 				context.Session.Remove("user_id");
 			var guid = context.Request.Cookies["guid"];//If no cookie - exception or default?
-			context.Response.Cookies.Append("guid", null);
-			RememberedGuids.Remove(Guid.Parse(guid));
+			context.Response.Cookies.Append("guid", "null");
+			if (Guid.TryParse(guid, out var parsed))
+				RememberedGuids.Remove(parsed);
 		}
 	}
 }

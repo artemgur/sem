@@ -25,7 +25,7 @@ namespace Sem
 		{
 			//return;//TODO remove later
 			var guid = context.Request.Cookies["guid"];//If no cookie - exception or default?
-			if (guid != null)
+			if (guid != null && guid != "null")
 			{
 				var id = await RememberedGuids.GetIdOr0(Guid.Parse(guid));
 				if (id > 0)
