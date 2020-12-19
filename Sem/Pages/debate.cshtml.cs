@@ -20,7 +20,7 @@ namespace Sem.Pages
 			await RestrictedPageModel.AddSessionIfRemembered(HttpContext);
 			var user_id = HttpContext.Session.GetInt32("user_id");
 			if (user_id == null)
-				return Redirect("login?desired_path="+HttpContext.Request.Path.ToString());
+				return Redirect("/login?desired_path="+HttpContext.Request.Path.ToString());
 			UserId = (int)user_id;
 
 			Debate = await Debates.GetById(int.Parse(debateId));
