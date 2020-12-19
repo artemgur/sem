@@ -65,5 +65,14 @@ namespace Sem
 			context.Response.Cookies.Append("guid", guid.ToString());
 			await RememberedGuids.Add(guid, id);
 		}
+
+		public static void Exit(HttpContext context)
+		{
+			if (context.Session.GetInt32("user_id") != null)
+				context.Session.Remove("user_id");
+			var guid = context.Request.Cookies["guid"];//If no cookie - exception or default?
+			context.Response.Cookies.Append("guid", null);
+			RememberedGuids.Remove(Guid.Parse(guid));
+		}
 	}
 }

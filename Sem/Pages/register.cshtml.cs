@@ -9,8 +9,7 @@ namespace Sem.Pages
 		
 		public void OnGet()
 		{
-			if (HttpContext.Session.GetInt32("user_id") != null)
-				HttpContext.Session.Remove("user_id");
+			Authentication.Exit(HttpContext);
 			DesiredPath = Request.Query["desired_path"].ToString() ?? "";
 			if (DesiredPath != "")
 				DesiredPath = "?desired_path=" + DesiredPath;

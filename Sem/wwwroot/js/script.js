@@ -457,7 +457,7 @@ function removeFromFavoritesNewsAccount(element, id) {
 // Валидация пароля
 function passwordValidate(str) {
 	const beginWithoutDigit = /^\D/; // Начинается не с цифры
-	const withoutSpecialChars = /^[^-() /]*$/; // Не собержит специальные символы
+	const withoutSpecialChars = /^[^-()'/]*$/; // Не собержит специальные символы
 	const containsLetters = /^.*[a-zA-Z]+.*$/; // Содержит буквы
 	const minimum8Chars = /.{8,}/; // Минимум 8 символов
 	const withoutSpaces = /\S/; // Не содержит пробелы
