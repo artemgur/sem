@@ -1,0 +1,63 @@
+﻿@page
+@model Sem.Pages.login
+
+@{
+    Layout = "Shared/_Layout";
+}
+
+
+<div class="container-fluid">
+    <div class="row">
+
+        <div class="col-md-6 offset-md-3 log-box">
+            <h2 class="log-title">Вход</h2>
+            <div class="outstanding"></div>
+
+            <form class="form-horizontal" name="loginForm" onsubmit="return false;">
+                <div class="form-group">
+                    <label for="username" class="col-md-4 control-label">Логин</label>
+                    <div class="col-md-6">
+                        <input id="username" class="form-control" name="username" value="" required="" autofocus="">
+
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="password" class="col-md-4 control-label">Пароль</label>
+                    <div class="col-md-6">
+                        <input id="password" type="password" class="form-control" name="password" required="">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-6">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="remember"> Запомнить меня
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-7 offset-md-5">
+                        <button type="submit" onclick="login()" class="form-btn">
+                            Войти
+                        </button>
+
+                        @* <a class="btn secondary inline" href="#"> *@
+                        @*     Забыли пароль? *@
+                        @* </a> *@
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div class="col-md-3">
+            <div class="log-menu">
+                <a href="@("./login" + Model.DesiredPath)" class="log-menu-active" rel="noindex, nofollow">Войти</a>
+                <a href="@("./register" + Model.DesiredPath)" rel="noindex, nofollow">Регистрация</a>
+            </div>
+        </div>
+
+    </div>
+</div>

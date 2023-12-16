@@ -1,0 +1,76 @@
+﻿@page "{articleId?}"
+@model Sem.Pages.news
+
+@{
+    Layout = "Shared/_Layout";
+}
+
+<div class="container-fluid">
+    <div class="col-md-12 article-box">
+        <div class="article-top">
+            <div class="article-top-left">
+                <div class="article-img-box">
+                    <img src="@ResourcesPaths.GetArticleImagePath(Model.Article["id"])" alt="" class="article-img">
+                </div>
+            </div>
+            <div class="article-top-right">
+                <h2 class="article-title">@Model.Article["name"]</h2>
+                <div class="article-functions">
+                    @* <div class="article-funindexction"> *@
+                    @*     <img class="article-functions-svg" src="~/icons/chat.svg" alt=""> *@
+                    @*     Создать дискуссию *@
+                    @* </div> *@
+
+
+                    @*Тут нужно будет изменять 'display' опираясь на ситуацию *@
+                    @if (Model.IsFavorite)
+                    {
+                        <div style="display: none" onclick="addToFavorites()" class="article-function" id="article-function-addToFavorites">
+                            <img class="article-functions-svg" src="~/icons/heart.svg" alt="">
+                            Добавить в избранные
+                        </div>
+
+                        @*Тут нужно будет изменять 'display' опираясь на ситуацию *@
+                        <div style="display: flex" onclick="removeFromFavorites()" class="article-function" id="article-function-removeFromFavorites">
+                            <img class="article-functions-svg" src="~/icons/broken-heart.svg" alt="">
+                            Удалить из избранного
+                        </div>
+                    }
+                    @if (!Model.IsFavorite)//TODO change to else
+                    {
+                        <div style="display: flex" onclick="addToFavorites()" class="article-function" id="article-function-addToFavorites">
+                            <img class="article-functions-svg" src="~/icons/heart.svg" alt="">
+                            Добавить в избранные
+                        </div>
+
+                        @*Тут нужно будет изменять 'display' опираясь на ситуацию *@
+                        <div style="display: none" onclick="removeFromFavorites()" class="article-function" id="article-function-removeFromFavorites">
+                            <img class="article-functions-svg" src="~/icons/broken-heart.svg" alt="">
+                            Удалить из избранного
+                        </div>
+                    }
+
+
+                </div>
+                <div class="article-footer">
+                    <div class="article-footer-left">
+                        @* <div class="article-keyword">Сша</div> *@
+                        @foreach (var tag in (string[]) Model.Article["tags"])
+                        {
+                            <div class="article-keyword">@tag</div>
+                        }
+                    </div>
+                    <div class="article-footer-right">
+                        <div class="article-time">@Utilities.DateToString(Model.Article)</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="article-bottom">
+            <div class="article-describe">
+                @Html.Raw(Model.Article["text"])
+            </div>
+        </div>
+    </div>
+</div>

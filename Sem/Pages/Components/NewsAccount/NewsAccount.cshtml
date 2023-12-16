@@ -1,0 +1,24 @@
+﻿@model Database.Entity
+
+<div class="col-md-4 account-news-box" onclick="location.href='news/' + @Model["id"]">
+    <div class="account-news">
+        <div class="account-news-title">@Model["name"]</div>
+        <div class="account-news-describe">Lorem ipsum, dolor sit amet, consectetur adipisicing elit. Sed, voluptates. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Accusantium, maiores?</div>
+        <div class="account-news-footer">
+            <div class="account-news-footer-left">
+                @* <div class="account-news-keyword">Сша</div> *@
+                @foreach (var tag in (string[]) Model["tags"])
+                {
+                    <div class="account-news-keyword">@tag</div>
+                }
+                <div class="account-news-time">@Utilities.DateToString(Model)</div>
+            </div>
+            @* <div class="account-news-footer-right">$1$why do we need it?#1# *@
+            @*     1 *@
+            @* </div> *@
+        </div>
+    </div>
+    <div class="account-news-delete" onclick="removeFromFavoritesNewsAccount(this, @Model["id"])">
+        <img class="account-news-delete-img" src="icons/delete (1).svg" alt="">
+    </div>
+</div>

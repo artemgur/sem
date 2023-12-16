@@ -1,0 +1,24 @@
+﻿@model Database.Entity
+<div class="col-md-6 debate-box">
+    <div class="debate">
+        <h2 class="debate-title">@Model["name"]</h2>
+        <div class="debate-describe">@Model["text"]</div>
+        <div class="debate-keywords">
+            @foreach (var tag in (string[])Model["tags"])
+            {
+                <div class="debate-keyword">@tag</div>
+            }
+            @* <div class="debate-keyword">США</div> *@
+            @* <div class="debate-keyword">Путин</div> *@
+            @* <div class="debate-keyword">Армения</div> *@
+        </div>
+        <hr>
+        <div class="debate-footer">
+            <button onclick="location.href='debate/' + @Model["id"]">Присоединиться</button>
+            @* <div class="debate-peoples"> *@
+            @*     <img class="debate-peoples-svg" src="icons/people.svg" alt=""> *@
+            @*     <div class="debate-poeple-count">0</div> *@
+            @* </div> *@
+        </div>
+    </div>
+</div>

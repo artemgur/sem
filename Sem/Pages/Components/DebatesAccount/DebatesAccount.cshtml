@@ -1,0 +1,16 @@
+﻿@model Database.Entity
+<div class="col-md-6 account-debate-box">
+    <div class="account-debate">
+        <div class="account-debate-title">@Model["name"]</div>
+        <div class="account-debate-describe">@Model["text"]</div>
+        <div class="account-debate-footer">
+            <div class="account-debate-footer-left">
+                <a class="account-debate-btn" href="debate/@Model["id"]">Посмотреть</a>
+            </div>
+            @* <div class="account-debate-footer-right"> *@
+            @*     <img class="account-debate-peoples-svg" src="icons/people.svg" alt=""> *@
+            @*     <div class="account-debate-poeple-count">0</div> *@
+            @* </div> *@
+        </div>
+    </div>
+</div>

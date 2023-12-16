@@ -1,0 +1,73 @@
+﻿@page
+@model Sem.Pages.register
+
+@{
+    Layout = "Shared/_Layout";
+}
+
+<div class="container-fluid">
+    <div class="row">
+
+        <div class="col-md-6 offset-md-3 log-box">
+            <h2 class="log-title">Регистрация</h2>
+            <div class="outstanding"></div>
+
+            <form class="form-horizontal" name="registerForm" onsubmit="return false;">
+                @* <div class="form-group"> *@
+                @*     <label for="email" class="col-md-4 control-label">E-Mail</label> *@
+                @*     <div class="col-md-6"> *@
+                @*         <input id="email" type="email" class="form-control" name="email" value="" required="" autofocus=""> *@
+                @* *@
+                @*     </div> *@
+                @* </div> *@
+
+                <div class="form-group">
+                    <label for="username" class="col-md-4 control-label">Логин</label>
+                    <div class="col-md-6">
+                        <input id="username" type="text" class="form-control" name="nickname" value="" required="" autofocus="">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="password" class="col-md-4 control-label">Пароль</label>
+                    <div class="col-md-6">
+                        <input id="password" type="password" class="form-control" name="password" required="">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="password-confirm" class="col-md-4 control-label">Еще раз пароль</label>
+                    <div class="col-md-6">
+                        <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required="">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <div class="col-md-6">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="remember"> Запомнить меня
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-md-6 offset-md-5">
+                    <button type="submit" onclick="register()" class="form-btn">
+                        Далее
+                    </button>
+                </div>
+            </form>
+        </div>
+
+
+        <div class="col-md-3">
+            <div class="log-menu">
+                <a href="@("./login" + Model.DesiredPath)" rel="noindex, nofollow">Войти</a>
+                <a href="@("./register" + Model.DesiredPath)" class="log-menu-active" rel="noindex, nofollow">Регистрация</a>
+            </div>
+        </div>
+
+    </div>
+</div>

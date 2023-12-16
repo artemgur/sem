@@ -1,0 +1,154 @@
+﻿@page "{debateId?}"
+@using Database
+@model Sem.Pages.debate
+
+@{
+    Layout = "Shared/_Layout";
+}
+
+<div class="container-fluid">
+
+    <div class="one-debate-box">
+        <div class="one-debate">
+            <h2 class="one-debate-title">@Model.Debate["name"]</h2>
+            <div class="one-debate-describe">@Model.Debate["text"]</div>
+            @* <div class="col-md-1 offset-md-11 one-debate-peoples"> *@
+            @*     <img class="one-debate-peoples-svg" src="icons/people.svg" alt=""> *@
+            @*     <div class="one-debate-peoples-count">0</div> *@
+            @* </div> *@
+            <hr>
+            <div class="chat-box">
+                <div class="chat">
+
+                    <div class="chat-container-box">
+                        <div id="chat-red" class="chat-container">
+
+                            @{
+                                var userOld = -1;
+                                var first = true;
+                                foreach (var comment in Model.Comments.ValueOrDefault(false) ?? Enumerable.Empty<Entity>())
+                                {
+                                    if (userOld != (int)comment["user_id"])
+                                    {
+                                        userOld = (int)comment["user_id"];
+                                        if (first)
+                                        {
+                                            first = false;
+                                        }
+                                        else
+                                        {
+                                        @:</div>
+                                    @:</div>
+                                }
+                                @:<div class="message-red">
+                                    <img class="message-img" src=@ResourcesPaths.GetUserImagesPath(comment["user_id"]) alt="">
+                                    @:<div class="message-place">
+                                    }
+                                    <div class="message-box">
+                                        <div class="message">@comment["text"]</div>
+                                    </div>
+                                }
+                                if (userOld != -1)
+                                {
+                                @:</div>
+                            @:</div>
+                        }
+                            }
+                        </div>
+                    </div>
+
+                    <div class="chat-container-box">
+                        <div id="chat-green" class="chat-container">
+
+                            @{
+                                var userOld1 = -1;
+                                var first1 = true;
+                                foreach (var comment in Model.Comments.ValueOrDefault(true) ?? Enumerable.Empty<Entity>())
+                                {
+                                    if (userOld1 != (int)comment["user_id"])
+                                    {
+                                        userOld1 = (int)comment["user_id"];
+                                        if (first1)
+                                        {
+                                            first1 = false;
+                                        }
+                                        else
+                                        {
+                                        @:</div>
+                                    @:</div>
+                                }
+                                @:<div class="message-green">
+                                    <img class="message-img" src=@ResourcesPaths.GetUserImagesPath(comment["user_id"]) alt="">
+                                    @:<div class="message-place">
+                                    }
+                                    <div class="message-box">
+                                        <div class="message">@comment["text"]</div>
+                                    </div>
+                                }
+                                if (userOld1 != -1)
+                                {
+                                @:</div>
+                            @:</div>
+                        }
+                            }
+                        </div>
+                    </div>
+
+                </div>
+                <div class="publisher">
+                    <form class="chat-form" action="" onsubmit="return false;">
+                        <div class="dropup">
+                            <button id="against-btn" class="btn btn-secondary" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Выберите строну
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item against-g" onclick="chatChangeAgainst(1)" href="#">ЗА</a>
+                                <a class="dropdown-item against-r" onclick="chatChangeAgainst(0)" href="#">ПРОТИВ</a>
+                            </div>
+                        </div>
+                        <input id="chatInput" type="text" placeholder="Type a message..." autocomplete="off">
+                        <button onclick="chatSendMessage()" id="send-btn" class="btn btn-secondary" type="submit">Отправить</button>
+                        <input id="user-image-path" type="hidden" value="@ResourcesPaths.GetUserImagesPath(Model.UserId)" />
+                    </form>
+                </div>
+                </div>
+                </div>
+                </div>
+
+                </div>
+
+                <!-- <div class="chat-body">
+
+                    <div class="message-red">
+                        <img class="message-img" src="https://img.icons8.com/color/36/000000/administrator-male.png" alt="">
+                        <div class="message-place">
+                            <div class="message-box"><div class="message">Hi</div></div>
+                            <div class="message-box"><div class="message">How are you ...???</div></div>
+                        </div>
+                    </div>
+
+                    <div class="message-green">
+                        <img class="message-img" src="https://img.icons8.com/color/36/000000/administrator-male.png" alt="">
+                        <div class="message-place">
+                            <div class="message-box"><div class="message">Hi</div></div>
+                            <div class="message-box"><div class="message">How are you ...???</div></div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="chat-publisher">
+                    <form class="chat-form" action="" onsubmit="return false;">
+                        <div class="dropup">
+                            <button id="against-btn" class="btn btn-secondary" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Выберите строну
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item against-g" onclick="chatChangeAgainst(1)" href="#">ЗА</a>
+                                <a class="dropdown-item against-r" onclick="chatChangeAgainst(0)" href="#">ПРОТИВ</a>
+                            </div>
+                        </div>
+                        <input id="chatInput" type="text" placeholder="Type a meaage..." autocomplete="off">
+                        <button onclick="chatSendMessage()" id="send-btn" class="btn btn-secondary" type="submit">Отправить</button>
+                    </form>
+                </div> -->

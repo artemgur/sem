@@ -1,0 +1,45 @@
+﻿@page
+@model Sem.Pages.PeopleModel
+
+@{
+    Layout = "Shared/_Layout";
+}
+
+<div class="container-fluid">
+		<div class="row">
+
+			@foreach (var person in await Model.People.ToListAsync())
+			{
+			<div class="person-box">
+				<div class="person">
+					<div class="row">
+						<div class="col-md-4 person-left">
+							<div class="person-img-box">
+								<img class="person-img" src="@ResourcesPaths.GetPersonPhotoPath(person["id"])" alt="">
+							</div>
+							<h3 class="person-menu">@person["name"]</h3>
+							<hr class="person-hr">
+							<h6 class="person-menu">Должность: @person["post"]</h6>
+							<h6 class="person-menu">Страна: @person["country"]</h6>
+							<h6 class="person-menu">Возраст: @person["age"]</h6>
+							<div class="person-keywords">
+								@foreach (var tag in (string[])person["tags"])
+                                {
+                                    <div class="person-keyword">@tag</div>
+                                }
+			     @*                <div class="person-keyword">США</div> *@
+								@* <div class="person-keyword">Путин</div> *@
+								@* <div class="person-keyword">Армения</div> *@
+							</div>
+						</div>
+						<div class="col-md-8">
+							<div class="person-right">
+								@Html.Raw(person["text"])
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			}
+		</div>
+	</div>

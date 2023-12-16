@@ -1,0 +1,35 @@
+﻿@model Database.Entity
+
+<div class="col-md-4 news">
+    <div class="news-card" onclick="location.href='news/' + @Model["id"]">
+        <div class="news-card-inner">
+
+            <h2 class="news-card-title">@Model["name"]</h2>
+            <div class="news-card-describe">
+                @(((string)Model["text"]).Substring(0, 100))
+            </div>
+            <div class="media-block">
+                <div class="media-block-img">
+                    <img class="news-card-img" src="@ResourcesPaths.GetArticleImagePath(Model["id"])" alt="">
+                </div>
+            </div>
+
+            <div class="news-card-footer">
+                <div class="news-card-footer-left">
+                    @* <div class="news-card-keyword">Сша</div> *@
+                    @foreach (var tag in (string[]) Model["tags"])
+                    {
+                        <div class="news-card-keyword">@tag</div>
+                    }
+                    @* <div class="news-card-time">@Utilities.DateToString(Model)</div> *@
+                </div>
+                @* <div class="news-card-footer-right">$1$why do we need it?#1# *@
+                @*     1 *@
+                @* </div> *@
+                <div class="news-card-footer-right">
+                    <div class="news-card-time">@Utilities.DateToString(Model)</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

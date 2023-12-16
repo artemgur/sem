@@ -1,0 +1,60 @@
+﻿@page
+@using Database
+@model Sem.Pages.constructor
+
+@{
+    Layout = "Shared/_Layout";
+}
+<div class="container-fluid">
+		<div class="row">
+			
+			<div class="col-md-8 offset-md-2 con-box">
+				<h2 class="const-title">Конструктор дебатов</h2>
+				<div class="outstanding"></div>
+
+				<form class="form-horizontal" method="GET" action="#" name="construntorForm" onsubmit="return false;">
+					<div class="form-group">
+						<label for="con_title" class="col-md-4 control-label">Заголовок</label>
+						<div class="col-md-6">						
+							<input id="con_title" type="text" class="form-control" name="construntorForm_title" value="" required="" autofocus="" autocomplete="off">
+						</div>
+					</div>
+
+					<div class="form-group">
+                        <label for="con_describe" class="col-md-4 control-label">Описание</label>
+                        <div class="col-md-6">			
+                        	<textarea id="con_describe" type="text" class="form-control" name="construntorForm_describe" value="" required="" autofocus="" style="max-height: 200px; min-height: 54px; height: 100px;"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="con_keywords" class="col-md-4 control-label">Ключевые слова</label>
+                        <div class="col-md-6 con-keywords">
+                        	<div class="dropleft">
+								<button class="dropdown-toggle btn btn-secondary con-keywords-btn" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							    	 
+							  	</button>
+	                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    @foreach (var tag in await Tags.Get())
+                                    {
+	                                    <a class="dropdown-item" onclick="selectKeyWord(this)" href="#">@tag</a>
+                                    }
+		                            @* <a class="dropdown-item" onclick="selectKeyWord(this)" href="#">США</a> *@
+		                            @*  <a class="dropdown-item" onclick="selectKeyWord(this)" href="#">Путин</a> *@
+		                            @*  <a class="dropdown-item" onclick="selectKeyWord(this)" href="#">Армения</a> *@
+	                            </div>
+							</div>
+							<div type="text" class="form-control con-keywords-input" id="con-keywords-read" readonly>
+								
+							</div>
+                        </div>
+                    </div>
+
+					<div class="col-md-6 offset-md-5">
+                        <button onclick="createDebate()" type="submit" class="form-btn">Создать дискуссию</button>
+                    </div>
+				</form>
+			</div>
+
+		</div>
+	</div>

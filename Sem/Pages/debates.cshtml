@@ -1,0 +1,18 @@
+﻿@page
+@model Sem.Pages.debates
+
+@{
+    Layout = "Shared/_Layout";
+}
+
+<div class="container-fluid">
+    <div class="col-md-12 debate-top">
+        <button onclick="openDebateConstructor()">Создать дискуссию</button>
+    </div>
+    <div class="row">
+        @foreach (var debate in await Model.Debates.ToListAsync())
+        {
+            @await Component.InvokeAsync("DebatesIndex", debate)
+        }
+    </div>
+</div>
